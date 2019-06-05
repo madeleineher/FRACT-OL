@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
+/*   Updated: 2019/06/05 16:20:22 by mhernand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
@@ -11,6 +21,27 @@
 # include <assert.h>
 # include <stdio.h> //remove me
 
-int	main(int argc, char **argv);
+# define WIDTH  800
+# define HEIGHT 800
+
+typedef struct	s_win
+{
+	void		*wp;
+	void		*mp;
+	void		*ip;
+	int			sl;
+	int			bpp;
+	int			end;
+}				t_win;
+
+typedef struct	s_env
+{
+	char		*fractol;
+	char		*data;
+	t_win		w;
+}				t_env;
+
+void			start(t_env *e);
+int				main(int argc, char **argv);
 
 #endif

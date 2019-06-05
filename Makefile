@@ -1,10 +1,23 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
+#    Updated: 2019/06/05 16:22:53 by mhernand         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = fractol
 
 CFLAGS = -Wall -Werror -Wextra
 
 CC = gcc
 
-SRCS = main.c
+SRCS = main.c\
+	   start.c
 
 S_FOLD = $(addprefix srcs/, $(SRCS))
 
@@ -21,7 +34,7 @@ LIBMLX = -L ./minilibx_macos/ -lmlx -framework OpenGL -framework Appkit
 all: $(NAME)
 
 $(NAME):$(OBJS) | $(L_TARG)
-	$(CC) $(CFLAGS) $(OBJS) libft/libft.a $(LIBMLX) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) libft/libft.a $(LIBMLX) -g -o $(NAME)
 	@touch .gitignore
 	@echo "*.o" > .gitignore
 	@echo "*.a" >> .gitignore
@@ -33,11 +46,11 @@ $(L_TARG):
 clean:
 	@make -C $(L_TARG) clean
 	@make -C $(M_FOLD) clean
-	@rm -rf $(OBJS)
+	rm -rf $(OBJS)
 
-fclean:
+fclean: clean
 	@make -C $(L_TARG) fclean
-	@rm -rf $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 
