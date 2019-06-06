@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:48:02 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 10:07:55 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 10:14:13 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	mandelbrot(t_env *e)
 	float	x = 0;
 	int		i = 0;
 	int		j = 0;
-	for (i = 0; i < HEIGHT; i++)
+	while (i < HEIGHT)
 	{
 		x = xmin;
-		for (j = 0; j < WIDTH; j++)
+		while (j < WIDTH)
 		{
 			float a = x;
 			float b = y;
@@ -54,17 +54,20 @@ void	mandelbrot(t_env *e)
 			{
 				//*(int *)&e->data[i * (e->w.bpp / 8) + j * e->w.sl] = 0x00FF00;
 				mlx_pixel_put(e->w.mp, e->w.wp, j, i, 0xFFFFFF);
-				printf("hi\n");
+				//printf("hi\n");
 			}
 			else
 			{
 				//*(int *)&e->data[i * (e->w.bpp / 8) + j * e->w.sl] = 0xFF0000;
 				mlx_pixel_put(e->w.mp, e->w.wp, j, i, 0x000000);
-				printf("hello\n");
+				//printf("hello\n");
 			}
 			x += dx;
+			j++;
 		}
+		j = 0;
 		y += dy;
+		i++;
 	}	
 }
 
