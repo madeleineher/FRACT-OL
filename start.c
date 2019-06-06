@@ -6,71 +6,72 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:48:02 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 10:15:56 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 10:37:32 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
 
+void	mandelsetup(t_env *e)
+{
+	e->m.n = 0;
+	e->m.nmax = 1000;
+	e->m.w = 5;
+	e->m.h = (e->m.w * HEIGHT) / WIDTH;
+	e->m.xmin = -e->m.w/2;
+	e->m.xmax = e->m.xmin + e->m.w;
+	e->m.ymin = -e->m.h/2;
+	e->m.ymax = e->m.ymin + e->m.h;
+	e->m.dx = (e->m.xmax - e->m.xmin) / (WIDTH);
+	e->m.dy = (e->m.ymax - e->m.ymin) / (HEIGHT);
+	e->m.tx = 0;
+	e->m.ty = e->m.ymin;
+}
+
 void	mandelbrot(t_env *e)
 {
-	int		n = 0;
-	int		n_max = 100;
-	float	w = 5;
-	float	h = (w * HEIGHT) / WIDTH;
-
-	float	xmin = -w/2;
-	float	ymin = -h/2;
-
-	float	xmax = xmin + w;
-	float	ymax = ymin + h;
-
-	float	dx = (xmax - xmin) / (WIDTH);
-	float	dy = (ymax - ymin) / (HEIGHT);
-
-	float	y = ymin;
-	float	x = 0;
 	int		i = -1;
 	int		j = 0;
 	while (++i < HEIGHT)
 	{
-		x = xmin;
+		e->m.tx = e->m.xmin;
 		while (++j < WIDTH)
 		{
-			float a = x;
-			float b = y;
-			n = -1;
-			while (++n < n_max)
+			e->m.a = e->m.tx;
+			e->m.b = e->m.ty;
+			e->m.n = -1;
+			while (++e->m.n < e->m.nmax)
 			{
-				float aa = a * a;
-				float bb = b * b;
-				float twoab = 2.0 * a * b;
-				a = aa - bb + x;
-				b = twoab + y;
-				if (a*a + b*b > 16.0)
+				e->m.two_a = e->m.a * e->m.a;
+				e->m.two_b = e->m.b * e->m.b;
+				e->m.two_ab = 2.0 * e->m.a * e->m.b;
+				e->m.a = e->m.two_a - e->m.two_b + e->m.tx;
+				e->m.b = e->m.two_ab + e->m.ty;
+				if (e->m.a * e->m.a + e->m.b * e->m.b > 16.0)
 					break;
 			}
-			if (n == n_max)
+			if (e->m.n == e->m.nmax)
 			{
 				//*(int *)&e->data[i * (e->w.bpp / 8) + j * e->w.sl] = 0x00FF00;
-				mlx_pixel_put(e->w.mp, e->w.wp, j, i, 0xFFFFFF);
-				//printf("hi\n");
+				mlx_pixel_put(e->w.mp, e->w.wp, j, i, 0xFF00FF);
 			}
 			else
 			{
 				//*(int *)&e->data[i * (e->w.bpp / 8) + j * e->w.sl] = 0xFF0000;
-				mlx_pixel_put(e->w.mp, e->w.wp, j, i, 0x000000);
-				//printf("hello\n");
+				mlx_pixel_put(e->w.mp, e->w.wp, j, i, 0xFFF000);
 			}
-			x += dx;
+			e->m.tx += e->m.dx;
 		}
 		j = -1;
-		y += dy;
+		e->m.ty += e->m.dy;
 	}	
 }
 
 void	start(t_env *e)
 {	
 	if (ft_strcmp(e->fractol, "Manelbrot") != 0)
+	{
+		mandelsetup(e);
 		mandelbrot(e);
+	}
 }

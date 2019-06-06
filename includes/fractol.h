@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/05 16:20:22 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 10:36:21 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,27 @@
 # define WIDTH  800
 # define HEIGHT 800
 
+typedef struct	s_man
+{
+	int			n;
+	int			nmax;
+	float		w;
+	float		h;
+	float		xmax;
+	float		xmin;
+	float		ymin;
+	float		ymax;
+	float		dx;
+	float		dy;
+	float		ty;
+	float		tx;
+	float		a;
+	float		b;
+	float		two_a;
+	float		two_b;
+	float		two_ab;
+}				t_man;
+
 typedef struct	s_win
 {
 	void		*wp;
@@ -39,6 +60,7 @@ typedef struct	s_env
 	char		*fractol;
 	char		*data;
 	t_win		w;
+	t_man		m;
 }				t_env;
 
 void			start(t_env *e);
