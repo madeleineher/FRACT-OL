@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/06/06 13:16:29 by mhernand         ###   ########.fr        #
+#    Updated: 2019/06/06 18:07:19 by mhernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ CC = gcc
 
 SRCS = main.c\
 	   start.c\
+	   touch.c\
 	   mandelbrot.c\
 	   julia.c
 

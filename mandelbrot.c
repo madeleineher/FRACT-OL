@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 13:12:10 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 13:13:37 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 18:32:38 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,19 @@ void	mandelsetup(t_env *e)
 	e->m.ty = e->m.ymin;
 }
 
+float	map1(t_env *e)
+{
+	return (0 + (255 - 0) * ((e->m.a - 0)/(1000 - 0)));
+}
+
 void	mandelcolor(t_env *e)
 {
 	if (e->m.n == e->m.nmax)
-		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl] = 0x00FF00;
+		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl] 
+			= 0x0000FF;//map1(e);
 	else
-		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl] = 0xFF0000;
+		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl]
+		   	= 0xFF0000; //map1(e);
 }
 
 void	mandelbrot(t_env *e)

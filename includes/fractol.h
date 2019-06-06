@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 13:16:11 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 18:32:26 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 
 # define WIDTH  800
 # define HEIGHT 800
+
+# define ESC 	53
+# define MOUSEM	6
 
 typedef struct	s_man
 {
@@ -61,11 +64,13 @@ typedef struct	s_env
 {
 	char		*fractol;
 	char		*data;
+	int			k[300];
 	t_win		w;
 	t_man		m;
 }				t_env;
 
 void			start(t_env *e);
+int				touch(t_env *e);
 void			mandelbrot(t_env *e);
 void			julia(t_env *e);
 int				main(int argc, char **argv);

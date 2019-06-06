@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:08 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 13:10:52 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 18:26:44 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int			error(int i)
 {
 	if (i == 1)
-		ft_putendl("usage: ./fractol FRACTOL_NAME/S");
+		ft_putendl("usage: ./fractol FRACTAL_NAME/S");
 	if (i == 2)
-		ft_putendl("error: not a valid fracal.");
+		ft_putendl("error: not a valid fractal.");
 	if (i == 3)
 		ft_putendl("error: poor malloc.");
 	exit(0);
