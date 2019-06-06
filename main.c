@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:08 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 10:07:47 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 13:10:52 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,35 @@ int			error(int i)
 	return (0);
 }
 
-int			check_args(char **args)
+int			check_fractols(char **args)
 {
-	int		ret;
-
-	ret = 0;
-	while (*++args != 0)
-		if (ft_strcmp(*args, "Mandelbrot") > 0)
-			ret = -1;
-	return (ret);
+	if (ft_strcmp(args[1], "Mandelbrot") == 0)
+		return (0);
+	else if (ft_strcmp(args[1], "Julia") == 0)
+		return (0);
+	else if (ft_strcmp(args[1], "Koch") == 0)
+		return (0);
+	else if (ft_strcmp(args[1], "Fern") == 0)
+		return (0);
+	else if (ft_strcmp(args[1], "Sierpinski") == 0)
+		return (0);
+	else if (ft_strcmp(args[1], "Tree") == 0)
+		return (0);
+	else
+		return (-1);
 }
 
 int			main(int argc, char **argv)
 {
 	t_env	*e;
-	
+
 	e = NULL;
 	if (!(e = (t_env*)malloc(sizeof(t_env))))
 		error(3);
 	ft_bzero(e, sizeof(e));
 	if (argc < 2)
 		error(1);
-	else if (check_args(argv) == -1)
+	else if (check_fractols(argv) == -1)
 		error(2);
 	e->fractol = argv[1];
 	if (!(e->w.mp = mlx_init())

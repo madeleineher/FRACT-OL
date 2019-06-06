@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 11:13:04 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 13:16:11 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct	s_env
 }				t_env;
 
 void			start(t_env *e);
+void			mandelbrot(t_env *e);
+void			julia(t_env *e);
 int				main(int argc, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/06/06 10:09:34 by mhernand         ###   ########.fr        #
+#    Updated: 2019/06/06 13:16:29 by mhernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ CFLAGS = -Wall -Werror -Wextra
 CC = gcc
 
 SRCS = main.c\
-	   start.c
+	   start.c\
+	   mandelbrot.c\
+	   julia.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,76 +6,25 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:48:02 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 11:23:56 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 13:15:59 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
 
-void	mandelsetup(t_env *e)
-{
-	e->m.i = -1;
-	e->m.j = -1;
-	e->m.n = 0;
-	e->m.nmax = 1000;
-	e->m.w = 5;
-	e->m.h = (e->m.w * HEIGHT) / WIDTH;
-	e->m.xmin = -e->m.w/2;
-	e->m.xmax = e->m.xmin + e->m.w;
-	e->m.ymin = -e->m.h/2;
-	e->m.ymax = e->m.ymin + e->m.h;
-	e->m.dx = (e->m.xmax - e->m.xmin) / (WIDTH);
-	e->m.dy = (e->m.ymax - e->m.ymin) / (HEIGHT);
-	e->m.tx = 0;
-	e->m.ty = e->m.ymin;
-}
-
-void	mandelcolor(t_env *e)
-{
-	if (e->m.n == e->m.nmax)
-		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl] = 0x00FF00;
-	else
-		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl] = 0xFF0000;
-}
-
-void	mandelbrot(t_env *e)
-{
-	while (++e->m.i < HEIGHT)
-	{
-		e->m.tx = e->m.xmin;
-		while (++e->m.j < WIDTH)
-		{
-			e->m.a = e->m.tx;
-			e->m.b = e->m.ty;
-			e->m.n = -1;
-			while (++e->m.n < e->m.nmax)
-			{
-				e->m.two_a = e->m.a * e->m.a;
-				e->m.two_b = e->m.b * e->m.b;
-				e->m.two_ab = 2.0 * e->m.a * e->m.b;
-				e->m.a = e->m.two_a - e->m.two_b + e->m.tx;
-				e->m.b = e->m.two_ab + e->m.ty;
-				if (e->m.a * e->m.a + e->m.b * e->m.b > 16.0)
-					break;
-			}
-			mandelcolor(e);
-			e->m.tx += e->m.dx;
-		}
-		e->m.j = -1;
-		e->m.ty += e->m.dy;
-	}	
-}
-
 void	start(t_env *e)
 {	
-	if (ft_strcmp(e->fractol, "Manelbrot") != 0)
-	{
-		mandelsetup(e);
+	if (ft_strcmp(e->fractol, "Mandelbrot") == 0)
 		mandelbrot(e);
-	}
-//	if (ft_strcmp(e->fractol, "Julia") != 0)
-//	{
-//		julia(e);
-//	}
+	else if (ft_strcmp(e->fractol, "Julia") == 0)
+		julia(e);
+	//else if (ft_strcmp(e->fractol, "Koch") == 0)
+	//	koch(e);
+	//else if (ft_strcmp(e->fractol, "Fern") == 0)
+	//	fern(e);
+	//else if (ft_strcmp(e->fractol, "Sierpinski") == 0)
+	//	sierpinski(e);
+	//else if (ft_strcmp(e->fractol, "Tree") == 0)
+	//	tree(e);
 	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
 }
