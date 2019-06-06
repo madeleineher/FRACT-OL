@@ -6,11 +6,11 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:08 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/05 15:15:26 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 10:07:47 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "includes/fractol.h"
 
 int			error(int i)
 {
