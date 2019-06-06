@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:48:02 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 10:37:32 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 10:54:53 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,15 @@ void	mandelbrot(t_env *e)
 					break;
 			}
 			if (e->m.n == e->m.nmax)
-			{
-				//*(int *)&e->data[i * (e->w.bpp / 8) + j * e->w.sl] = 0x00FF00;
-				mlx_pixel_put(e->w.mp, e->w.wp, j, i, 0xFF00FF);
-			}
+				*(int *)&e->data[j * (e->w.bpp / 8) + i * e->w.sl] = 0x00FF00;
 			else
-			{
-				//*(int *)&e->data[i * (e->w.bpp / 8) + j * e->w.sl] = 0xFF0000;
-				mlx_pixel_put(e->w.mp, e->w.wp, j, i, 0xFFF000);
-			}
+				*(int *)&e->data[j * (e->w.bpp / 8) + i * e->w.sl] = 0xFF0000;
 			e->m.tx += e->m.dx;
 		}
 		j = -1;
 		e->m.ty += e->m.dy;
 	}	
+	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
 }
 
 void	start(t_env *e)
