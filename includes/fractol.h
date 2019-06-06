@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 10:49:53 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 11:13:04 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 typedef struct	s_man
 {
+	int			i;
+	int			j;
 	int			n;
 	int			nmax;
 	float		w;

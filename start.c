@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:48:02 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 10:54:53 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/06 11:23:56 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	mandelsetup(t_env *e)
 {
+	e->m.i = -1;
+	e->m.j = -1;
 	e->m.n = 0;
 	e->m.nmax = 1000;
 	e->m.w = 5;
@@ -28,14 +30,20 @@ void	mandelsetup(t_env *e)
 	e->m.ty = e->m.ymin;
 }
 
+void	mandelcolor(t_env *e)
+{
+	if (e->m.n == e->m.nmax)
+		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl] = 0x00FF00;
+	else
+		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl] = 0xFF0000;
+}
+
 void	mandelbrot(t_env *e)
 {
-	int		i = -1;
-	int		j = 0;
-	while (++i < HEIGHT)
+	while (++e->m.i < HEIGHT)
 	{
 		e->m.tx = e->m.xmin;
-		while (++j < WIDTH)
+		while (++e->m.j < WIDTH)
 		{
 			e->m.a = e->m.tx;
 			e->m.b = e->m.ty;
@@ -50,16 +58,12 @@ void	mandelbrot(t_env *e)
 				if (e->m.a * e->m.a + e->m.b * e->m.b > 16.0)
 					break;
 			}
-			if (e->m.n == e->m.nmax)
-				*(int *)&e->data[j * (e->w.bpp / 8) + i * e->w.sl] = 0x00FF00;
-			else
-				*(int *)&e->data[j * (e->w.bpp / 8) + i * e->w.sl] = 0xFF0000;
+			mandelcolor(e);
 			e->m.tx += e->m.dx;
 		}
-		j = -1;
+		e->m.j = -1;
 		e->m.ty += e->m.dy;
 	}	
-	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
 }
 
 void	start(t_env *e)
@@ -69,4 +73,9 @@ void	start(t_env *e)
 		mandelsetup(e);
 		mandelbrot(e);
 	}
+//	if (ft_strcmp(e->fractol, "Julia") != 0)
+//	{
+//		julia(e);
+//	}
+	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
 }
