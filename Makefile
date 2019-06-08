@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/06/06 18:07:19 by mhernand         ###   ########.fr        #
+#    Updated: 2019/06/08 18:45:16 by mhernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,14 @@ NAME = fractol
 
 INC = includes/fractol.h
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3 # REMOVE G3 FLAG !
 
 CC = gcc
 
 SRCS = main.c\
 	   start.c\
-	   touch.c\
 	   mandelbrot.c\
-	   julia.c
+	   test_julia.c
 
 OBJS = $(SRCS:.c=.o)
 
