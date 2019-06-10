@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:48:02 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/07 13:03:09 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/10 10:48:16 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int		loop(t_env *e)
 
 int		start(t_env *e)
 {	
-	if (ft_strcmp(e->fractol, "Mandelbrot") == 0)
+	if (ft_strcmp(e->fractol, "m") == 0)
 		mandelbrot(e);
-	else if (ft_strcmp(e->fractol, "Julia") == 0)
+	else if (ft_strcmp(e->fractol, "j") == 0)
 		julia(e);
 	//else if (ft_strcmp(e->fractol, "Koch") == 0)
 	//	koch(e);

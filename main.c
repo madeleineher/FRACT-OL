@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:08 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/06 18:26:44 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/10 10:48:12 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,19 @@ int			error(int i)
 
 int			check_fractols(char **args)
 {
-	if (ft_strcmp(args[1], "Mandelbrot") == 0)
+	if (ft_strcmp(args[1], "m") == 0) // mandelbrot
 		return (0);
-	else if (ft_strcmp(args[1], "Julia") == 0)
+	else if (ft_strcmp(args[1], "j") == 0) // julia
+		return (0); 
+	else if (ft_strcmp(args[1], "k") == 0) //koch
 		return (0);
-	else if (ft_strcmp(args[1], "Koch") == 0)
+	else if (ft_strcmp(args[1], "f") == 0) // fern
 		return (0);
-	else if (ft_strcmp(args[1], "Fern") == 0)
+	else if (ft_strcmp(args[1], "s") == 0) // sierpinski
 		return (0);
-	else if (ft_strcmp(args[1], "Sierpinski") == 0)
+	else if (ft_strcmp(args[1], "t") == 0) // tree
 		return (0);
-	else if (ft_strcmp(args[1], "Tree") == 0)
+	else if (ft_strcmp(args[1], "p") == 0) // sinking ship
 		return (0);
 	else
 		return (-1);
