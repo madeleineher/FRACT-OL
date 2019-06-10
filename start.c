@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:48:02 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/10 10:48:16 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/10 11:07:40 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ int		start(t_env *e)
 		mandelbrot(e);
 	else if (ft_strcmp(e->fractol, "j") == 0)
 		julia(e);
+	else if (ft_strcmp(e->fractol, "f") == 0)
+		fern(e);
 	//else if (ft_strcmp(e->fractol, "Koch") == 0)
 	//	koch(e);
-	//else if (ft_strcmp(e->fractol, "Fern") == 0)
-	//	fern(e);
 	//else if (ft_strcmp(e->fractol, "Sierpinski") == 0)
 	//	sierpinski(e);
 	//else if (ft_strcmp(e->fractol, "Tree") == 0)

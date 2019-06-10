@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/10 11:01:12 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/10 17:34:56 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,22 @@
 
 # define WIDTH  800 
 # define HEIGHT 800
+# define X_MIN	-2.182
+# define X_MAX	2.6558
+# define Y_MIN	0
+# define Y_MAX	9.9983
 
 # define ESC 	53
 # define MOUSEM	6
+
+typedef struct	s_fer
+{
+	double		x;
+	double		y;
+	double		nx;
+	double		ny;
+}				t_fer;
+
 
 typedef struct	s_jul
 {
@@ -93,12 +106,14 @@ typedef struct	s_env
 	t_win		w;
 	t_man		m;
 	t_jul		j;
+	t_fer		f;
 }				t_env;
 
 int				start(t_env *e);
 int				touch(t_env *e);
 void			mandelbrot(t_env *e);
 void			julia(t_env *e);
+void			fern(t_env *e);
 int				main(int argc, char **argv);
 
 #endif
