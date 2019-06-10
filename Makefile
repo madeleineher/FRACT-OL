@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/06/08 18:45:16 by mhernand         ###   ########.fr        #
+#    Updated: 2019/06/10 10:58:18 by mhernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CC = gcc
 SRCS = main.c\
 	   start.c\
 	   mandelbrot.c\
-	   test_julia.c
+	   julia.c
 
 OBJS = $(SRCS:.c=.o)
 

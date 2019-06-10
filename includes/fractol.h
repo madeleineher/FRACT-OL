@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/08 16:13:14 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/10 11:01:12 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,21 @@ typedef struct	s_jul
 	int			y;
 	int			n;
 	int			nmax;
+	float		w;
+	float		h;
+	float		xmax;
+	float		xmin;
+	float		ymin;
+	float		ymax;
+	float		dx;
+	float		dy;
+	float		ty;
+	float		tx;
+	float		a;
+	float		b;
+	float		two_a;
+	float		two_b;
+	float		two_ab;
 }				t_jul;
 
 typedef struct	s_man
