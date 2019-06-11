@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/11 13:00:13 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/11 13:52:59 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_fer
 	double		y;
 	double		nx;
 	double		ny;
+	double		random;
 }				t_fer;
 
 
