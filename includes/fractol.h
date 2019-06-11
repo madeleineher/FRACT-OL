@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/10 17:34:56 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/11 13:00:13 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,19 @@ typedef struct	s_win
 	int			end;
 }				t_win;
 
+typedef struct	s_mos
+{
+	int			mx;
+	int			my;
+	int			m;
+}				t_mos;
+
 typedef struct	s_env
 {
 	char		*fractol;
 	char		*data;
 	int			k[300];
-	int			mx;
-	int			my;
+	t_mos		mo;
 	t_win		w;
 	t_man		m;
 	t_jul		j;
