@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 11:05:44 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/11 13:19:24 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/11 13:37:52 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ void	fern(t_env *e)
 	int		x;
 
 	x = -1;
-	while (++x < 1000000)
+	while (++x < 100000)
 	{
 		fernpoints(e);
 		//e->f.x = (int)(e->f.x - X_MIN * WIDTH / (X_MAX - X_MIN));
 		//e->f.y = (int)(e->f.y - Y_MIN * HEIGHT / (Y_MAX - Y_MIN));
-		drawpoint((int)(e->f.x - X_MIN * WIDTH / (X_MAX - X_MIN)), (int)(e->f.y - Y_MIN * HEIGHT / (Y_MAX - Y_MIN)), e);
+		drawpoint((int)((e->f.x - X_MIN) * WIDTH / (X_MAX - X_MIN)), HEIGHT - (int)((e->f.y - Y_MIN) * HEIGHT / (Y_MAX - Y_MIN)), e);
 	}
 }
