@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 11:05:44 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/11 13:54:41 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/11 17:05:55 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	fernpoints(t_env *e)
 {
 	e->f.nx = 0;
 	e->f.ny = 0;
-	e->f.random  = (double)rand() / RAND_MAX;
+	e->f.random = (double)rand() / RAND_MAX;
 	if (e->f.random < 0.01)
 	{ 
 		e->f.nx = 0.0;

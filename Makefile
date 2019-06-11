@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/06/10 11:08:05 by mhernand         ###   ########.fr        #
+#    Updated: 2019/06/11 14:36:05 by mhernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRCS = main.c\
 	   start.c\
 	   mandelbrot.c\
 	   julia.c\
-	   fern.c
+	   fern.c\
+	   koch.c\
+	   sierpinski.c
 
 OBJS = $(SRCS:.c=.o)
 

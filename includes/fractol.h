@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/11 13:52:59 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/11 17:05:14 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,24 @@ typedef struct	s_fer
 	double		nx;
 	double		ny;
 	double		random;
+	double		x_min;
+	double		x_max;
+	double		y_min;
+	double		y_max;
 }				t_fer;
 
+typedef struct	s_sie
+{
+	int			ax;
+	int			ay;
+	int			bx;
+	int			by;
+	int			cx;
+	int			cy;
+	int			rx;
+	int			ry;
+	double		r;
+}				t_sie;
 
 typedef struct	s_jul
 {
@@ -114,6 +130,7 @@ typedef struct	s_env
 	t_man		m;
 	t_jul		j;
 	t_fer		f;
+	t_sie		s;
 }				t_env;
 
 int				start(t_env *e);
@@ -121,6 +138,8 @@ int				touch(t_env *e);
 void			mandelbrot(t_env *e);
 void			julia(t_env *e);
 void			fern(t_env *e);
+void			koch(t_env *e);
+void			sierpinski(t_env *e);
 int				main(int argc, char **argv);
 
 #endif
