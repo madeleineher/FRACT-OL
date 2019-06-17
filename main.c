@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:08 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/10 10:48:12 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/17 10:43:48 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			check_fractols(char **args)
 		return (0);
 	else if (ft_strcmp(args[1], "s") == 0) // sierpinski
 		return (0);
-	else if (ft_strcmp(args[1], "t") == 0) // tree
+	else if (ft_strcmp(args[1], "g") == 0) // tree
 		return (0);
 	else if (ft_strcmp(args[1], "p") == 0) // sinking ship
 		return (0);

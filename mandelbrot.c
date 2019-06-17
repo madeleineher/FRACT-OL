@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 13:12:10 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/08 18:53:23 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/17 09:10:27 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	mandelcolor(t_env *e)
 			= 0x0000FF; //map(e);
 	else
 		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl]
-		   	= e->m.n * 0xFF0000; //map(e);
+		   	= e->m.n * 0xFF0000; //map(e); // iterate on the parts with mandel
 }
 
 void	mandelbrot(t_env *e)

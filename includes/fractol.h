@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/11 17:05:14 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/17 10:43:16 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@
 
 # define WIDTH  800 
 # define HEIGHT 800
-# define X_MIN	-2.182
-# define X_MAX	2.6558
-# define Y_MIN	0
-# define Y_MAX	9.9983
 
 # define ESC 	53
 # define MOUSEM	6
@@ -135,11 +131,15 @@ typedef struct	s_env
 
 int				start(t_env *e);
 int				touch(t_env *e);
+int				mouse_move(int x, int y, t_env *e);
+int				mouse_click(int	button, int x, int y, t_env *e);
+int				mouse_no_click(int button, int x, int y, t_env *e);
 void			mandelbrot(t_env *e);
 void			julia(t_env *e);
 void			fern(t_env *e);
 void			koch(t_env *e);
 void			sierpinski(t_env *e);
+void			tree(t_env *e);
 int				main(int argc, char **argv);
 
 #endif

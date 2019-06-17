@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   tree.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/06 13:12:10 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/17 16:46:31 by mhernand         ###   ########.fr       */
+/*   Created: 2019/06/17 09:51:34 by mhernand          #+#    #+#             */
+/*   Updated: 2019/06/17 12:57:58 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
 
-void	juliasetup(t_env *e)
+void	treesetup(t_env *e)
 {
 	e->j.x = -1;
 	e->j.y = -1;
 	e->j.n = 0;
-	e->j.nmax = 100;
+	e->j.nmax = 1000;
 	e->j.w = 5;
 	e->j.h = (e->j.w * HEIGHT) / WIDTH;
 	e->j.xmin = -e->j.w/2;
@@ -30,28 +30,23 @@ void	juliasetup(t_env *e)
 	e->j.ty = e->j.ymin;
 }
 
-void	juliacolor(t_env *e)
+void	treecolor(t_env *e)
 {
 	if (e->j.n == e->j.nmax)
-		*(int *)&e->data[e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] 
+		*(int *)&e->data[e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl]
 			= 0x0000FF; //map(e);
 	else
 		*(int *)&e->data[e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl]
-		   	= e->j.n * 0xFF0000; //map(e);
+			= e->j.n * 0xFF0000; //map(e);
 }
 
-float	mapj(int m)
+void	tree(t_env *e)
 {
-	//start2 + (stop2 - start2 * ((m - start1) / (stop1 - start1))
-	return ((-0.5 + (0.5 - -0.5 * ((m - 0) / (float)(WIDTH - 0)))));
-}
-
-void	julia(t_env *e)
-{
-	juliasetup(e);
+	treesetup(e);
 	while (++e->j.y < HEIGHT)
 	{
 		e->j.tx = e->j.xmin;
+		e->j.x = -1;
 		while (++e->j.x < WIDTH)
 		{
 			e->j.a = e->j.tx;
@@ -62,15 +57,14 @@ void	julia(t_env *e)
 				e->j.two_a = e->j.a * e->j.a;
 				e->j.two_b = e->j.b * e->j.b;
 				e->j.two_ab = 2.0 * e->j.a * e->j.b;
-				e->j.a = e->j.two_a - e->j.two_b + mapj(e->mo.mx);
-				e->j.b = e->j.two_ab + mapj(e->mo.my);
+				e->j.a = e->j.two_a - e->j.two_b - 0.3466;// * e->mo.mx;
+				e->j.b = e->j.two_ab + 0;// * e->mo.my;
 				if (e->j.a * e->j.a + e->j.b * e->j.b > 16.0)
 					break;
 			}
-			juliacolor(e);
+			treecolor(e);
 			e->j.tx += e->j.dx;
 		}
-		e->j.x = -1;
 		e->j.ty += e->j.dy;
 	}
 }
