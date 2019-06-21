@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/17 10:43:16 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/21 16:15:41 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 # define WIDTH  800 
 # define HEIGHT 800
 
-# define ESC 	53
-# define MOUSEM	6
+# define ESC 				53
+# define H					4	
+# define KEY_SPACEBAR 		49	
+# define MOUSEM				6
 
 typedef struct	s_fer
 {
@@ -113,20 +115,33 @@ typedef struct	s_mos
 {
 	int			mx;
 	int			my;
+	int			ox;
+	int			oy;
+	int			ofx;
+	int			ofy;
 	int			m;
 }				t_mos;
+
+typedef struct	s_zoom
+{
+	int			x;
+	int			y;
+}				t_zoom;	
 
 typedef struct	s_env
 {
 	char		*fractol;
 	char		*data;
 	int			k[300];
+	int			pal[8][5];
+	int			p;
 	t_mos		mo;
 	t_win		w;
 	t_man		m;
 	t_jul		j;
 	t_fer		f;
 	t_sie		s;
+	t_zoom		z;
 }				t_env;
 
 int				start(t_env *e);
@@ -140,6 +155,9 @@ void			fern(t_env *e);
 void			koch(t_env *e);
 void			sierpinski(t_env *e);
 void			tree(t_env *e);
+void			color(t_env *e);
+void			texting(t_env *e);
+void			setfractol(t_env *e);
 int				main(int argc, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:48:02 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/17 13:59:18 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/21 13:28:08 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		key_release(int key, t_env *e)
 int		loop(t_env *e)
 {
 	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
+	texting(e);
 	mlx_hook(e->w.wp, 2, 1L << 2, key_press, e);
 	mlx_hook(e->w.wp, 3, 1L << 3, key_release, e);
 	mlx_hook(e->w.wp, 6, 1L << 6, mouse_move, e);

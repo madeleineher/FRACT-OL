@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 11:05:44 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/11 17:13:02 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/21 16:36:25 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	drawpoint(int x, int y, t_env *e, int i)
 {
+	(void)i;
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 		*(int *)&e->data[(int)x * (e->w.bpp / 8) + (int)y * e->w.sl]
-			= 0xFFFFFF * i % 1000000;
+			= e->pal[7][i % 5];
 }
 
 void	fernpoints(t_env *e)
@@ -53,11 +54,11 @@ void	fern(t_env *e)
 	int		x;
 
 	x = -1;
-	e->f.x_min = -2.182;
+/*	e->f.x_min = -2.182;
 	e->f.x_max = 2.6558;
 	e->f.y_min = 0;
 	e->f.y_max = 9.9983;
-	while (++x < 1000000)
+*/	while (++x < 1000000)
 	{
 		fernpoints(e);
 		//e->f.x = (int)(e->f.x - X_MIN * WIDTH / (X_MAX - X_MIN));

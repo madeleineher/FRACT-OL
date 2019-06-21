@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/06/17 10:42:55 by mhernand         ###   ########.fr        #
+#    Updated: 2019/06/21 15:21:38 by mhernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ CFLAGS = -Wall -Werror -Wextra -g3 # REMOVE G3 FLAG !
 CC = gcc
 
 SRCS = main.c\
+	   setfractol.c\
 	   start.c\
 	   touch.c\
 	   mouse.c\
@@ -27,7 +28,8 @@ SRCS = main.c\
 	   julia.c\
 	   fern.c\
 	   koch.c\
-	   sierpinski.c
+	   sierpinski.c\
+	   color.c
 
 OBJS = $(SRCS:.c=.o)
 

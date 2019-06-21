@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:08 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/17 10:43:48 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/06/21 15:44:10 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,24 @@
 int			error(int i)
 {
 	if (i == 1)
+	{
 		ft_putendl("usage: ./fractol FRACTAL_NAME/S");
+		ft_putendl("       ./fractol julia | mandelbrot | fern");
+	}
 	if (i == 2)
+	{
 		ft_putendl("error: not a valid fractal.");
+		ft_putendl("./fractol julia | mandelbrot | fern");
+	}
 	if (i == 3)
 		ft_putendl("error: poor malloc.");
 	exit(0);
 	return (0);
+}
+
+void		texting(t_env *e)
+{
+	mlx_string_put(e->w.mp, e->w.wp, 30, 20, 0xFFFFFF, "HELLO");
 }
 
 int			check_fractols(char **args)
@@ -64,6 +75,8 @@ int			main(int argc, char **argv)
 		error(3);
 	if (!(e->data = mlx_get_data_addr(e->w.ip, &e->w.bpp, &e->w.sl, &e->w.end)))
 		error(3);
+	setfractol(e);
+	color(e);
 	start(e);
 	mlx_loop(e->w.mp);
 	return (0);
