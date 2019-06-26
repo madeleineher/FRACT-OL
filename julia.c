@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -18,27 +18,14 @@ void	juliacolor(t_env *e)
 		*(int *)&e->data[e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = 0x0000FF;
 	else
 		*(int *)&e->data[e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl]
-		   	= e->pal[2][e->j.n % 5];
+		   	= e->pal[e->c][e->j.n % 5];
 }
 
-float	mapj(int m, int i, t_env *e)
+float	mapj(int m)
 {
 	//start2 + (stop2 - start2 * ((m - start1) / (stop1 - start1))
-	if (i == 1)
-	{
-		if (e->mo.mx < WIDTH / 2)
-			return (-0.9 + (0.9 - -0.9 * ((m - 0) / (float)((-WIDTH / 2) - 0)))); 
-		else if (e->mo.mx > WIDTH / 2)
-			return (-0.9 + (0.9 - -0.9 * ((m - (WIDTH / 2)) / (float)((WIDTH - (WIDTH / 2))))));
-	}
-	else
-	{
-		if (e->mo.my < HEIGHT / 2)
-			return (-0.9 + (0.9 - -0.9 * ((m - 0) / (float)((-HEIGHT / 2) - 0))));
-		else if (e->mo.my > HEIGHT / 2)
-			return (-0.9 + (0.9 - -0.9 * ((m - (HEIGHT / 2)) / (float)((HEIGHT - (HEIGHT / 2))))));
-	}
-	return (0);
+	//map(mouse, 0, width, -1, 1);
+	return (-1 + (1 - -1) * ((m - 0) / (float)((WIDTH - 0))));
 }
 
 void	julia(t_env *e)
@@ -62,9 +49,9 @@ void	julia(t_env *e)
 				e->j.two_a = e->j.a * e->j.a;
 				e->j.two_b = e->j.b * e->j.b;
 				e->j.two_ab = 2.0 * e->j.a * e->j.b;
-				e->j.a = e->j.two_a - e->j.two_b + mapj(e->mo.my, 1, e);
-				e->j.b = e->j.two_ab + mapj(e->mo.my, 2, e);
-				tst = mapj(e->mo.my, 2, e);
+				e->j.a = e->j.two_a - e->j.two_b + mapj(e->mo.mx);
+				e->j.b = e->j.two_ab + mapj(e->mo.my);
+				tst = mapj(e->mo.mx);
 				if (e->j.a * e->j.a + e->j.b * e->j.b > 16.0)
 					break;
 			}
@@ -74,5 +61,5 @@ void	julia(t_env *e)
 		e->j.x = -1;
 		e->j.ty += e->j.dy;
 	}
-	printf("real : [%f] -- imag : [%f] -- test : [%f]\n", e->j.a, e->j.b, tst);
+//	printf("real : [%f] -- imag : [%f] -- test : [%f]\n", e->j.a, e->j.b, tst);
 }
