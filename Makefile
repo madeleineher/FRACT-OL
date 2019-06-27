@@ -24,7 +24,6 @@ SRCS = main.c\
 	   touch.c\
 	   mouse.c\
 	   mandelbrot.c\
-	   tree.c\
 	   julia.c\
 	   fern.c\
 	   koch.c\
@@ -48,7 +47,7 @@ all:
 	@make $(NAME)
 
 $(NAME):$(OBJS) | $(L_TARG)
-	$(CC) $(CFLAGS) $(OBJS) libft/libft.a $(LIBMLX) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) libft/libft.a $(LIBMLX) -fsanitize=address -fno-omit-frame-pointer -o $(NAME)
 	@touch .gitignore
 	@echo "*.o" > .gitignore
 	@echo "*.a" >> .gitignore

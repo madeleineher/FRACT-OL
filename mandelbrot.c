@@ -12,31 +12,24 @@
 
 #include "includes/fractol.h"
 
-float	map(t_env *e)
-{
-	return (0 + (255 - 0 * ((e->m.a - 0) / (800 - 0))));
-}
-
 void	mandelcolor(t_env *e)
 {
 	if (e->m.n == e->m.nmax)
 		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl] 
-			= 0x0000FF; //map(e);
+			= e->pal[e->c][0];
 	else
-	{
 		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl]
-		   	= e->pal[2][e->m.n % 5]; //map(e); // iterate on the parts with mandel
-	}
+		   	= e->pal[e->c][e->m.n % 5]; // iterate on the parts with mandel
 }
 
 void	mandelbrot(t_env *e)
 {
 	e->m.i = -1;
 	e->m.j = -1;
-	e->m.ty = e->m.ymin;
+	e->m.ty = e->xy.ymin;
 	while (++e->m.i < HEIGHT)
 	{
-		e->m.tx = e->m.xmin;
+		e->m.tx = e->xy.xmin;
 		while (++e->m.j < WIDTH)
 		{
 			e->m.a = e->m.tx;

@@ -23,11 +23,23 @@
 
 # define WIDTH  800 
 # define HEIGHT 800
+# define COL	8
 
-# define ESC 				53
-# define H					4	
-# define KEY_SPACEBAR 		49	
-# define MOUSEM				6
+# define ESC 			53
+# define H			4
+# define R			15
+# define C			8
+# define W			13
+# define A			0
+# define S			1
+# define D			2
+
+
+# define Q			12
+# define E			14
+
+# define KEY_SPACEBAR 		49
+# define MOUSEM			6
 
 typedef struct	s_fer
 {
@@ -36,10 +48,6 @@ typedef struct	s_fer
 	double		nx;
 	double		ny;
 	double		random;
-	double		x_min;
-	double		x_max;
-	double		y_min;
-	double		y_max;
 }				t_fer;
 
 typedef struct	s_sie
@@ -61,12 +69,6 @@ typedef struct	s_jul
 	int			y;
 	int			n;
 	int			nmax;
-	float		w;
-	float		h;
-	float		xmax;
-	float		xmin;
-	float		ymin;
-	float		ymax;
 	float		dx;
 	float		dy;
 	float		ty;
@@ -84,12 +86,6 @@ typedef struct	s_man
 	int			j;
 	int			n;
 	int			nmax;
-	float		w;
-	float		h;
-	float		xmax;
-	float		xmin;
-	float		ymin;
-	float		ymax;
 	float		dx;
 	float		dy;
 	float		ty;
@@ -128,14 +124,25 @@ typedef struct	s_zoom
 	int			y;
 }				t_zoom;	
 
+typedef struct		s_xy
+{
+	double		xmin;
+	double		xmax;
+	double		ymin;
+	double		ymax;
+	float		w;
+	float		h;
+}			t_xy;
+
 typedef struct	s_env
 {
 	char		*fractol;
 	char		*data;
-	int			k[300];
-	int			pal[8][5];
-	int			p;
+	int		k[300];
+	int		pal[8][5];
+	int		c;
 	t_mos		mo;
+	t_xy		xy;
 	t_win		w;
 	t_man		m;
 	t_jul		j;
@@ -146,6 +153,7 @@ typedef struct	s_env
 
 int				start(t_env *e);
 int				touch(t_env *e);
+void				blackout(t_env *e);
 int				mouse_move(int x, int y, t_env *e);
 int				mouse_click(int	button, int x, int y, t_env *e);
 int				mouse_no_click(int button, int x, int y, t_env *e);
@@ -154,7 +162,6 @@ void			julia(t_env *e);
 void			fern(t_env *e);
 void			koch(t_env *e);
 void			sierpinski(t_env *e);
-void			tree(t_env *e);
 void			color(t_env *e);
 void			texting(t_env *e);
 void			setfractol(t_env *e);

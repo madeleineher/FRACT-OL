@@ -14,10 +14,9 @@
 
 void	drawpoint(int x, int y, t_env *e, int i)
 {
-	(void)i;
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 		*(int *)&e->data[(int)x * (e->w.bpp / 8) + (int)y * e->w.sl]
-			= e->pal[7][i % 5];
+			= e->pal[e->c][i % 5];
 }
 
 void	fernpoints(t_env *e)
@@ -54,17 +53,11 @@ void	fern(t_env *e)
 	int		x;
 
 	x = -1;
-/*	e->f.x_min = -2.182;
-	e->f.x_max = 2.6558;
-	e->f.y_min = 0;
-	e->f.y_max = 9.9983;
-*/	while (++x < 1000000)
+	while (++x < 1000000)
 	{
 		fernpoints(e);
-		//e->f.x = (int)(e->f.x - X_MIN * WIDTH / (X_MAX - X_MIN));
-		//e->f.y = (int)(e->f.y - Y_MIN * HEIGHT / (Y_MAX - Y_MIN));
-		drawpoint((int)((e->f.x - e->f.x_min) * WIDTH / (e->f.x_max
-						- e->f.x_min)), HEIGHT - (int)((e->f.y - e->f.y_min)
-						* HEIGHT / (e->f.y_max - e->f.y_min)), e, x);
+		drawpoint((int)((e->f.x - e->xy.xmin) * WIDTH / (e->xy.xmax
+						- e->xy.xmin)), HEIGHT - (int)((e->f.y - e->xy.ymin)
+						* HEIGHT / (e->xy.ymax - e->xy.ymin)), e, x);
 	}
 }

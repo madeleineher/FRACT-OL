@@ -57,8 +57,8 @@ int		start(t_env *e) // add number to fractal variable like DEFINES
 		koch(e);
 	else if (ft_strcmp(e->fractol, "s") == 0)
 		sierpinski(e);
-	else if (ft_strcmp(e->fractol, "g") == 0)
-		tree(e);
+//	else if (ft_strcmp(e->fractol, "g") == 0)
+//		tree(e);
 	loop(e);
 	return (0);
 }

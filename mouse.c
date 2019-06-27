@@ -30,12 +30,13 @@ void	blackout(t_env *e)
 
 int		mouse_move(int x, int y, t_env *e)
 {
-	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT && e->fractol[0] == 'j')
-	{
+	//if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT && e->fractol[0] == 'j')
+	//if (e->fractol[0] == 'j')
+	//{
 		blackout(e);
 		e->mo.mx = x;
 		e->mo.my = y;
-	}
+	//}
 	return (0);
 }
 
@@ -45,10 +46,6 @@ int		mouse_click(int	button, int x, int y, t_env *e)
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
 		blackout(e);
-		if (e->mo.mx != x)
-			e->mo.ox = e->mo.mx;
-		if (e->mo.my != y)
-			e->mo.oy = e->mo.my;
 		e->mo.m = button;
 		e->mo.mx = x;
 		e->mo.my = y;

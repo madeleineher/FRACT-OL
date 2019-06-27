@@ -59,4 +59,5 @@ void	color(t_env *e)
 	e->pal[3][3] = 0xB4E6D9;
 	e->pal[3][4] = 0x7DD2CE;
 	color2(e);
+	e->c = 0;
 }
