@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:08 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/21 15:44:10 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/02 13:57:29 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int			main(int argc, char **argv)
 		error(3);
 	setfractol(e);
 	color(e);
+	e->xy.nmax = (e->fractol[0] == 'f' ? 100000 : 1000);
 	start(e);
 	mlx_loop(e->w.mp);
 	return (0);

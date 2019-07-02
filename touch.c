@@ -6,40 +6,70 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 17:37:51 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/21 16:36:39 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/02 17:04:42 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
 
+double	function(t_env *e)
+{
+	return (1 / e->xy.zoom);
+}
+
 int		touch(t_env *e)
 {
-	int	tx;
-	int	ty;
-
 	if (e->k[ESC] == 1)
 		exit(0);
-	if (e->k[Q] == 1 || e->mo.m == 4)
+	if ((e->k[Q] == 1 || e->mo.m == 4) && e->fractol[0] != 'f')
 	{
-		tx = e->mo.mx / (double)WIDTH * (e->xy.xmax - e->xy.xmin) + e->xy.xmin;
-		ty = e->mo.my / (double)HEIGHT * (e->xy.ymax - e->xy.ymin) + e->xy.ymin;
-		e->xy.xmin = tx - (tx - e->xy.xmin) * 0.8;
-		e->xy.xmax = tx + (e->xy.xmax - tx) * 0.8; 
-		e->xy.ymin = ty - (ty - e->xy.ymin) * 0.8;
-		e->xy.ymax = ty + (e->xy.ymax - ty) * 0.8;
-		printf("zoom out ++++ xmin : [%f] | xmax : [%f]\n\t\tymin : [%f] | ymax : [%f]\n", e->xy.xmin, e->xy.xmax, e->xy.ymin, e->xy.ymax);
+		e->xy.xmin = e->xy.w_t - function(e) / 2;
+		e->xy.xmax = e->xy.h_t + function(e) / 2;
+		e->xy.ymin = e->xy.w_t - function(e) / 2;
+		e->xy.ymax = e->xy.h_t + function(e) / 2;
+		printf("zoom out ++++ xmin : [%f] | xmax : [%f] --- ymin : [%f] | ymax : [%f] == zoom : [%f]\n", e->xy.xmin, e->xy.xmax, e->xy.ymin, e->xy.ymax, e->xy.zoom);
+		e->xy.zoom *= 0.99;
+		e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;
+		e->xy.h_t = (e->xy.ymin + e->xy.ymax) / 2;
 		blackout(e);
 		e->mo.m = 0;
 	}
-	if (e->k[E] == 1 ||  e->mo.m == 5)
+	if ((e->k[E] == 1 || e->mo.m == 5) && e->fractol[0] != 'f')
 	{
-		tx = e->mo.mx / (double)WIDTH * (e->xy.xmax - e->xy.xmin) + e->xy.xmin;
-		ty = e->mo.my / (double)WIDTH * (e->xy.xmax - e->xy.xmin) + e->xy.xmin;
-		e->xy.xmin = tx - (tx - e->xy.xmin) / 0.8;
-		e->xy.xmax = tx + (e->xy.xmax - tx) / 0.8; 
-		e->xy.ymin = ty - (ty - e->xy.ymin) / 0.8;
-		e->xy.ymax = ty + (e->xy.ymax - ty) / 0.8;
-		printf("zoom in +++ xmin : [%f] | xmax : [%f]\n\t\tymin : [%f] | ymax : [%f]\n", e->xy.xmin, e->xy.xmax, e->xy.ymin, e->xy.ymax);
+		e->xy.xmin = e->xy.w_t - function(e) / 2;
+		e->xy.xmax = e->xy.h_t + function(e) / 2;
+		e->xy.ymin = e->xy.w_t - function(e) / 2;
+		e->xy.ymax = e->xy.h_t + function(e) / 2;
+		printf("zoom in +++ xmin : [%f] | xmax : [%f] --- ymin : [%f] | ymax : [%f] == zoom : [%f]\n", e->xy.xmin, e->xy.xmax, e->xy.ymin, e->xy.ymax, e->xy.zoom);
+		e->xy.zoom /= 0.99;
+		e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;
+		e->xy.h_t = (e->xy.ymin + e->xy.ymax) / 2;
+		blackout(e);
+		e->mo.m = 0;
+	}
+	if ((e->k[Q] == 1 || e->mo.m == 4) && e->fractol[0] == 'f')
+	{
+		e->xy.xmin = e->xy.w_t - function(e) / 2;
+		e->xy.xmax = e->xy.h_t + function(e) / 2;
+		e->xy.ymin = e->xy.w_t - function(e) / 2;
+		e->xy.ymax = e->xy.h_t + function(e) / 2;
+		printf("zoom out ++++ xmin : [%f] | xmax : [%f] --- ymin : [%f] | ymax : [%f] == zoom : [%f]\n", e->xy.xmin, e->xy.xmax, e->xy.ymin, e->xy.ymax, e->xy.zoom);
+		e->xy.zoom *= 0.99;
+		e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;
+		e->xy.h_t = (e->xy.ymin + e->xy.ymax) / 2;
+		blackout(e);
+		e->mo.m = 0;
+	}
+	if ((e->k[E] == 1 || e->mo.m == 5) && e->fractol[0] == 'f')
+	{
+		e->xy.xmin = e->xy.w_t - function(e) / 2;
+		e->xy.xmax = e->xy.h_t + function(e) / 2;
+		e->xy.ymin = e->xy.w_t - function(e) / 2;
+		e->xy.ymax = e->xy.h_t + function(e) / 2;
+		printf("zoom in +++ xmin : [%f] | xmax : [%f] --- ymin : [%f] | ymax : [%f] == zoom : [%f]\n", e->xy.xmin, e->xy.xmax, e->xy.ymin, e->xy.ymax, e->xy.zoom);
+		e->xy.zoom /= 0.99;
+		e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;
+		e->xy.h_t = (e->xy.ymin + e->xy.ymax) / 2;
 		blackout(e);
 		e->mo.m = 0;
 	}
@@ -61,26 +91,27 @@ int		touch(t_env *e)
 	if (e->k[W] == 1)
 	{
 		printf("UP\n");	
-		//	e->xy.ymin = e->xy.ymin - 0.005; 
-		//	e->xy.ymax = e->xy.ymax + 0.005;
 	}
 	if (e->k[A] == 1)
 	{
 		printf("LEFT\n");	
-		//	e->xy.xmin = e->xy.xmin - 0.005;
-		//	e->xy.xmax = e->xy.xmax + 0.005;
 	}
 	if (e->k[S] == 1) 
 	{
 		printf("DOWN\n");	
-		//	e->xy.ymin = e->xy.ymin - 0.005; 
-		//	e->xy.ymax = e->xy.ymax + 0.005;
 	}
 	if (e->k[D] == 1)
 	{
 		printf("RIGHT\n");	
-		//	e->xy.xmin = e->xy.xmin - 0.005;
-		//	e->xy.xmax = e->xy.xmax + 0.005;
+	}
+	if (e->k[I] == 1 || e->k[U] == 1)
+	{
+		e->xy.nmax += (e->k[I] == 1 && e->fractol[0] != 'f' ? 100 : -100);
+		e->xy.nmax += (e->k[I] == 1 && e->fractol[0] == 'f' ? 1000 : -1000);
+		if (e->xy.nmax < 0 || e->xy.nmax > 1000000)
+			e->xy.nmax = 100;
+		printf("max : [%d]\n", e->xy.nmax);
+		blackout(e);
 	}
 	return (0);
 }
