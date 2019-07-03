@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/02 15:40:38 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:07:30 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ typedef struct	s_jul
 
 typedef struct	s_man
 {
-	int			i;
-	int			j;
+	int			x;
+	int			y;
 	int			n;
 	float		dx;
 	float		dy;

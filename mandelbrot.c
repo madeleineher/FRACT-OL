@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 13:12:10 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/03 16:09:38 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:13:06 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	mandelbrot(t_env *e)
 {
 	e->m.y = -1;
 	e->m.ty = e->xy.ymin;
+	e->m.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+	e->m.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
 	while (++e->m.y < HEIGHT)
 	{
 		e->m.tx = e->xy.xmin;
