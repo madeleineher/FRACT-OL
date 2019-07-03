@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 15:04:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/03 16:13:31 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 17:18:35 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void 	juliasetup(t_env *e)
 	e->xy.ymax = e->xy.ymin + e->xy.h;
 	e->j.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
 	e->j.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+	e->xy.nmax = 100;
 	e->j.tx = 0;
 	e->j.ty = e->xy.ymin;
 }
@@ -42,11 +43,12 @@ void	mandelsetup(t_env *e)
 	e->xy.ymax = e->xy.ymin + e->xy.h;
 	e->m.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
 	e->m.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+	e->xy.nmax = 100;
 	e->m.tx = 0;
 	e->m.ty = e->xy.ymin;
 }
 
-/*void	burnsetup(t_env *e)
+void	burnsetup(t_env *e)
 {
 	e->b.x = -1;
 	e->b.y = -1;
@@ -61,7 +63,7 @@ void	mandelsetup(t_env *e)
 	e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
 	e->b.tx = 0;
 	e->b.ty = e->xy.ymin;
-}*/
+}
 
 void	setfractol(t_env *e)
 {
@@ -79,8 +81,8 @@ void	setfractol(t_env *e)
 		e->xy.ymin = 0;
 		e->xy.ymax = 9.9983;
 	}
-//	else if (ft_strcmp(e->fractol, "b") == 0)
-//	  burnsetup(e);
+	else if (ft_strcmp(e->fractol, "b") == 0)
+	  burnsetup(e);
 	e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;
 	e->xy.h_t = (e->xy.ymin + e->xy.ymax) / 2;
 	/*  else if (ft_strcmp(e->fractol, "s") == 0)

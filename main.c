@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:08 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/02 13:57:29 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 17:01:14 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			check_fractols(char **args)
 		return (0);
 	else if (ft_strcmp(args[1], "g") == 0) // tree
 		return (0);
-	else if (ft_strcmp(args[1], "p") == 0) // sinking ship
+	else if (ft_strcmp(args[1], "b") == 0) // burning ship
 		return (0);
 	else
 		return (-1);
@@ -77,7 +77,7 @@ int			main(int argc, char **argv)
 		error(3);
 	setfractol(e);
 	color(e);
-	e->xy.nmax = (e->fractol[0] == 'f' ? 100000 : 1000);
+	e->xy.nmax = (e->fractol[0] == 'f' ? 100000 : 100);
 	start(e);
 	mlx_loop(e->w.mp);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 17:37:51 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/03 15:23:51 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:49:51 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		touch(t_env *e)
 	}
 	if (e->k[W] == 1 || e->k[S] == 1)
 	{
-		e->xy.h_t = (e->k[S] ? (e->xy.ymax - e->xy.ymin) * 0.005 : -(e->xy.ymax - e->xy.ymin) * 0.005);
+		e->xy.h_t = (e->k[W] ? (e->xy.ymax - e->xy.ymin) * 0.005 : -(e->xy.ymax - e->xy.ymin) * 0.005);
 		e->xy.ymin += e->xy.h_t;
 		e->xy.ymax += e->xy.h_t;
 		blackout(e);

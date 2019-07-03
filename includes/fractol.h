@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/03 16:07:30 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:59:57 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,22 @@ typedef struct	s_jul
 	float		two_ab;
 }				t_jul;
 
+typedef struct	s_burn
+{
+	int			x;
+	int			y;
+	int			n;
+	float		dx;
+	float		dy;
+	float		ty;
+	float		tx;
+	float		a;
+	float		b;
+	float		two_a;
+	float		two_b;
+	float		two_ab;
+}				t_burn;
+
 typedef struct	s_man
 {
 	int			x;
@@ -132,8 +148,6 @@ typedef struct	s_xy
 	double		ymax;
 	double		w;
 	double		h;
-	double		xcenter;
-	double		ycenter;
 	double		mRe;
 	double		mRi;
 	double		zoom;
@@ -153,6 +167,7 @@ typedef struct	s_env
 	t_win		w;
 	t_man		m;
 	t_jul		j;
+	t_burn		b;
 	t_fer		f;
 	t_sie		s;
 	t_zoom		z;
@@ -169,6 +184,7 @@ void			julia(t_env *e);
 void			fern(t_env *e);
 void			koch(t_env *e);
 void			sierpinski(t_env *e);
+void			burn(t_env *e);
 void			color(t_env *e);
 void			texting(t_env *e);
 void			setfractol(t_env *e);

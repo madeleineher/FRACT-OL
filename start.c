@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:48:02 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/03 12:19:08 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 17:00:51 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int		start(t_env *e) // add number to fractal variable like DEFINES
 		koch(e);
 	else if (ft_strcmp(e->fractol, "s") == 0)
 		sierpinski(e);
-//	else if (ft_strcmp(e->fractol, "g") == 0)
-//		tree(e);
+	else if (ft_strcmp(e->fractol, "b") == 0)
+		burn(e);
 	loop(e);
 	return (0);
 }

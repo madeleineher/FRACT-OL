@@ -6,7 +6,7 @@
 #    By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 07:58:15 by mhernand          #+#    #+#              #
-#    Updated: 2019/06/21 15:21:38 by mhernand         ###   ########.fr        #
+#    Updated: 2019/07/03 17:00:09 by mhernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS = main.c\
 	   julia.c\
 	   fern.c\
 	   koch.c\
+	   burn.c\
 	   sierpinski.c\
 	   color.c
 

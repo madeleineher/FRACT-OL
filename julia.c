@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 13:12:10 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/03 12:23:08 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:39:17 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	whilejulia(t_env *e)
 
 void	julia(t_env *e)
 {
+	printf("nmax : [%d]\n", e->xy.nmax);
 	e->j.x = -1;
 	e->j.y = -1;
 	e->j.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
