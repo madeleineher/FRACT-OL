@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 13:12:10 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/21 16:25:38 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 15:19:05 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	mandelcolor(t_env *e)
 {
-	if (e->m.n == e->m.nmax)
+	if (e->m.n == e->xy.nmax)
 		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl] 
 			= e->pal[e->c][0];
 	else
 		*(int *)&e->data[e->m.j * (e->w.bpp / 8) + e->m.i * e->w.sl]
-		   	= e->pal[e->c][e->m.n % 5]; // iterate on the parts with mandel
+			= e->pal[e->c][e->m.n % 5];
 }
 
 void	mandelbrot(t_env *e)
 {
-	e->m.i = -1;
-	e->m.j = -1;
-	e->m.ty = e->xy.ymin;
+	e->j.x = -1;
+	e->j.y = -1;
+	e->j.ty = e->xy.ymin;
 	while (++e->m.i < HEIGHT)
 	{
 		e->m.tx = e->xy.xmin;
@@ -35,7 +35,7 @@ void	mandelbrot(t_env *e)
 			e->m.a = e->m.tx;
 			e->m.b = e->m.ty;
 			e->m.n = -1;
-			while (++e->m.n < e->m.nmax)
+			while (++e->m.n < e->xy.nmax)
 			{
 				e->m.two_a = e->m.a * e->m.a;
 				e->m.two_b = e->m.b * e->m.b;
