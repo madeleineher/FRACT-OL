@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 15:04:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/02 16:14:23 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 15:23:55 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	setfractol(t_env *e)
 		juliasetup(e);
 	else if (ft_strcmp(e->fractol, "f") == 0)
 	{
+		e->xy.w = 5;
+		e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
 		e->xy.xmin = -2.182;
 		e->xy.xmax = 2.6558;
 		e->xy.ymin = 0;
@@ -63,9 +65,9 @@ void	setfractol(t_env *e)
 	e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;
 	e->xy.h_t = (e->xy.ymin + e->xy.ymax) / 2;
 	/*else if (ft_strcmp(e->fractol, "k") == 0)
-		kochsetup(e);
-	else if (ft_strcmp(e->fractol, "s") == 0)
-		sierpinskisetup(e);
-	else if (ft_strcmp(e->fractol, "g") == 0)
-		glynnsetup(e);*/
+	  kochsetup(e);
+	  else if (ft_strcmp(e->fractol, "s") == 0)
+	  sierpinskisetup(e);
+	  else if (ft_strcmp(e->fractol, "g") == 0)
+	  glynnsetup(e);*/
 }

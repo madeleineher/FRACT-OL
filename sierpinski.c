@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 14:36:13 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/11 16:16:43 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 12:19:38 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	sierpinski(t_env *e)
 	e->s.rx = rand() / WIDTH;	
 	e->s.ry = rand() / HEIGHT;	
 
-	while (++i < 1000000)
+	while (++i < e->xy.nmax)
 	{
 		e->s.r = (int)rand() % 4;
 		if (e->s.r == 0)

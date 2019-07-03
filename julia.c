@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 13:12:10 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/02 16:59:53 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 12:23:08 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ float	map(int m)
 	return (-1 + (1 - -1) * ((m - 0) / (float)((WIDTH - 0))));
 }
 
-void	test1(t_env *e)
+void	test(t_env *e)
 {
-	e->xy.mRe = ((double)e->mo.mx / (WIDTH / (e->xy.xmax - e->xy.xmin)) + e->xy.xmin);
-	e->xy.mRi = ((double)e->mo.my / (HEIGHT / (e->xy.ymax - e->xy.ymin)) + e->xy.ymin);
+	e->xy.mRe = ((double)e->mo.mx / (WIDTH / (e->xy.xmax - e->xy.xmin))
+			+ e->xy.xmin);
+	e->xy.mRi = ((double)e->mo.my / (HEIGHT / (e->xy.ymax - e->xy.ymin))
+			+ e->xy.ymin);
 }
 
 void	whilejulia(t_env *e)
@@ -42,7 +44,7 @@ void	whilejulia(t_env *e)
 		e->j.two_a = e->j.a * e->j.a;
 		e->j.two_b = e->j.b * e->j.b;
 		e->j.two_ab = 2.0 * e->j.a * e->j.b;
-		test1(e);
+		test(e);
 		e->j.a = e->j.two_a - e->j.two_b + e->xy.mRe;
 		e->j.b = e->j.two_ab + e->xy.mRi; 
 		if (e->j.a * e->j.a + e->j.b * e->j.b > 16.0)

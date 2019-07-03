@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 09:19:10 by mhernand          #+#    #+#             */
-/*   Updated: 2019/06/21 16:36:41 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/03 13:15:33 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ void	blackout(t_env *e)
 
 int		mouse_move(int x, int y, t_env *e)
 {
-	//if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT && e->fractol[0] == 'j')
-	//if (e->fractol[0] == 'j')
-	//{
-		blackout(e);
+	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT && e->fractol[0] != 'm')
+	{
 		e->mo.mx = x;
 		e->mo.my = y;
-	//}
+		if (e->fractol[0] == 'j' && !e->k[KEY_SPACEBAR])
+			blackout(e);
+	}
 	return (0);
 }
 
