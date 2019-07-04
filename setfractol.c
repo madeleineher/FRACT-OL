@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 15:04:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/03 17:18:35 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:16:14 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	burnsetup(t_env *e)
 	e->xy.w = 3;
 	e->xy.h = 2;
 	e->xy.xmin = -e->xy.w / 1.2;
-	e->xy.xmax = e->xy.w / 1;
+	e->xy.xmax = e->xy.w / e->xy.w;
 	e->xy.ymin = -e->xy.h / 2;
 	e->xy.ymax = e->xy.ymin + e->xy.h;
 	e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
