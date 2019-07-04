@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:57:50 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/04 16:22:13 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/04 17:21:43 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,9 @@ void	burn(t_env *e)
 			e->b.n = -1;
 			while (++e->b.n < e->xy.nmax)
 			{
-				e->b.two_a = e->b.a * e->b.a;
-				e->b.two_b = e->b.b * e->b.b;
-				e->b.two_ab = (e->b.two_a - e->b.two_b) - e->b.tx;
-
-				e->b.a = fabs(e->b.two_ab);
+				e->b.two_ab = e->b.a * e->b.a - e->b.b * e->b.b + e->b.tx;
 				e->b.b = fabs(2 * e->b.a * e->b.b) + e->b.ty;
+				e->b.a = fabs(e->b.two_ab);
 				if (e->b.a * e->b.a + e->b.b * e->b.b > 16.0)
 					break;
 			}

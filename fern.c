@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 11:05:44 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/03 16:55:32 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/04 17:21:46 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@ void	fernpoints(t_env *e)
 	}
 	else if (e->f.random < 0.85)
 	{
-		e->f.nx =  0.85 * e->f.x + 0.04 * e->f.y;
+		e->f.nx = 0.85 * e->f.x + 0.04 * e->f.y;
 		e->f.ny = -0.04 * e->f.x + 0.85 * e->f.y + 1.6;
 	}
 	else if (e->f.random < 0.93)
 	{
-		e->f.nx =  0.2 * e->f.x + -0.26 * e->f.y;
-		e->f.ny = 0.23 * e->f.x + 0.22  * e->f.y + 1.6;
+		e->f.nx = 0.2 * e->f.x + -0.26 * e->f.y;
+		e->f.ny = 0.23 * e->f.x + 0.22 * e->f.y + 1.6;
 	}
 	else
 	{
 		e->f.nx = -0.15 * e->f.x + 0.28 * e->f.y;
-		e->f.ny =  0.26 * e->f.x + 0.24 * e->f.y + .44;
+		e->f.ny = 0.26 * e->f.x + 0.24 * e->f.y + .44;
 	}
 	e->f.x = e->f.nx;
 	e->f.y = e->f.ny;

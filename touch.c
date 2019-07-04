@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 17:37:51 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/03 16:49:51 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/04 17:22:00 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		touch(t_env *e)
 {
 	if (e->k[ESC] == 1)
 		exit(0);
-	if (e->k[Q] == 1 || e->mo.m == 4)
+	if ((e->k[Q] == 1 || e->mo.m == 4) && e->fractol[0] != 'f')
 	{
 		e->xy.xmin = e->xy.w_t - function(e) / 2;
 		e->xy.xmax = e->xy.h_t + function(e) / 2;
@@ -34,7 +34,7 @@ int		touch(t_env *e)
 		blackout(e);
 		e->mo.m = 0;
 	}
-	if (e->k[E] == 1 || e->mo.m == 5)
+	if ((e->k[E] == 1 || e->mo.m == 5) && e->fractol[0] != 'f')
 	{
 		e->xy.xmin = e->xy.w_t - function(e) / 2;
 		e->xy.xmax = e->xy.h_t + function(e) / 2;
@@ -44,8 +44,28 @@ int		touch(t_env *e)
 		e->xy.zoom /= 0.99;
 		e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;
 		e->xy.h_t = (e->xy.ymin + e->xy.ymax) / 2;
-		if (e->fractol[0] == 'f')
-			e->xy.nmax += 10000;
+		blackout(e);
+		e->mo.m = 0;
+	}
+	if ((e->k[Q] == 1 || e->mo.m == 4) && e->fractol[0] == 'f')
+	{
+		e->xy.xmin /= 0.99; 
+		e->xy.xmax /= 0.99;
+		e->xy.ymin /= 0.99;
+		e->xy.ymax /= 0.99;
+		printf("zoom out ++++ xmin : [%f] | xmax : [%f] --- ymin : [%f] | ymax : [%f] == zoom : [%f]\n", e->xy.xmin, e->xy.xmax, e->xy.ymin, e->xy.ymax, e->xy.zoom);
+		blackout(e);
+		e->xy.zoom *= 0.99;
+		e->mo.m = 0;
+	}
+	if ((e->k[E] == 1 || e->mo.m == 5) && e->fractol[0] == 'f')
+	{
+		e->xy.xmin *= 0.99; 
+		e->xy.xmax *= 0.99;
+		e->xy.ymin *= 0.99;
+		e->xy.ymax *= 0.99;
+		printf("zoom in +++ xmin : [%f] | xmax : [%f] --- ymin : [%f] | ymax : [%f] == zoom : [%f]\n", e->xy.xmin, e->xy.xmax, e->xy.ymin, e->xy.ymax, e->xy.zoom);
+		e->xy.nmax += 100;
 		blackout(e);
 		e->mo.m = 0;
 	}
@@ -90,7 +110,7 @@ int		touch(t_env *e)
 	if (e->k[I] == 1 || e->k[U] == 1)
 	{
 		e->xy.nmax += (e->k[I] == 1 && e->fractol[0] != 'f' ? 100 : -100);
-		e->xy.nmax += (e->k[I] == 1 ? 10000 : -1000);
+		e->xy.nmax += (e->k[I] == 1 && e->fractol[0] == 'f' ? 10000 : -1000);
 		if (e->xy.nmax < 0 || e->xy.nmax > 2147480000)
 			e->xy.nmax = 100;
 		printf("max : [%d]\n", e->xy.nmax);
