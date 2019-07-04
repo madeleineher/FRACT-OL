@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:57:50 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/03 17:18:30 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/04 14:59:52 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@ void	burn(t_env *e)
 			{
 				e->b.two_a = e->b.a * e->b.a;
 				e->b.two_b = e->b.b * e->b.b;
-				e->b.two_ab = e->b.a * e->b.a - e->b.b * e->b.b + e->b.tx; //xtemp
+				e->b.two_ab = (e->b.two_a - e->b.two_b);
 
-				e->b.a = (2 * e->b.a * e->b.b) + e->b.ty;
-				e->b.b = (e->b.two_ab);
-
-				if (e->b.a * e->b.a + e->b.b * e->b.b < 4.0)
+				e->b.a = (2.0 * e->b.a * e->b.b) - e->b.ty;
+				e->b.b = e->b.two_ab - e->b.tx;
+				if (e->b.a * e->b.a + e->b.b * e->b.b > 16.0)
 					break;
 			}
 			burncolor(e);
