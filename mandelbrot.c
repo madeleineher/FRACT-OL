@@ -6,50 +6,50 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 13:12:10 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/04 17:21:51 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/05 16:44:41 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
 
-void	mandelcolor(t_env *e)
+void	mandelcolor(t_env *e, t_man m)
 {
-	if (e->m.n == e->xy.nmax)
-		*(int *)&e->data[e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] 
+	if (m.n == e->xy.nmax)
+		*(int *)&e->data[m.x * (e->w.bpp / 8) + m.y * e->w.sl] 
 			= e->pal[e->c][0];
 	else
-		*(int *)&e->data[e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl]
-			= e->pal[e->c][e->m.n % 5];
+		*(int *)&e->data[m.x * (e->w.bpp / 8) + m.y * e->w.sl]
+			= e->pal[e->c][m.n % 5];
 }
 
-void	mandelbrot(t_env *e)
+void	mandelbrot(t_env *e, t_man m)
 {
-	e->m.y = -1;
-	e->m.ty = e->xy.ymin;
-	e->m.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	e->m.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	while (++e->m.y < HEIGHT)
+	m.y = -1;
+	m.ty = e->xy.ymin;
+	m.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+	m.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+	while (++m.y < HEIGHT)
 	{
-		e->m.tx = e->xy.xmin;
-		e->m.x = -1;
-		while (++e->m.x < WIDTH)
+		m.tx = e->xy.xmin;
+		m.x = -1;
+		while (++m.x < WIDTH)
 		{
-			e->m.a = e->m.tx;
-			e->m.b = e->m.ty;
-			e->m.n = -1;
-			while (++e->m.n < e->xy.nmax)
+			m.a = m.tx;
+			m.b = m.ty;
+			m.n = -1;
+			while (++m.n < e->xy.nmax)
 			{
-				e->m.two_a = e->m.a * e->m.a;
-				e->m.two_b = e->m.b * e->m.b;
-				e->m.two_ab = 2.0 * e->m.a * e->m.b;
-				e->m.a = e->m.two_a - e->m.two_b + e->m.tx;
-				e->m.b = e->m.two_ab + e->m.ty;
-				if (e->m.a * e->m.a + e->m.b * e->m.b > 16.0)
+				m.two_a = m.a * m.a;
+				m.two_b = m.b * m.b;
+				m.two_ab = 2.0 * m.a * m.b;
+				m.a = m.two_a - m.two_b + m.tx;
+				m.b = m.two_ab + m.ty;
+				if (m.a * m.a + m.b * m.b > 16.0)
 					break;
 			}
-			mandelcolor(e);
-			e->m.tx += e->m.dx;
+			mandelcolor(e, m);
+			m.tx += m.dx;
 		}
-		e->m.ty += e->m.dy;
+		m.ty += m.dy;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 13:56:03 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/05 14:58:48 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/05 15:36:12 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void		line_setup(int x1, int y1, int x2, int y2, t_koh *tmp, t_env *e)
 	e->n.iy = (e->n.dy > 0) ? 1 : -1;
 	e->n.dx = abs(e->n.dx);
 	e->n.dy = abs(e->n.dy);
-	//mlx_pixel_put(e->w.mp, e->w.wp, tmp->x, tmp->y, 0xFFFFFF);
 	if (tmp->x > 0 && tmp->x < WIDTH && tmp->y > 0 && tmp->y < HEIGHT)
 		*(int *)&e->data[(int)tmp->x * (e->w.bpp / 8) + (int)tmp->y * e->w.sl] = 0xFFFFFF;
 	e->n.tdx = e->n.dx / 2;
@@ -40,7 +39,6 @@ void		lines2(t_env *e, int i, t_koh tmp)
 			e->n.tdy -= e->n.dy;
 			tmp.x += e->n.ix;
 		}
-		//mlx_pixel_put(e->w.mp, e->w.wp, tmp.x, tmp.y, 0xFFFFFF);
 		if (tmp.x > 0 && tmp.x < WIDTH && tmp.y > 0 && tmp.y < HEIGHT)
 			*(int *)&e->data[(int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = 0xFFFFFF;
 	}
@@ -64,7 +62,6 @@ void		lines(int x1, int y1, int x2, int y2, t_env *e)
 				e->n.tdx -= e->n.dx;
 				tmp.y += e->n.iy;
 			}
-			//mlx_pixel_put(e->w.mp, e->w.wp, tmp.x, tmp.y, 0xFFFFFF);
 			if (tmp.x > 0 && tmp.x < WIDTH && tmp.y > 0 && tmp.y < HEIGHT)
 				*(int *)&e->data[(int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = 0xFFFFFF;
 		}
@@ -99,7 +96,7 @@ void	koch(t_env *e)
 	t_koh k1, k2;
 	t_koh k3, k4;
 	t_koh k5, k6;
-	int	r = 3;
+	int	r = 5;
 
 	k1 = (t_koh){WIDTH / 5, HEIGHT / 5};
 	k2 = (t_koh){WIDTH - WIDTH / 5, HEIGHT / 5};

@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 15:04:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/04 16:40:12 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/05 15:18:46 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ void	burnsetup(t_env *e)
 	e->b.ty = e->xy.ymin;
 }
 
+/*void	kochsetup(t_env *e)
+{
+	
+}*/
+
 void	setfractol(t_env *e)
 {
 	e->xy.zoom = 1.0;
@@ -83,6 +88,8 @@ void	setfractol(t_env *e)
 	}
 	else if (ft_strcmp(e->fractol, "b") == 0)
 	  burnsetup(e);
+	//else if (ft_strcmp(e->fractol, "k") == 0)
+	  //kochsetup(e);
 	e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;
 	e->xy.h_t = (e->xy.ymin + e->xy.ymax) / 2;
 	/*  else if (ft_strcmp(e->fractol, "s") == 0)

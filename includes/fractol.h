@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/05 14:58:31 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/05 16:50:53 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 # include <string.h>
 # include <fcntl.h>
 # include <assert.h>
+# include <pthread.h>
 # include <stdio.h> //remove me
 
 # define WIDTH			800 
 # define HEIGHT 		800
-# define COL			8
+# define THREADS		4
 
 # define ESC 			53
 # define H				4
@@ -191,13 +192,19 @@ typedef struct	s_env
 	t_zoom		z;
 }				t_env;
 
-int				start(t_env *e);
+typedef struct	s_thr
+{
+	t_env		*env;
+	int			nth;
+}				t_thr;
+
+void			start(t_env *e);
 int				touch(t_env *e);
 void			blackout(t_env *e);
 int				mouse_move(int x, int y, t_env *e);
 int				mouse_click(int	button, int x, int y, t_env *e);
 int				mouse_no_click(int button, int x, int y, t_env *e);
-void			mandelbrot(t_env *e);
+void			mandelbrot(t_env *e, t_man m);
 void			julia(t_env *e);
 void			fern(t_env *e);
 void			koch(t_env *e);
