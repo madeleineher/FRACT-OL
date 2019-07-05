@@ -6,7 +6,7 @@
 /*   By: mhernand <mhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 07:58:21 by mhernand          #+#    #+#             */
-/*   Updated: 2019/07/03 16:59:57 by mhernand         ###   ########.fr       */
+/*   Updated: 2019/07/05 14:58:31 by mhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,22 @@ typedef struct	s_fer
 	double		ny;
 	double		random;
 }				t_fer;
+
+typedef struct	s_koh
+{
+	double		x;
+	double		y;
+}				t_koh;
+
+typedef struct	s_bre
+{
+	int			dx;
+	int			dy;
+	int			ix;
+	int			iy;
+	int			tdx;
+	int			tdy;
+}				t_bre;
 
 typedef struct	s_sie
 {
@@ -170,6 +186,8 @@ typedef struct	s_env
 	t_burn		b;
 	t_fer		f;
 	t_sie		s;
+	t_koh		h; //koch
+	t_bre		n; // bre
 	t_zoom		z;
 }				t_env;
 
