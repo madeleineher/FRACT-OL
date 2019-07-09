@@ -20,9 +20,9 @@
 # include <fcntl.h>
 # include <assert.h>
 # include <pthread.h>
-# include <stdio.h> //remove me
+# include <stdio.h> //remove me !!!!!!!!!!!
 
-# define WIDTH			800 
+# define WIDTH			800
 # define HEIGHT 		800
 # define THREADS		4
 
@@ -36,204 +36,192 @@
 # define D				2
 # define I				34
 # define U				32
-
 # define Q				12
 # define E				14
-
 # define KEY_SPACEBAR	49
 # define MOUSEM			6
 
-typedef struct	s_fer
+typedef struct			s_fer
 {
-	double		x;
-	double		y;
-	double		nx;
-	double		ny;
-	double		random;
-}				t_fer;
+	double				x;
+	double				y;
+	double				nx;
+	double				ny;
+	double				random;
+}						t_fer;
 
-typedef struct	s_koh
+typedef struct			s_koh
 {
-	double		x;
-	double		y;
-}				t_koh;
+	double				x;
+	double				y;
+}						t_koh;
 
-typedef struct	s_bre
+typedef struct			s_bre
 {
-	int			dx;
-	int			dy;
-	int			ix;
-	int			iy;
-	int			tdx;
-	int			tdy;
-}				t_bre;
+	int					dx;
+	int					dy;
+	int					ix;
+	int					iy;
+	int					tdx;
+	int					tdy;
+}						t_bre;
 
-typedef struct	s_sie
+typedef struct			s_sie
 {
-	int			ax;
-	int			ay;
-	int			bx;
-	int			by;
-	int			cx;
-	int			cy;
-	int			rx;
-	int			ry;
-	double		r;
-}				t_sie;
+	int					ax;
+	int					ay;
+	int					bx;
+	int					by;
+	int					cx;
+	int					cy;
+	int					rx;
+	int					ry;
+	double				r;
+}						t_sie;
 
-typedef struct	s_jul
+typedef struct			s_jul
 {
-	int			x;
-	int			y;
-	int			n;
-	float		dx;
-	float		dy;
-	float		ty;
-	float		tx;
-	float		a;
-	float		b;
-	float		two_a;
-	float		two_b;
-	float		two_ab;
-}				t_jul;
+	int					x;
+	int					y;
+	int					n;
+	float				dx;
+	float				dy;
+	float				ty;
+	float				tx;
+	float				a;
+	float				b;
+	float				two_a;
+	float				two_b;
+	float				two_ab;
+}						t_jul;
 
-typedef struct	s_burn
+typedef struct			s_burn
 {
-	int			x;
-	int			y;
-	int			n;
-	float		dx;
-	float		dy;
-	float		ty;
-	float		tx;
-	float		a;
-	float		b;
-	float		two_a;
-	float		two_b;
-	float		two_ab;
-}				t_burn;
+	int					x;
+	int					y;
+	int					n;
+	float				dx;
+	float				dy;
+	float				ty;
+	float				tx;
+	float				a;
+	float				b;
+	float				two_a;
+	float				two_b;
+	float				two_ab;
+}						t_burn;
 
-typedef struct	s_man
+typedef struct			s_man
 {
-	int			x;
-	int			y;
-	int			n;
-	float		dx;
-	float		dy;
-	float		ty;
-	float		tx;
-	float		a;
-	float		b;
-	float		two_a;
-	float		two_b;
-	float		two_ab;
-}				t_man;
+	int					x;
+	int					y;
+	int					n;
+	float				dx;
+	float				dy;
+	float				ty;
+	float				tx;
+	float				a;
+	float				b;
+	float				two_a;
+	float				two_b;
+	float				two_ab;
+}						t_man;
 
-typedef struct	s_tri
+typedef struct			s_tri
 {
-	int			x;
-	int			y;
-	int			n;
-	float		dx;
-	float		dy;
-	float		ty;
-	float		tx;
-	float		a;
-	float		b;
-	float		two_a;
-	float		two_b;
-	float		two_ab;
-}				t_tri;
+	int					x;
+	int					y;
+	int					n;
+	float				dx;
+	float				dy;
+	float				ty;
+	float				tx;
+	float				a;
+	float				b;
+	float				two_a;
+	float				two_b;
+	float				two_ab;
+}						t_tri;
 
-typedef struct	s_win
+typedef struct			s_win
 {
-	void		*wp;
-	void		*mp;
-	void		*ip;
-	int			sl;
-	int			bpp;
-	int			end;
-}				t_win;
+	void				*wp;
+	void				*mp;
+	void				*ip;
+	int					sl;
+	int					bpp;
+	int					end;
+}						t_win;
 
-typedef struct	s_mos
+typedef struct			s_mos
 {
-	int			mx;
-	int			my;
-	int			ox;
-	int			oy;
-	int			ofx;
-	int			ofy;
-	int			m;
-}				t_mos;
+	int					mx;
+	int					my;
+	int					m;
+}						t_mos;
 
-typedef struct	s_zoom
+typedef struct			s_xy
 {
-	int			x;
-	int			y;
-}				t_zoom;	
+	int					nmax;
+	double				xmin;
+	double				xmax;
+	double				ymin;
+	double				ymax;
+	double				w;
+	double				h;
+	double				mre;
+	double				mri;
+	double				zoom;
+	double				w_t;
+	double				h_t;
+}						t_xy;
 
-typedef struct	s_xy
+typedef struct			s_env
 {
-	int			nmax;
-	double		xmin;
-	double		xmax;
-	double		ymin;
-	double		ymax;
-	double		w;
-	double		h;
-	double		mRe;
-	double		mRi;
-	double		zoom;
-	double		w_t;
-	double		h_t;
-}				t_xy;
+	char				*fractol;
+	char				*data;
+	int					k[300];
+	int					pal[8][5];
+	int					c;
+	t_mos				mo;
+	t_xy				xy;
+	t_win				w;
+	t_man				m;
+	t_jul				j;
+	t_burn				b;
+	t_fer				f;
+	t_sie				s;
+	t_tri				t;
+	t_koh				h; //koch
+	t_bre				n; // bre
+}						t_env;
 
-typedef struct	s_env
+typedef struct			s_thr
 {
-	char		*fractol;
-	char		*data;
-	int			k[300];
-	int			pal[8][5];
-	int			c;
-	t_mos		mo;
-	t_xy		xy;
-	t_win		w;
-	t_man		m;
-	t_jul		j;
-	t_burn		b;
-	t_fer		f;
-	t_sie		s;
-	t_tri		t;
-	t_koh		h; //koch
-	t_bre		n; // bre
-	t_zoom		z;
-}				t_env;
+	t_env				*env;
+	int					nth;
+}						t_thr;
 
-typedef struct	s_thr
-{
-	t_env		*env;
-	int			nth;
-}				t_thr;
-
-void			start(t_env *e);
-int				touch(t_env *e);
-void			blackout(t_env *e);
-int				quit(t_env *e);
-int				key_press(int key, t_env *e);
-int				key_release(int key, t_env *e);
-int				mouse_move(int x, int y, t_env *e);
-int				mouse_click(int	button, int x, int y, t_env *e);
-int				mouse_no_click(int button, int x, int y, t_env *e);
-void			mandelbrot(t_env *e, t_man m);
-void			julia(t_env *e, t_jul j);
-void			fern(t_env *e, t_fer f);
-void			koch(t_env *e);
-void			sierpinski(t_env *e);
-void			burn(t_env *e, t_burn b);
-void			tricorn(t_env *e, t_tri t);
-void			color(t_env *e);
-void			texting(t_env *e);
-void			setfractol(t_env *e);
-int				main(int argc, char **argv);
+void					start(t_env *e);
+int						touch(t_env *e);
+int						touchtwomuch(t_env *e);
+void					blackout(t_env *e);
+int						quit(t_env *e);
+int						key_press(int key, t_env *e);
+int						key_release(int key, t_env *e);
+int						mouse_move(int x, int y, t_env *e);
+int						mouse_click(int	button, int x, int y, t_env *e);
+int						mouse_no_click(int button, int x, int y, t_env *e);
+void					mandelbrot(t_env *e, t_man m);
+void					julia(t_env *e, t_jul j);
+void					fern(t_env *e, t_fer f);
+void					koch(t_env *e);
+void					sierpinski(t_env *e);
+void					burn(t_env *e, t_burn b);
+void					tricorn(t_env *e, t_tri t);
+void					color(t_env *e);
+void					texting(t_env *e);
+void					setfractol(t_env *e);
+int						main(int argc, char **argv);
 
 #endif

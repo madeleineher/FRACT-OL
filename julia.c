@@ -29,9 +29,9 @@ void	juliacolor(t_env *e, t_jul j)
 
 void	map(t_env *e)
 {
-	e->xy.mRe = ((double)e->mo.mx / (WIDTH / (e->xy.xmax - e->xy.xmin))
+	e->xy.mre = ((double)e->mo.mx / (WIDTH / (e->xy.xmax - e->xy.xmin))
 			+ e->xy.xmin);
-	e->xy.mRi = ((double)e->mo.my / (HEIGHT / (e->xy.ymax - e->xy.ymin))
+	e->xy.mri = ((double)e->mo.my / (HEIGHT / (e->xy.ymax - e->xy.ymin))
 			+ e->xy.ymin);
 }
 
@@ -43,8 +43,8 @@ void	whilejulia(t_env *e, t_jul *j)
 		j->two_b = j->b * j->b;
 		j->two_ab = 2.0 * j->a * j->b;
 		map(e);
-		j->a = j->two_a - j->two_b + e->xy.mRe;
-		j->b = j->two_ab + e->xy.mRi; 
+		j->a = j->two_a - j->two_b + e->xy.mre;
+		j->b = j->two_ab + e->xy.mri; 
 		if (j->a * j->a + j->b * j->b > 16.0)
 			break;
 	}
