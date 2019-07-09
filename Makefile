@@ -21,8 +21,9 @@ CC = gcc
 SRCS = main.c\
 	   setfractol.c\
 	   start.c\
+	   refresh.c\
 	   touch.c\
-	   mouse.c\
+	   triggers.c\
 	   mandelbrot.c\
 	   julia.c\
 	   fern.c\

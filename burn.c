@@ -12,42 +12,42 @@
 
 #include "includes/fractol.h"
 
-void	burncolor(t_env *e)
+void	burncolor(t_env *e, t_burn b)
 {
-	if (e->b.n == e->xy.nmax)
-		*(int *)&e->data[e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl]
+	if (b.n == e->xy.nmax)
+		*(int *)&e->data[b.x * (e->w.bpp / 8) + b.y * e->w.sl]
 			= e->pal[e->c][0];
 	else
-		*(int *)&e->data[e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl]
-			= e->pal[e->c][e->b.n % 5];
+		*(int *)&e->data[b.x * (e->w.bpp / 8) + b.y * e->w.sl]
+			= e->pal[e->c][b.n % 5];
 }
 
-void	burn(t_env *e)
+void	burn(t_env *e, t_burn b)
 {
-	e->b.y = -1;
-	e->b.ty = e->xy.ymin;
-	e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	while (++e->b.y < HEIGHT)
+	b.y = -1;
+	b.ty = e->xy.ymin;
+	b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+	b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+	while (++b.y < HEIGHT)
 	{
-		e->b.x = -1;
-		e->b.tx = e->xy.xmin;
-		while (++e->b.x < WIDTH)
+		b.tx = e->xy.xmin;
+		b.x = -1;
+		while (++b.x < WIDTH)
 		{
-			e->b.a = e->b.tx;
-			e->b.b = e->b.ty;
-			e->b.n = -1;
-			while (++e->b.n < e->xy.nmax)
+			b.a = b.tx;
+			b.b = b.ty;
+			b.n = -1;
+			while (++b.n < e->xy.nmax)
 			{
-				e->b.two_ab = e->b.a * e->b.a - e->b.b * e->b.b + e->b.tx;
-				e->b.b = fabs(2 * e->b.a * e->b.b) + e->b.ty;
-				e->b.a = fabs(e->b.two_ab);
-				if (e->b.a * e->b.a + e->b.b * e->b.b > 16.0)
+				b.two_ab = b.a * b.a - b.b * b.b + b.tx;
+				b.b = fabs(2 * b.a * b.b) + b.ty;
+				b.a = fabs(b.two_ab);
+				if (b.a * b.a + b.b * b.b > 16.0)
 					break;
 			}
-			burncolor(e);
-			e->b.tx += e->b.dx;
+			burncolor(e, b);
+			b.tx += b.dx;
 		}
-		e->b.ty += e->b.dy;
+		b.ty += b.dy;
 	}
 }

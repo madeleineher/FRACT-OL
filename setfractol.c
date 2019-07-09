@@ -61,6 +61,7 @@ void	burnsetup(t_env *e)
 	e->xy.ymax = e->xy.ymin + e->xy.h;
 	e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
 	e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+	e->xy.nmax = 100;
 	e->b.tx = 0;
 	e->b.ty = e->xy.ymin;
 }
@@ -87,9 +88,9 @@ void	setfractol(t_env *e)
 		e->xy.ymax = 9.9983;
 	}
 	else if (ft_strcmp(e->fractol, "b") == 0)
-	  burnsetup(e);
-	//else if (ft_strcmp(e->fractol, "k") == 0)
-	  //kochsetup(e);
+		burnsetup(e);
+	// else if (ft_strcmp(e->fractol, "k") == 0)
+	//   kochsetup(e);
 	e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;
 	e->xy.h_t = (e->xy.ymin + e->xy.ymax) / 2;
 	/*  else if (ft_strcmp(e->fractol, "s") == 0)
