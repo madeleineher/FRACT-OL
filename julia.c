@@ -12,24 +12,22 @@
 
 #include "includes/fractol.h"
 
-void	juliacolor(t_env *e)
+void	juliacolor(t_env *e, t_jul j)
 {
-	if (e->j.n == e->xy.nmax)
-		*(int *)&e->data[e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl]
+	if (j.n == e->xy.nmax)
+		*(int *)&e->data[j.x * (e->w.bpp / 8) + j.y * e->w.sl]
 			= e->pal[e->c][0];
 	else
-		*(int *)&e->data[e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl]
-			= e->pal[e->c][e->j.n % 5];
+		*(int *)&e->data[j.x * (e->w.bpp / 8) + j.y * e->w.sl]
+			= e->pal[e->c][j.n % 5];
 }
 
-float	map(int m)
-{
-	//start2 + (stop2 - start2 * ((m - start1) / (stop1 - start1))
-	//map(mouse, 0, width, -1, 1);
-	return (-1 + (1 - -1) * ((m - 0) / (float)((WIDTH - 0))));
-}
+// float	map(int m)
+// {
+// 	return (-1 + (1 - -1) * ((m - 0) / (float)((WIDTH - 0))));
+// }
 
-void	test(t_env *e)
+void	map(t_env *e)
 {
 	e->xy.mRe = ((double)e->mo.mx / (WIDTH / (e->xy.xmax - e->xy.xmin))
 			+ e->xy.xmin);
@@ -37,42 +35,40 @@ void	test(t_env *e)
 			+ e->xy.ymin);
 }
 
-void	whilejulia(t_env *e)
+void	whilejulia(t_env *e, t_jul *j)
 {
-	while (++e->j.n < e->xy.nmax)
+	while (++j->n < e->xy.nmax)
 	{
-		e->j.two_a = e->j.a * e->j.a;
-		e->j.two_b = e->j.b * e->j.b;
-		e->j.two_ab = 2.0 * e->j.a * e->j.b;
-		test(e);
-		e->j.a = e->j.two_a - e->j.two_b + e->xy.mRe;
-		e->j.b = e->j.two_ab + e->xy.mRi; 
-		if (e->j.a * e->j.a + e->j.b * e->j.b > 16.0)
+		j->two_a = j->a * j->a;
+		j->two_b = j->b * j->b;
+		j->two_ab = 2.0 * j->a * j->b;
+		map(e);
+		j->a = j->two_a - j->two_b + e->xy.mRe;
+		j->b = j->two_ab + e->xy.mRi; 
+		if (j->a * j->a + j->b * j->b > 16.0)
 			break;
 	}
 }
 
-void	julia(t_env *e)
+void	julia(t_env *e, t_jul j)
 {
-	printf("nmax : [%d]\n", e->xy.nmax);
-	e->j.x = -1;
-	e->j.y = -1;
-	e->j.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	e->j.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	e->j.ty = e->xy.ymin;
-	while (++e->j.y < HEIGHT)
+	j.y = -1;
+	j.ty = e->xy.ymin;
+	j.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+	j.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+	while (++j.y < HEIGHT)
 	{
-		e->j.tx = e->xy.xmin;
-		while (++e->j.x < WIDTH)
+		j.tx = e->xy.xmin;
+		j.x = -1;
+		while (++j.x < WIDTH)
 		{
-			e->j.a = e->j.tx;
-			e->j.b = e->j.ty;
-			e->j.n = -1;
-			whilejulia(e);
-			juliacolor(e);
-			e->j.tx += e->j.dx;
+			j.a = j.tx;
+			j.b = j.ty;
+			j.n = -1;
+			whilejulia(e, &j);
+			juliacolor(e, j);
+			j.tx += j.dx;
 		}
-		e->j.x = -1;
-		e->j.ty += e->j.dy;
+		j.ty += j.dy;
 	}
 }
