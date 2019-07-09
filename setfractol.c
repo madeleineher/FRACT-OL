@@ -66,6 +66,24 @@ void	burnsetup(t_env *e)
 	e->b.ty = e->xy.ymin;
 }
 
+void	tricornsetup(t_env *e)
+{
+	e->b.x = -1;
+	e->b.y = -1;
+	e->b.n = 0;
+	e->xy.w = 5;
+	e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
+	e->xy.xmin = -e->xy.w / 2;
+	e->xy.xmax = e->xy.xmin + e->xy.w;
+	e->xy.ymin = -e->xy.h / 2;
+	e->xy.ymax = e->xy.ymin + e->xy.h;
+	e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+	e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+	e->xy.nmax = 100;
+	e->b.tx = 0;
+	e->b.ty = e->xy.ymin;
+}
+
 /*void	kochsetup(t_env *e)
 {
 	
@@ -89,6 +107,8 @@ void	setfractol(t_env *e)
 	}
 	else if (ft_strcmp(e->fractol, "b") == 0)
 		burnsetup(e);
+	else if (ft_strcmp(e->fractol, "t") == 0)
+		tricornsetup(e);
 	// else if (ft_strcmp(e->fractol, "k") == 0)
 	//   kochsetup(e);
 	e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;

@@ -129,6 +129,22 @@ typedef struct	s_man
 	float		two_ab;
 }				t_man;
 
+typedef struct	s_tri
+{
+	int			x;
+	int			y;
+	int			n;
+	float		dx;
+	float		dy;
+	float		ty;
+	float		tx;
+	float		a;
+	float		b;
+	float		two_a;
+	float		two_b;
+	float		two_ab;
+}				t_tri;
+
 typedef struct	s_win
 {
 	void		*wp;
@@ -187,6 +203,7 @@ typedef struct	s_env
 	t_burn		b;
 	t_fer		f;
 	t_sie		s;
+	t_tri		t;
 	t_koh		h; //koch
 	t_bre		n; // bre
 	t_zoom		z;
@@ -213,6 +230,7 @@ void			fern(t_env *e, t_fer f);
 void			koch(t_env *e);
 void			sierpinski(t_env *e);
 void			burn(t_env *e, t_burn b);
+void			tricorn(t_env *e, t_tri t);
 void			color(t_env *e);
 void			texting(t_env *e);
 void			setfractol(t_env *e);

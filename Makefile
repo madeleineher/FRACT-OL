@@ -29,6 +29,7 @@ SRCS = main.c\
 	   fern.c\
 	   koch.c\
 	   burn.c\
+	   tricorn.c\
 	   sierpinski.c\
 	   color.c
 
