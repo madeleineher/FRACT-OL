@@ -23,6 +23,7 @@ SRCS = main.c\
 	   start.c\
 	   refresh.c\
 	   touch.c\
+	   touchtwomuch.c\
 	   triggers.c\
 	   mandelbrot.c\
 	   julia.c\

@@ -38,6 +38,7 @@
 # define U				32
 # define Q				12
 # define E				14
+# define N				45
 # define KEY_SPACEBAR	49
 # define MOUSEM			6
 
@@ -49,12 +50,6 @@ typedef struct			s_fer
 	double				ny;
 	double				random;
 }						t_fer;
-
-typedef struct			s_koh
-{
-	double				x;
-	double				y;
-}						t_koh;
 
 typedef struct			s_bre
 {
@@ -143,6 +138,19 @@ typedef struct			s_tri
 	float				two_ab;
 }						t_tri;
 
+typedef struct			s_kohp
+{
+	double				x;
+	double				y;
+}						t_kohp;
+
+typedef struct			s_koch
+{
+	int					iter;
+	t_kohp				kp[6]; //koch points
+	t_bre				n; // bre
+}						t_koch;
+
 typedef struct			s_win
 {
 	void				*wp;
@@ -183,6 +191,8 @@ typedef struct			s_env
 	int					k[300];
 	int					pal[8][5];
 	int					c;
+	int					starth;
+	int					endth;	
 	t_mos				mo;
 	t_xy				xy;
 	t_win				w;
@@ -192,8 +202,7 @@ typedef struct			s_env
 	t_fer				f;
 	t_sie				s;
 	t_tri				t;
-	t_koh				h; //koch
-	t_bre				n; // bre
+	t_koch				o;
 }						t_env;
 
 typedef struct			s_thr
@@ -203,6 +212,7 @@ typedef struct			s_thr
 }						t_thr;
 
 void					start(t_env *e);
+void					setfractol(t_env *e);
 int						touch(t_env *e);
 int						touchtwomuch(t_env *e);
 void					blackout(t_env *e);

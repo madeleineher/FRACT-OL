@@ -84,10 +84,28 @@ void	tricornsetup(t_env *e)
 	e->b.ty = e->xy.ymin;
 }
 
-/*void	kochsetup(t_env *e)
+void	kochsetup(t_env *e)
 {
-	
-}*/
+	e->o.kp[0].x = WIDTH / 5;
+	e->o.kp[0].y = HEIGHT / 5;
+	e->o.kp[1].x = WIDTH - WIDTH / 5;
+	e->o.kp[1].y = HEIGHT / 5;
+	e->o.kp[2].x = WIDTH - WIDTH / 5;
+	e->o.kp[2].y = HEIGHT / 5;
+	e->o.kp[3].x = WIDTH / 2;
+	e->o.kp[3].y = HEIGHT - HEIGHT / 5;
+	e->o.kp[4].x = WIDTH / 2;
+	e->o.kp[4].y = HEIGHT - HEIGHT / 5;
+	e->o.kp[5].x = WIDTH / 5;
+	e->o.kp[5].y = WIDTH / 5;
+ 	e->o.iter = 5;
+	e->xy.w = 5;
+	e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
+	e->xy.xmin = -e->xy.w / 2;
+	e->xy.xmax = e->xy.xmin + e->xy.w;
+	e->xy.ymin = -e->xy.h / 2;
+	e->xy.ymax = e->xy.ymin + e->xy.h;
+}
 
 void	setfractol(t_env *e)
 {
@@ -109,12 +127,8 @@ void	setfractol(t_env *e)
 		burnsetup(e);
 	else if (ft_strcmp(e->fractol, "t") == 0)
 		tricornsetup(e);
-	// else if (ft_strcmp(e->fractol, "k") == 0)
-	//   kochsetup(e);
+	else if (ft_strcmp(e->fractol, "k") == 0)
+		kochsetup(e);
 	e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;
 	e->xy.h_t = (e->xy.ymin + e->xy.ymax) / 2;
-	/*  else if (ft_strcmp(e->fractol, "s") == 0)
-	  sierpinskisetup(e);
-	  else if (ft_strcmp(e->fractol, "g") == 0)
-	  glynnsetup(e);*/
 }

@@ -37,8 +37,16 @@ void	whilemandel(t_env *e, t_man *m)
 }
 
 void	mandelbrot(t_env *e, t_man m)
-{
+{ 
+	// int	i;
+
 	m.y = -1;
+	// i = -1;
+	// while (++i < THREADS)
+	// {
+	// 	e->starth = th[i] * WIDTH / THREADS - 1;
+	// 	e->endth = e->starth + WIDTH / THREADS;
+	// }
 	m.ty = e->xy.ymin;
 	m.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
 	m.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);

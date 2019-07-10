@@ -31,12 +31,13 @@ void	*fractols(void *pscreen) // add number to fractal variable like DEFINES
 	t_thr	*th;
 
 	th = (t_thr *)pscreen; 
-	// printf("test %f\n", th->env->f.y);
-	t_man m = th->env->m;
-	t_jul j = th->env->j;
-	t_fer f = th->env->f;
-	t_burn b = th->env->b;
-	if (ft_strcmp(th->env->fractol, "m") == 0) // !! attention to structure call !
+	t_man	m = th->env->m;
+	t_jul	j = th->env->j;
+	t_fer	f = th->env->f;
+	t_burn	b = th->env->b;
+	t_tri	t = th->env->t;
+	// t_koh	h = th->env->h;
+	if (ft_strcmp(th->env->fractol, "m") == 0)
 		mandelbrot(th->env, m);
 	else if (ft_strcmp(th->env->fractol, "f") == 0)
 		fern(th->env, f);
@@ -44,11 +45,11 @@ void	*fractols(void *pscreen) // add number to fractal variable like DEFINES
 		burn(th->env, b);
 	else if (ft_strcmp(th->env->fractol, "j") == 0)
 		julia(th->env, j);
-	// printf("sortie test %f\n", th->env->f.y);
-/*	
-	else if (ft_strcmp(e->fractol, "k") == 0)
-		koch(e);
-	else if (ft_strcmp(e->fractol, "s") == 0)
+	else if (ft_strcmp(th->env->fractol, "t") == 0)
+		tricorn(th->env, t);
+	else if (ft_strcmp(th->env->fractol, "k") == 0)
+		koch(th->env);
+/*	else if (ft_strcmp(e->fractol, "s") == 0)
 		sierpinski(e);
 */
 	pthread_exit(NULL);
@@ -65,6 +66,8 @@ void	start(t_env *e)
 	{
 		th[i].env = e;
 		th[i].nth = i;
+		// starth = th[i] * WIDHT / THREADS - 1;
+		// endth = xstart + WIDTH / THREADS;
 		pthread_create(&thread[i], NULL, fractols, &th[i]);
 	}
 	i = -1;
