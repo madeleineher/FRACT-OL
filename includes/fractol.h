@@ -175,6 +175,8 @@ typedef struct			s_xy
 	double				xmax;
 	double				ymin;
 	double				ymax;
+	double				txmin;
+	double				tymin;
 	double				w;
 	double				h;
 	double				mre;
@@ -182,6 +184,8 @@ typedef struct			s_xy
 	double				zoom;
 	double				w_t;
 	double				h_t;
+	double				tw_t;
+	double				th_t;
 }						t_xy;
 
 typedef struct			s_env

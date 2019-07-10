@@ -25,7 +25,6 @@ void 	juliasetup(t_env *e)
 	e->xy.ymax = e->xy.ymin + e->xy.h;
 	e->j.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
 	e->j.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	e->xy.nmax = 100;
 	e->j.tx = 0;
 	e->j.ty = e->xy.ymin;
 }
@@ -43,7 +42,6 @@ void	mandelsetup(t_env *e)
 	e->xy.ymax = e->xy.ymin + e->xy.h;
 	e->m.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
 	e->m.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	e->xy.nmax = 100;
 	e->m.tx = 0;
 	e->m.ty = e->xy.ymin;
 }
@@ -61,7 +59,6 @@ void	burnsetup(t_env *e)
 	e->xy.ymax = e->xy.ymin + e->xy.h;
 	e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
 	e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	e->xy.nmax = 100;
 	e->b.tx = 0;
 	e->b.ty = e->xy.ymin;
 }
@@ -79,7 +76,6 @@ void	tricornsetup(t_env *e)
 	e->xy.ymax = e->xy.ymin + e->xy.h;
 	e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
 	e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	e->xy.nmax = 100;
 	e->b.tx = 0;
 	e->b.ty = e->xy.ymin;
 }
@@ -109,6 +105,7 @@ void	kochsetup(t_env *e)
 
 void	setfractol(t_env *e)
 {
+	e->xy.nmax = (e->fractol[0] == 'f' ? 100000 : 10);
 	e->xy.zoom = 1.0;
 	if (ft_strcmp(e->fractol, "m") == 0)
 		mandelsetup(e);
@@ -129,6 +126,6 @@ void	setfractol(t_env *e)
 		tricornsetup(e);
 	else if (ft_strcmp(e->fractol, "k") == 0)
 		kochsetup(e);
-	e->xy.w_t = (e->xy.xmin + e->xy.xmax) / 2;
-	e->xy.h_t = (e->xy.ymin + e->xy.ymax) / 2;
+	e->xy.w_t = (e->xy.xmax - e->xy.xmin);
+	e->xy.h_t = (e->xy.ymax - e->xy.ymin);
 }

@@ -27,14 +27,20 @@ int			error(int i)
 			| koch");
 	}
 	if (i == 3)
-		ft_putendl("error: poor malloc.");
+		ft_putendl("error: mlx init error.");
 	exit(0);
 	return (0);
 }
 
 void		texting(t_env *e)
 {
-	mlx_string_put(e->w.mp, e->w.wp, 30, 20, 0xFFFFFF, "HELLO");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH - 100, 20, 0xFFFFFF, "FRACT'Ol");
+	mlx_string_put(e->w.mp, e->w.wp, 20, 20, 0xFFFFFF, "MOVE : W, A, S, D");
+	mlx_string_put(e->w.mp, e->w.wp, 20, 40, 0xFFFFFF, "PAUSE : SPACEBAR");
+	mlx_string_put(e->w.mp, e->w.wp, 20, 60, 0xFFFFFF, "ITERATE : I, U");
+	mlx_string_put(e->w.mp, e->w.wp, 20, 80, 0xFFFFFF, "ZOOM : Q, E");
+	mlx_string_put(e->w.mp, e->w.wp, 20, 100, 0xFFFFFF, "RESET : R");
+	mlx_string_put(e->w.mp, e->w.wp, 20, 120, 0xFFFFFF, "EXIT : ESC");
 }
 
 int			check_fractols(char **args)
@@ -77,7 +83,6 @@ int			main(int argc, char **argv)
 		error(3);
 	setfractol(e);
 	color(e);
-	e->xy.nmax = (e->fractol[0] == 'f' ? 100000 : 100);
 	start(e);
 	mlx_loop(e->w.mp);
 	return (0);
