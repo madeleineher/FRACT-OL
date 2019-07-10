@@ -15,8 +15,8 @@
 void	drawpoint(int x, int y, t_env *e, int i)
 {
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-		*(int *)&e->data[(int)x * (e->w.bpp / 8) + (int)y * e->w.sl]
-			= e->pal[e->c][i % 5];
+		*(int *)&e->data[(int)x * (e->w.bpp / 8) + (int)y * e->w.sl] = \
+			e->pal[e->c][i % 5];
 }
 
 void	fernpoints(t_fer *f)
@@ -25,7 +25,7 @@ void	fernpoints(t_fer *f)
 	f->ny = 0;
 	f->random = (double)rand() / RAND_MAX;
 	if (f->random < 0.01)
-	{ 
+	{
 		f->nx = 0.0;
 		f->ny = 0.16 * f->y;
 	}

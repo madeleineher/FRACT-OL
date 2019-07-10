@@ -15,17 +15,12 @@
 void	juliacolor(t_env *e, t_jul j)
 {
 	if (j.n == e->xy.nmax)
-		*(int *)&e->data[j.x * (e->w.bpp / 8) + j.y * e->w.sl]
-			= e->pal[e->c][0];
+		*(int *)&e->data[j.x * (e->w.bpp / 8) + j.y * e->w.sl] = \
+			e->pal[e->c][0];
 	else
-		*(int *)&e->data[j.x * (e->w.bpp / 8) + j.y * e->w.sl]
-			= e->pal[e->c][j.n % 5];
+		*(int *)&e->data[j.x * (e->w.bpp / 8) + j.y * e->w.sl] = \
+			e->pal[e->c][j.n % 5];
 }
-
-// float	map(int m)
-// {
-// 	return (-1 + (1 - -1) * ((m - 0) / (float)((WIDTH - 0))));
-// }
 
 void	map(t_env *e)
 {
@@ -44,9 +39,9 @@ void	whilejulia(t_env *e, t_jul *j)
 		j->two_ab = 2.0 * j->a * j->b;
 		map(e);
 		j->a = j->two_a - j->two_b + e->xy.mre;
-		j->b = j->two_ab + e->xy.mri; 
+		j->b = j->two_ab + e->xy.mri;
 		if (j->a * j->a + j->b * j->b > 16.0)
-			break;
+			break ;
 	}
 }
 

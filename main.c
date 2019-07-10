@@ -17,12 +17,14 @@ int			error(int i)
 	if (i == 1)
 	{
 		ft_putendl("usage: ./fractol FRACTAL_NAME/S");
-		ft_putendl("       ./fractol julia | mandelbrot | fern");
+		ft_putendl("       ./fractol julia | mandelbrot | fern | burn | \
+			tricorn | koch");
 	}
 	if (i == 2)
 	{
 		ft_putendl("error: not a valid fractal.");
-		ft_putendl("./fractol julia | mandelbrot | fern");
+		ft_putendl("./fractol julia | mandelbrot | fern | burn | tricorn \
+			| koch");
 	}
 	if (i == 3)
 		ft_putendl("error: poor malloc.");
@@ -37,19 +39,17 @@ void		texting(t_env *e)
 
 int			check_fractols(char **args)
 {
-	if (ft_strcmp(args[1], "m") == 0) // mandelbrot
+	if (ft_strcmp(args[1], "m") == 0)
 		return (0);
-	else if (ft_strcmp(args[1], "j") == 0) // julia
-		return (0); 
-	else if (ft_strcmp(args[1], "k") == 0) //koch
+	else if (ft_strcmp(args[1], "j") == 0)
 		return (0);
-	else if (ft_strcmp(args[1], "f") == 0) // fern
+	else if (ft_strcmp(args[1], "k") == 0)
 		return (0);
-	else if (ft_strcmp(args[1], "s") == 0) // sierpinski
+	else if (ft_strcmp(args[1], "f") == 0)
 		return (0);
-	else if (ft_strcmp(args[1], "g") == 0) // tree
+	else if (ft_strcmp(args[1], "b") == 0)
 		return (0);
-	else if (ft_strcmp(args[1], "b") == 0) // burning ship
+	else if (ft_strcmp(args[1], "t") == 0)
 		return (0);
 	else
 		return (-1);

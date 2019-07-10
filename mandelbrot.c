@@ -15,11 +15,25 @@
 void	mandelcolor(t_env *e, t_man m)
 {
 	if (m.n == e->xy.nmax)
-		*(int *)&e->data[m.x * (e->w.bpp / 8) + m.y * e->w.sl] 
-			= e->pal[e->c][0];
+		*(int *)&e->data[m.x * (e->w.bpp / 8) + m.y * e->w.sl] = \
+			e->pal[e->c][0];
 	else
-		*(int *)&e->data[m.x * (e->w.bpp / 8) + m.y * e->w.sl]
-			= e->pal[e->c][m.n % 5];
+		*(int *)&e->data[m.x * (e->w.bpp / 8) + m.y * e->w.sl] = \
+			e->pal[e->c][m.n % 5];
+}
+
+void	whilemandel(t_env *e, t_man *m)
+{
+	while (++m->n < e->xy.nmax)
+	{
+		m->two_a = m->a * m->a;
+		m->two_b = m->b * m->b;
+		m->two_ab = 2.0 * m->a * m->b;
+		m->a = m->two_a - m->two_b + m->tx;
+		m->b = m->two_ab + m->ty;
+		if (m->a * m->a + m->b * m->b > 16.0)
+			break ;
+	}
 }
 
 void	mandelbrot(t_env *e, t_man m)
@@ -37,16 +51,7 @@ void	mandelbrot(t_env *e, t_man m)
 			m.a = m.tx;
 			m.b = m.ty;
 			m.n = -1;
-			while (++m.n < e->xy.nmax)
-			{
-				m.two_a = m.a * m.a;
-				m.two_b = m.b * m.b;
-				m.two_ab = 2.0 * m.a * m.b;
-				m.a = m.two_a - m.two_b + m.tx;
-				m.b = m.two_ab + m.ty;
-				if (m.a * m.a + m.b * m.b > 16.0)
-					break;
-			}
+			whilemandel(e, &m);
 			mandelcolor(e, m);
 			m.tx += m.dx;
 		}
