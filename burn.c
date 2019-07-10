@@ -15,19 +15,24 @@
 void	burncolor(t_env *e, t_burn b)
 {
 	if (b.n == e->xy.nmax)
-		*(int *)&e->data[b.x * (e->w.bpp / 8) + b.y * e->w.sl]
-			= e->pal[e->c][0];
+		*(int *)&e->data[b.x * (e->w.bpp / 8) + b.y * e->w.sl] = \
+			e->pal[e->c][0];
 	else
-		*(int *)&e->data[b.x * (e->w.bpp / 8) + b.y * e->w.sl]
-			= e->pal[e->c][b.n % 5];
+		*(int *)&e->data[b.x * (e->w.bpp / 8) + b.y * e->w.sl] = \
+			e->pal[e->c][b.n % 5];
+}
+
+void	prelimburn(t_env *e, t_burn *b)
+{
+	b->y = -1;
+	b->ty = e->xy.ymin;
+	b->dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+	b->dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
 }
 
 void	burn(t_env *e, t_burn b)
 {
-	b.y = -1;
-	b.ty = e->xy.ymin;
-	b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+	prelimburn(e, &b);
 	while (++b.y < HEIGHT)
 	{
 		b.tx = e->xy.xmin;
@@ -43,7 +48,7 @@ void	burn(t_env *e, t_burn b)
 				b.b = fabs(2 * b.a * b.b) + b.ty;
 				b.a = fabs(b.two_ab);
 				if (b.a * b.a + b.b * b.b > 16.0)
-					break;
+					break ;
 			}
 			burncolor(e, b);
 			b.tx += b.dx;
