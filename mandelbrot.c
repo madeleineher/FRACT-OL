@@ -22,9 +22,11 @@ void	mandelcolor(t_env *e, t_man m)
 			e->pal[e->c][m.n % 5];
 }
 
-void	whilemandel(t_env *e, t_man *m)
+void	whilemandel(t_env *e, t_man *m) //, t_man *thr_man) // thr_man is a table .. read it by 4, cut horzontally.
 {
-	while (++m->n < e->xy.nmax)
+	// Call start function to create threads, 
+	//cut your tab depending your current thread and then this while loop 
+	while (++m->n < e->xy.nmax) // decoupage avec ce variable nmax ..
 	{
 		m->two_a = m->a * m->a;
 		m->two_b = m->b * m->b;
@@ -36,25 +38,21 @@ void	whilemandel(t_env *e, t_man *m)
 	}
 }
 
-void	mandelbrot(t_env *e, t_man m)
+void	mandelbrot(t_env *e, t_man m, int nth)
 { 
-	// int	i;
+	// t_man	thr_man[WIDTH * HEIGHT];
 
+	int start = nth * WIDTH / THREADS - 1;
+	int end = start + WIDTH / THREADS;
 	m.y = -1;
-	// i = -1;
-	// while (++i < THREADS)
-	// {
-	// 	e->starth = th[i] * WIDTH / THREADS - 1;
-	// 	e->endth = e->starth + WIDTH / THREADS;
-	// }
 	m.ty = e->xy.ymin;
 	m.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
 	m.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
 	while (++m.y < HEIGHT)
 	{
-		m.tx = e->xy.xmin;
-		m.x = -1;
-		while (++m.x < WIDTH)
+		m.tx = e->xy.xmin + (e->xy.xmax - e->xy.xmin) * nth / THREADS;
+		m.x = start;
+		while (++m.x < end)
 		{
 			m.a = m.tx;
 			m.b = m.ty;
