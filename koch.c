@@ -12,57 +12,59 @@
 
 #include "includes/fractol.h"
 
-void		line_setup(int x1, int y1, int x2, int y2, t_kohp *tmp, t_env *e)
+void		line_setup(t_kohp t1_t2[2], t_kohp *tmp, t_koch *o, t_env *e)
 {
-	tmp->x = x1;
-	tmp->y = y1;
-	e->o.n.dx = x2 - x1;
-	e->o.n.dy = y2 - y1;
-	e->o.n.ix = (e->o.n.dx > 0) ? 1 : -1;
-	e->o.n.iy = (e->o.n.dy > 0) ? 1 : -1;
-	e->o.n.dx = abs(e->o.n.dx);
-	e->o.n.dy = abs(e->o.n.dy);
+	tmp->x = t1_t2[0].x;
+	tmp->y = t1_t2[0].y;
+	o->n.dx = t1_t2[1].x - t1_t2[0].x;
+	o->n.dy = t1_t2[1].y - t1_t2[0].y;
+	o->n.ix = (o->n.dx > 0) ? 1 : -1;
+	o->n.iy = (o->n.dy > 0) ? 1 : -1;
+	o->n.dx = abs(o->n.dx);
+	o->n.dy = abs(o->n.dy);
 	if (tmp->x > 0 && tmp->x < WIDTH && tmp->y > 0 && tmp->y < HEIGHT)
-		*(int *)&e->data[(int)tmp->x * (e->w.bpp / 8) + (int)tmp->y * \
-			e->w.sl] = 0xFFFFFF;
-	e->o.n.tdx = e->o.n.dx / 2;
-	e->o.n.tdy = e->o.n.dy / 2;
+		*(int *)&e->data[(int)tmp->x * (e->w.bpp / 8) + \
+			(int)tmp->y * e->w.sl] = 0xFFFFFF;
+	o->n.tdx = o->n.dx / 2;
+	o->n.tdy = o->n.dy / 2;
 }
 
-void		lines2(t_env *e, int i, t_kohp tmp)
+void		lines2(t_env *e, int i, t_kohp tmp, t_koch *o)
 {
-	while (++i < e->o.n.dy)
+	while (++i < o->n.dy)
 	{
-		tmp.y += e->o.n.iy;
-		e->o.n.tdy += e->o.n.dx;
-		if (e->o.n.tdy >= e->o.n.dy)
+		tmp.y += o->n.iy;
+		o->n.tdy += o->n.dx;
+		if (o->n.tdy >= o->n.dy)
 		{
-			e->o.n.tdy -= e->o.n.dy;
-			tmp.x += e->o.n.ix;
+			o->n.tdy -= o->n.dy;
+			tmp.x += o->n.ix;
 		}
 		if (tmp.x > 0 && tmp.x < WIDTH && tmp.y > 0 && tmp.y < HEIGHT)
-			*(int *)&e->data[(int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl]
-				= 0xFFFFFF;
+			*(int *)&e->data[(int)tmp.x * (e->w.bpp / 8) + \
+				(int)tmp.y * e->w.sl] = 0xFFFFFF;
 	}
 }
 
-void		lines(int x1, int y1, int x2, int y2, t_env *e)
+void		lines(t_kohp t1, t_kohp t2, t_env *e, t_koch *o)
 {
-	int		i;
 	t_kohp	tmp;
+	t_kohp	t1_t2[2];
 
-	i = -1;
-	line_setup(x1, y1, x2, y2, &tmp, e);
-	if (e->o.n.dx > e->o.n.dy)
+	t1_t2[0] = t1;
+	t1_t2[1] = t2;
+	o->n.i = -1;
+	line_setup(t1_t2, &tmp, o, e);
+	if (o->n.dx > o->n.dy)
 	{
-		while (++i < e->o.n.dx)
+		while (++o->n.i < o->n.dx)
 		{
-			tmp.x += e->o.n.ix;
-			e->o.n.tdx += e->o.n.dy;
-			if (e->o.n.tdx >= e->o.n.dx)
+			tmp.x += o->n.ix;
+			o->n.tdx += o->n.dy;
+			if (o->n.tdx >= o->n.dx)
 			{
-				e->o.n.tdx -= e->o.n.dx;
-				tmp.y += e->o.n.iy;
+				o->n.tdx -= o->n.dx;
+				tmp.y += o->n.iy;
 			}
 			if (tmp.x > 0 && tmp.x < WIDTH && tmp.y > 0 && tmp.y < HEIGHT)
 				*(int *)&e->data[(int)tmp.x * (e->w.bpp / 8) + (int)tmp.y
@@ -70,33 +72,51 @@ void		lines(int x1, int y1, int x2, int y2, t_env *e)
 		}
 	}
 	else
-		lines2(e, i, tmp);
+		lines2(e, o->n.i, tmp, o);
 }
 
-void		kochangle(t_env *e, t_kohp p1, t_kohp p2, int rec)
+void		kochangle(t_env *e, t_kohp t[2], int rec, t_koch o)
 {
-	t_kohp	p3, p4, p5;
-	double	the;
+	t_kohp	p3[3];
+	t_kohp	tmp[2];
 
-	the = M_PI / 3;
 	if (rec > 0)
 	{
-		p3 = (t_kohp){(2 * p1.x + p2.x) / 3, (2 * p1.y + p2.y) / 3};
-		p5 = (t_kohp){(2 * p2.x + p1.x) / 3, (2 * p2.y + p1.y) / 3};
-		p4 = (t_kohp){p3.x + (p5.x - p3.x) * cos(the) + (p5.y - p3.y) * sin(the),
-			p3.y - (p5.x - p3.x) * sin(the) + (p5.y - p3.y) * cos(the)};
-		kochangle(e, p1, p3, rec - 1);
-		kochangle(e, p3, p4, rec - 1);
-		kochangle(e, p4, p5, rec - 1);
-		kochangle(e, p5, p2, rec - 1);
+		p3[0] = (t_kohp){(2 * t[0].x + t[1].x) / 3, (2 * t[0].y + t[1].y) / 3};
+		p3[2] = (t_kohp){(2 * t[1].x + t[0].x) / 3, (2 * t[1].y + t[0].y) / 3};
+		p3[1] = (t_kohp){p3[0].x + (p3[2].x - p3[0].x) * cos(e->the) + \
+			(p3[2].y - p3[0].y) * sin(e->the), p3[0].y - (p3[2].x - \
+			p3[0].x) * sin(e->the) + (p3[2].y - p3[0].y) * cos(e->the)};
+		tmp[0] = t[0];
+		tmp[1] = p3[0];
+		kochangle(e, tmp, rec - 1, o);
+		tmp[0] = p3[0];
+		tmp[1] = p3[1];
+		kochangle(e, tmp, rec - 1, o);
+		tmp[0] = p3[1];
+		tmp[1] = p3[2];
+		kochangle(e, tmp, rec - 1, o);
+		tmp[0] = p3[2];
+		tmp[1] = t[1];
+		kochangle(e, tmp, rec - 1, o);
 	}
 	else
-		lines(p1.x, p1.y, p2.x, p2.y, e);
+		lines(t[0], t[1], e, &o);
 }
 
-void		koch(t_env *e)
+void		koch(t_env *e, t_koch o)
 {
-	kochangle(e, e->o.kp[0], e->o.kp[1], e->o.iter);
-	kochangle(e, e->o.kp[2], e->o.kp[3], e->o.iter);
-	kochangle(e, e->o.kp[4], e->o.kp[5], e->o.iter);
+	t_kohp tab1[2];
+	t_kohp tab2[2];
+	t_kohp tab3[2];
+
+	tab1[0] = o.kp[0];
+	tab1[1] = o.kp[1];
+	tab2[0] = o.kp[2];
+	tab2[1] = o.kp[3];
+	tab3[0] = o.kp[4];
+	tab3[1] = o.kp[5];
+	kochangle(e, tab1, e->xy.nmax, o);
+	kochangle(e, tab2, e->xy.nmax, o);
+	kochangle(e, tab3, e->xy.nmax, o);
 }

@@ -38,7 +38,6 @@ int		touchtwomuch(t_env *e)
 	if (e->k[R] == 1)
 	{
 		e->xy.w = 5;
-		e->xy.zoom = 1.0;
 		e->xy.h = (e->xy.w * HEIGHT) / HEIGHT;
 		e->xy.xmin = (e->fractol[0] == 'f' ? -2.182 : -e->xy.w / 2);
 		e->xy.xmax = (e->fractol[0] == 'f' ? 2.6558 : e->xy.xmin + e->xy.w);

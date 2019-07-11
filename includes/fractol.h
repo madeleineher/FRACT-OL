@@ -59,6 +59,7 @@ typedef struct			s_bre
 	int					iy;
 	int					tdx;
 	int					tdy;
+	int					i;
 }						t_bre;
 
 typedef struct			s_sie
@@ -151,6 +152,13 @@ typedef struct			s_koch
 	t_bre				n; // bre
 }						t_koch;
 
+typedef struct			s_cool
+{
+	int					r;
+	int					g;
+	int					b;
+}						t_cool;
+
 typedef struct			s_win
 {
 	void				*wp;
@@ -184,8 +192,8 @@ typedef struct			s_xy
 	double				zoom;
 	double				w_t;
 	double				h_t;
-	double				tw_t;
-	double				th_t;
+	double				oldrange_x;
+	double				oldrange_y;
 }						t_xy;
 
 typedef struct			s_env
@@ -193,10 +201,12 @@ typedef struct			s_env
 	char				*fractol;
 	char				*data;
 	int					k[300];
-	int					pal[8][5];
-	int					c;
 	int					starth;
-	int					endth;	
+	int					endth;
+	int					pal[8][5];
+	int					c;	
+	double				the;
+	t_cool				clr;
 	t_mos				mo;
 	t_xy				xy;
 	t_win				w;
@@ -229,7 +239,7 @@ int						mouse_no_click(int button, int x, int y, t_env *e);
 void					mandelbrot(t_env *e, t_man m);
 void					julia(t_env *e, t_jul j);
 void					fern(t_env *e, t_fer f);
-void					koch(t_env *e);
+void					koch(t_env *e, t_koch o);
 void					sierpinski(t_env *e); //, t_sie s);
 void					burn(t_env *e, t_burn b);
 void					tricorn(t_env *e, t_tri t);
