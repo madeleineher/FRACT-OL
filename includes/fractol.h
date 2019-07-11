@@ -230,7 +230,7 @@ void					mandelbrot(t_env *e, t_man m);
 void					julia(t_env *e, t_jul j);
 void					fern(t_env *e, t_fer f);
 void					koch(t_env *e);
-void					sierpinski(t_env *e);
+void					sierpinski(t_env *e); //, t_sie s);
 void					burn(t_env *e, t_burn b);
 void					tricorn(t_env *e, t_tri t);
 void					color(t_env *e);

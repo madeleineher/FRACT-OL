@@ -37,7 +37,7 @@ void	sierpinski(t_env *e)
 
 	e->s.rx = rand() / WIDTH;	
 	e->s.ry = rand() / HEIGHT;	
-
+	e->xy.nmax = 1000;
 	while (++i < e->xy.nmax)
 	{
 		e->s.r = (int)rand() % 4;
@@ -45,19 +45,19 @@ void	sierpinski(t_env *e)
 		{
 			e->s.rx = lerp(e->s.rx, e->s.ax, 0.5);
 			e->s.ry = lerp(e->s.ry, e->s.ay, 0.5);
-			c = 0xFFF000;
+			c = e->pal[e->c][i % 5];
 		}
 		else if (e->s.r == 1)
 		{
 			e->s.rx = lerp(e->s.rx, e->s.bx, 0.5);
 			e->s.ry = lerp(e->s.ry, e->s.by, 0.5);
-			c = 0x00FFF0;
+			c = e->pal[e->c][i % 5];
 		}
 		else if (e->s.r == 2)
 		{
 			e->s.rx = lerp(e->s.rx, e->s.cx, 0.5);
 			e->s.ry = lerp(e->s.ry, e->s.cy, 0.5);
-			c = 0xFF00FF;
+			c = e->pal[e->c][i % 5];
 		}
 		drawsierpinski(e->s.rx, e->s.ry, e, c);
 	}

@@ -107,11 +107,11 @@ int		touch(t_env *e)
 	}
 	if (e->k[I] == 1 || e->k[U] == 1)
 	{
-		e->xy.nmax += ((e->k[I] == 1 && e->fractol[0] != 'f') ? 100 : -100);
+		e->xy.nmax += ((e->k[I] == 1 && e->fractol[0] != 'f') ? 10 : -10);
 		if (e->fractol[0] == 'f')
 			e->xy.nmax += (e->k[I] == 1 ? 1000 : -1000);
 		if (e->xy.nmax < 0 || e->xy.nmax > 2147480000)
-			e->xy.nmax = 10000;
+			e->xy.nmax = 1000;
 		if (e->fractol[0] == 'k')
 			e->o.iter += (e->o.iter > 3 && e->o.iter < 13 && e->k[I] == 1 ? 1 : -1);
 		blackout(e);

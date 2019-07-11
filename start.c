@@ -37,21 +37,21 @@ void	*fractols(void *pscreen) // add number to fractal variable like DEFINES
 	t_burn	b = th->env->b;
 	t_tri	t = th->env->t;
 	// t_koh	h = th->env->h;
-	if (ft_strcmp(th->env->fractol, "m") == 0)
+	// t_sie	s = th->env->s;
+	if (ft_strcmp(th->env->fractol, "mandelbrot") == 0)
 		mandelbrot(th->env, m);
-	else if (ft_strcmp(th->env->fractol, "f") == 0)
+	else if (ft_strcmp(th->env->fractol, "fern") == 0)
 		fern(th->env, f);
-	else if (ft_strcmp(th->env->fractol, "b") == 0)
+	else if (ft_strcmp(th->env->fractol, "burning") == 0)
 		burn(th->env, b);
-	else if (ft_strcmp(th->env->fractol, "j") == 0)
+	else if (ft_strcmp(th->env->fractol, "julia") == 0)
 		julia(th->env, j);
-	else if (ft_strcmp(th->env->fractol, "t") == 0)
+	else if (ft_strcmp(th->env->fractol, "tricorn") == 0)
 		tricorn(th->env, t);
-	else if (ft_strcmp(th->env->fractol, "k") == 0)
+	else if (ft_strcmp(th->env->fractol, "koch") == 0)
 		koch(th->env);
-/*	else if (ft_strcmp(e->fractol, "s") == 0)
-		sierpinski(e);
-*/
+	else if (ft_strcmp(th->env->fractol, "sierpinski") == 0)
+		sierpinski(th->env);
 	pthread_exit(NULL);
 }
 

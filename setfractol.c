@@ -12,72 +12,56 @@
 
 #include "includes/fractol.h"
 
-void 	juliasetup(t_env *e)
+void	frac_set(t_env *e)
 {
-	e->j.x = -1;
-	e->j.y = -1;
-	e->j.n = 0;
 	e->xy.w = 5;
 	e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
 	e->xy.xmin = -e->xy.w / 2;
 	e->xy.xmax = e->xy.xmin + e->xy.w;
 	e->xy.ymin = -e->xy.h / 2;
 	e->xy.ymax = e->xy.ymin + e->xy.h;
-	e->j.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	e->j.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	e->j.tx = 0;
-	e->j.ty = e->xy.ymin;
+	if (ft_strcmp(e->fractol, "m") == 0)
+	{
+		e->m.n = 0;
+		e->m.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+		e->m.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+		e->m.tx = 0;
+		e->m.ty = e->xy.ymin;
+	}
+	else if (ft_strcmp(e->fractol, "j") == 0)
+	{
+		e->j.n = 0;
+		e->j.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+		e->j.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+		e->j.tx = 0;
+		e->j.ty = e->xy.ymin;
+	}
 }
 
-void	mandelsetup(t_env *e)
+void	frac_setwo(t_env *e)
 {
-	e->m.x = -1;
-	e->m.y = -1;
-	e->m.n = 0;
 	e->xy.w = 5;
 	e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
 	e->xy.xmin = -e->xy.w / 2;
 	e->xy.xmax = e->xy.xmin + e->xy.w;
 	e->xy.ymin = -e->xy.h / 2;
 	e->xy.ymax = e->xy.ymin + e->xy.h;
-	e->m.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	e->m.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	e->m.tx = 0;
-	e->m.ty = e->xy.ymin;
-}
-
-void	burnsetup(t_env *e)
-{
-	e->b.x = -1;
-	e->b.y = -1;
-	e->b.n = 0;
-	e->xy.w = 5;
-	e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
-	e->xy.xmin = -e->xy.w / 2;
-	e->xy.xmax = e->xy.xmin + e->xy.w;
-	e->xy.ymin = -e->xy.h / 2;
-	e->xy.ymax = e->xy.ymin + e->xy.h;
-	e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	e->b.tx = 0;
-	e->b.ty = e->xy.ymin;
-}
-
-void	tricornsetup(t_env *e)
-{
-	e->b.x = -1;
-	e->b.y = -1;
-	e->b.n = 0;
-	e->xy.w = 5;
-	e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
-	e->xy.xmin = -e->xy.w / 2;
-	e->xy.xmax = e->xy.xmin + e->xy.w;
-	e->xy.ymin = -e->xy.h / 2;
-	e->xy.ymax = e->xy.ymin + e->xy.h;
-	e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	e->b.tx = 0;
-	e->b.ty = e->xy.ymin;
+	if (ft_strcmp(e->fractol, "b") == 0)
+	{
+		e->b.n = 0;
+		e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+		e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+		e->b.tx = 0;
+		e->b.ty = e->xy.ymin;
+	}
+	else if (ft_strcmp(e->fractol, "t") == 0)
+	{
+		e->b.n = 0;
+		e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+		e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+		e->b.tx = 0;
+		e->b.ty = e->xy.ymin;
+	}
 }
 
 void	kochsetup(t_env *e)
@@ -94,7 +78,7 @@ void	kochsetup(t_env *e)
 	e->o.kp[4].y = HEIGHT - HEIGHT / 5;
 	e->o.kp[5].x = WIDTH / 5;
 	e->o.kp[5].y = WIDTH / 5;
- 	e->o.iter = 5;
+	e->o.iter = 5;
 	e->xy.w = 5;
 	e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
 	e->xy.xmin = -e->xy.w / 2;
@@ -105,13 +89,13 @@ void	kochsetup(t_env *e)
 
 void	setfractol(t_env *e)
 {
-	e->xy.nmax = (e->fractol[0] == 'f' ? 100000 : 10);
+	e->xy.nmax = (e->fractol[0] == 'f' ? 10000 : 10);
 	e->xy.zoom = 1.0;
-	if (ft_strcmp(e->fractol, "m") == 0)
-		mandelsetup(e);
-	else if (ft_strcmp(e->fractol, "j") == 0)
-		juliasetup(e);
-	else if (ft_strcmp(e->fractol, "f") == 0)
+	if (ft_strcmp(e->fractol, "mandelbrot") == 0)
+		frac_set(e);
+	else if (ft_strcmp(e->fractol, "julia") == 0)
+		frac_set(e);
+	else if (ft_strcmp(e->fractol, "fern") == 0)
 	{
 		e->xy.w = 5;
 		e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
@@ -120,11 +104,11 @@ void	setfractol(t_env *e)
 		e->xy.ymin = 0;
 		e->xy.ymax = 9.9983;
 	}
-	else if (ft_strcmp(e->fractol, "b") == 0)
-		burnsetup(e);
-	else if (ft_strcmp(e->fractol, "t") == 0)
-		tricornsetup(e);
-	else if (ft_strcmp(e->fractol, "k") == 0)
+	else if (ft_strcmp(e->fractol, "burning") == 0)
+		frac_setwo(e);
+	else if (ft_strcmp(e->fractol, "tricorn") == 0)
+		frac_setwo(e);
+	else if (ft_strcmp(e->fractol, "koch") == 0)
 		kochsetup(e);
 	e->xy.w_t = (e->xy.xmax - e->xy.xmin);
 	e->xy.h_t = (e->xy.ymax - e->xy.ymin);

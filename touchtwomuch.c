@@ -33,25 +33,6 @@ int		movefractol(t_env *e)
 	return (0);
 }
 
-// int		changefractol(t_env *e)
-// {
-// 	int		i;
-// 	char	*fractol;
-
-// 	i = -1;
-// 	fractol = "mjfbkt";
-// 	while (e->fractol[0] != fractol[++i] && i < 5)
-// 		;
-// 	printf("i : [%d]\n", i);
-// 	if (e->k[N] == 1)
-// 	{	
-// 		e->fractol[0] = fractol[++i];
-// 		setfractol(e);
-//  		start(e);
-// 	}
-// 	return (0);
-// }
-
 int		touchtwomuch(t_env *e)
 {
 	if (e->k[R] == 1)

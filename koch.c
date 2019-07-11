@@ -23,8 +23,8 @@ void		line_setup(int x1, int y1, int x2, int y2, t_kohp *tmp, t_env *e)
 	e->o.n.dx = abs(e->o.n.dx);
 	e->o.n.dy = abs(e->o.n.dy);
 	if (tmp->x > 0 && tmp->x < WIDTH && tmp->y > 0 && tmp->y < HEIGHT)
-		*(int *)&e->data[(int)tmp->x * (e->w.bpp / 8) + (int)tmp->y * e->w.sl]
-			 = 0xFFFFFF;
+		*(int *)&e->data[(int)tmp->x * (e->w.bpp / 8) + (int)tmp->y * \
+			e->w.sl] = 0xFFFFFF;
 	e->o.n.tdx = e->o.n.dx / 2;
 	e->o.n.tdy = e->o.n.dy / 2;
 }
@@ -96,7 +96,6 @@ void		kochangle(t_env *e, t_kohp p1, t_kohp p2, int rec)
 
 void		koch(t_env *e)
 {
-
 	kochangle(e, e->o.kp[0], e->o.kp[1], e->o.iter);
 	kochangle(e, e->o.kp[2], e->o.kp[3], e->o.iter);
 	kochangle(e, e->o.kp[4], e->o.kp[5], e->o.iter);
