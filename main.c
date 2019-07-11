@@ -17,14 +17,14 @@ int			error(int i)
 	if (i == 1)
 	{
 		ft_putendl("usage:\t./fractol FRACTAL_NAME");
-		ft_putstr("\t./fractol julia | mandelbrot | fern | burn");
-		ft_putstr(" | tricorn | koch | sierpinski\n");
+		ft_putstr("\t./fractol julia | mandelbrot | fern | burning");
+		ft_putstr(" | tricorn | koch | sierpinski | double\n");
 	}
 	if (i == 2)
 	{
 		ft_putendl("error:\tnot a valid fractal.\n");
-		ft_putstr("./fractol julia | mandelbrot | fern | burn");
-		ft_putstr(" | tricorn | koch | sierpinski\n");
+		ft_putstr("./fractol julia | mandelbrot | fern | burning");
+		ft_putstr(" | tricorn | koch | sierpinski | double\n");
 	}
 	if (i == 3)
 		ft_putendl("error: mlx init error.");
@@ -73,6 +73,8 @@ int			check_fractols(char **args)
 	else if (ft_strcmp(args[1], "tricorn") == 0)
 		return (0);
 	else if (ft_strcmp(args[1], "sierpinski") == 0)
+		return (0);
+	else if (ft_strcmp(args[1], "double") == 0)
 		return (0);
 	else
 		return (-1);

@@ -37,9 +37,10 @@ void	*fractols(void *pscreen) // add number to fractal variable like DEFINES
 	t_burn	b = th->env->b;
 	t_tri	t = th->env->t;
 	t_koch	o = th->env->o;
+	t_dou	d = th->env->d;
 	// t_sie	s = th->env->s;
 	if (ft_strcmp(th->env->fractol, "mandelbrot") == 0)
-		mandelbrot(th->env, m);
+		mandelbrot(th->env, m, th->nth);
 	else if (ft_strcmp(th->env->fractol, "fern") == 0)
 		fern(th->env, f);
 	else if (ft_strcmp(th->env->fractol, "burning") == 0)
@@ -52,6 +53,8 @@ void	*fractols(void *pscreen) // add number to fractal variable like DEFINES
 		koch(th->env, o);
 	else if (ft_strcmp(th->env->fractol, "sierpinski") == 0)
 		sierpinski(th->env);
+	else if (ft_strcmp(th->env->fractol, "double") == 0)
+		doubleburn(th->env, d);
 	pthread_exit(NULL);
 }
 

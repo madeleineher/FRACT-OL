@@ -88,7 +88,7 @@ void	kochsetup(t_env *e)
 
 void	setfractol(t_env *e)
 {
-	e->xy.nmax = (e->fractol[0] == 'f' ? 100 : 10);
+	e->xy.nmax = (e->fractol[0] == 'f' ? 1000000 : 10);
 	e->xy.zoom = 1.0;
 	if (ft_strcmp(e->fractol, "mandelbrot") == 0)
 		frac_set(e);
@@ -109,4 +109,18 @@ void	setfractol(t_env *e)
 		frac_setwo(e);
 	else if (ft_strcmp(e->fractol, "koch") == 0)
 		kochsetup(e);
+	else if (ft_strcmp(e->fractol, "double") == 0)
+	{
+		e->xy.w = 5;
+		e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
+		e->xy.xmin = -e->xy.w / 2;
+		e->xy.xmax = e->xy.xmin + e->xy.w;
+		e->xy.ymin = -e->xy.h / 2;
+		e->xy.ymax = e->xy.ymin + e->xy.h;
+		e->b.n = 0;
+		e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+		e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+		e->b.tx = 0;
+		e->b.ty = e->xy.ymin;
+	}
 }

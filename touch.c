@@ -27,7 +27,7 @@ int		zoomout(t_env *e)
 		(e->xy.oldrange_y - e->xy.h_t);
 	e->xy.ymax = e->xy.ymin + e->xy.h_t;
 	blackout(e);
-	e->mo.m = 0;
+	// e->mo.m = 0;
 	return (0);
 }
 
@@ -46,7 +46,7 @@ int		zoomin(t_env *e)
 		(e->xy.oldrange_y - e->xy.h_t);
 	e->xy.ymax = e->xy.ymin + e->xy.h_t;
 	blackout(e);
-	e->mo.m = 0;
+	// e->mo.m = 0;
 	return (0);
 }
 
@@ -61,16 +61,12 @@ int		iterate(t_env *e)
 	if (e->fractol[0] == 'k')
 	{
 		if (e->k[I] == 1 && (e->xy.nmax >= 0 && e->xy.nmax < 12))
-		{
 			e->xy.nmax += 1;
-			e->k[I] = 0;
-		}
 		else if (e->k[U] == 1 && (e->xy.nmax > 0 && e->xy.nmax <= 12))
-		{
 			e->xy.nmax -= 1;
-			e->k[U] = 0;
-		}
 	}
+	e->k[I] = 0;
+	e->k[U] = 0;
 	blackout(e);
 	return (0);
 }
@@ -83,6 +79,7 @@ int		touch(t_env *e)
 	{
 		e->c = (e->c < 8 ? e->c + 1 : 0);
 		blackout(e);
+		e->k[C] = 0;
 	}
 	if (e->k[I] == 1 || e->k[U] == 1)
 		iterate(e);
