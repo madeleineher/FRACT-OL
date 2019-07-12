@@ -80,15 +80,15 @@ typedef struct			s_jul
 	int					x;
 	int					y;
 	int					n;
-	float				dx;
-	float				dy;
-	float				ty;
-	float				tx;
-	float				a;
-	float				b;
-	float				two_a;
-	float				two_b;
-	float				two_ab;
+	double				dx;
+	double				dy;
+	double				ty;
+	double				tx;
+	double				a;
+	double				b;
+	double				two_a;
+	double				two_b;
+	double				two_ab;
 }						t_jul;
 
 typedef struct			s_burn
@@ -96,15 +96,15 @@ typedef struct			s_burn
 	int					x;
 	int					y;
 	int					n;
-	float				dx;
-	float				dy;
-	float				ty;
-	float				tx;
-	float				a;
-	float				b;
-	float				two_a;
-	float				two_b;
-	float				two_ab;
+	double				dx;
+	double				dy;
+	double				ty;
+	double				tx;
+	double				a;
+	double				b;
+	double				two_a;
+	double				two_b;
+	double				two_ab;
 }						t_burn;
 
 typedef struct			s_dou
@@ -112,15 +112,15 @@ typedef struct			s_dou
 	int					x;
 	int					y;
 	int					n;
-	float				dx;
-	float				dy;
-	float				ty;
-	float				tx;
-	float				a;
-	float				b;
-	float				two_a;
-	float				two_b;
-	float				two_ab;
+	double				dx;
+	double				dy;
+	double				ty;
+	double				tx;
+	double				a;
+	double				b;
+	double				two_a;
+	double				two_b;
+	double				two_ab;
 }						t_dou;
 
 typedef struct			s_man
@@ -128,15 +128,15 @@ typedef struct			s_man
 	int					x;
 	int					y;
 	int					n;
-	float				dx;
-	float				dy;
-	float				ty;
-	float				tx;
-	float				a;
-	float				b;
-	float				two_a;
-	float				two_b;
-	float				two_ab;
+	double				dx;
+	double				dy;
+	double				ty;
+	double				tx;
+	double				a;
+	double				b;
+	double				two_a;
+	double				two_b;
+	double				two_ab;
 }						t_man;
 
 typedef struct			s_tri
@@ -144,15 +144,15 @@ typedef struct			s_tri
 	int					x;
 	int					y;
 	int					n;
-	float				dx;
-	float				dy;
-	float				ty;
-	float				tx;
-	float				a;
-	float				b;
-	float				two_a;
-	float				two_b;
-	float				two_ab;
+	double				dx;
+	double				dy;
+	double				ty;
+	double				tx;
+	double				a;
+	double				b;
+	double				two_a;
+	double				two_b;
+	double				two_ab;
 }						t_tri;
 
 typedef struct			s_kohp
