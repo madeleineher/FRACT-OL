@@ -64,14 +64,14 @@ typedef struct			s_bre
 
 typedef struct			s_sie
 {
-	int					ax;
-	int					ay;
-	int					bx;
-	int					by;
-	int					cx;
-	int					cy;
-	int					rx;
-	int					ry;
+	double					ax;
+	double					ay;
+	double					bx;
+	double					by;
+	double					cx;
+	double					cy;
+	double					rx;
+	double					ry;
 	double				r;
 }						t_sie;
 
@@ -257,7 +257,7 @@ void					mandelbrot(t_env *e, t_man m, int nth);
 void					julia(t_env *e, t_jul j);
 void					fern(t_env *e, t_fer f);
 void					koch(t_env *e, t_koch o);
-void					sierpinski(t_env *e); //, t_sie s);
+void					sierpinski(t_env *e, t_sie s);
 void					burn(t_env *e, t_burn b);
 void					doubleburn(t_env *e, t_dou d);
 void					tricorn(t_env *e, t_tri t);

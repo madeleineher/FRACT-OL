@@ -15,7 +15,7 @@
 int		key_press(int key, t_env *e)
 {
 	if (key == KEY_SPACEBAR)
-		e->k[KEY_SPACEBAR] = (e->k[KEY_SPACEBAR] == 1 ? 1 : 0);
+		e->k[KEY_SPACEBAR] = (e->k[KEY_SPACEBAR] == 1 ? 0 : 1);
 	else
 		e->k[key] = 1;
 	return (0);
@@ -24,7 +24,7 @@ int		key_press(int key, t_env *e)
 int		key_release(int key, t_env *e)
 {
 	if (key == KEY_SPACEBAR)
-		e->k[key] = 0;
+		return (0);
 	else
 		e->k[key] = 0;
 	return (0);
@@ -33,7 +33,7 @@ int		key_release(int key, t_env *e)
 int		mouse_move(int x, int y, t_env *e)
 {
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT
-		&& e->fractol[0] == 'j')// && !e->k[KEY_SPACEBAR])
+		&& e->fractol[0] == 'j' && e->k[KEY_SPACEBAR] != 1)
 	{
 		e->mo.mx = x;
 		e->mo.my = y;

@@ -70,6 +70,13 @@ int		touchtwomuch(t_env *e)
 		e->xy.xmax = (e->fractol[0] == 'f' ? 2.6558 : e->xy.xmin + e->xy.w);
 		e->xy.ymin = (e->fractol[0] == 'f' ? 0 : -e->xy.h / 2);
 		e->xy.ymax = (e->fractol[0] == 'f' ? 9.9983 : e->xy.ymin + e->xy.h);
+		if (e->fractol[0] == 's')
+		{
+			e->xy.xmin = 0;
+			e->xy.xmax = WIDTH;
+			e->xy.ymin = 0;
+			e->xy.ymax = HEIGHT;
+		}
 		blackout(e);
 	}
 	if (e->k[W] == 1 || e->k[S] == 1 || e->k[A] == 1 || e->k[D] == 1)

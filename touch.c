@@ -87,11 +87,8 @@ int		touch(t_env *e)
 		zoomout(e);
 	if (e->k[E] == 1 || e->mo.m == 5)
 		zoomin(e);
-	// if (e->k[KEY_SPACEBAR])
-	// {
-	// 	printf("hello\n");
-	// 	e->k[KEY_SPACEBAR] = 1;
-	// }
+	if (e->k[KEY_SPACEBAR] == 1)
+		e->k[KEY_SPACEBAR] = 1;
 	if (e->k[R] == 1 || e->k[W] == 1 || e->k[S] == 1 || e->k[A] == 1
 		|| e->k[D] == 1 || e->k[N])
 			touchtwomuch(e);

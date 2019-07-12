@@ -48,11 +48,12 @@ void		texting(t_env *e)
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 50, 20, 0xFFFFFF, "FRACT'Ol");
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 50, 100, 0xFFFFFF, e->fractol);
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 180, 0xFFFFFF, "MOVE : W, A, S, D");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 210, 0xFFFFFF, "PAUSE : SPACEBAR");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 240, 0xFFFFFF, "ITERATE : I, U");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 270, 0xFFFFFF, "ZOOM : Q, E");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 300, 0xFFFFFF, "RESET : R");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 330, 0xFFFFFF, "EXIT : ESC");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 210, 0xFFFFFF, "NEXT FRACTOL : N");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 240, 0xFFFFFF, "PAUSE : SPACEBAR");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 270, 0xFFFFFF, "ITERATE : I, U");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 300, 0xFFFFFF, "ZOOM : Q, E");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 330, 0xFFFFFF, "RESET : R");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 360, 0xFFFFFF, "EXIT : ESC");
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 470, 0xFFFFFF, "ITERATIONS : ");
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 500, 0xFFFFFF, ft_itoa(e->xy.nmax));
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 55, HEIGHT - 30, 0xFFFFFF, "MHERNAND");
