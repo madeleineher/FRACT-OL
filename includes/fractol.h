@@ -215,7 +215,7 @@ typedef struct			s_xy
 typedef struct			s_env
 {
 	char				*fractol;
-	char				*data;
+	char				*data; // image string
 	int					k[300];
 	int					starth;
 	int					endth;
