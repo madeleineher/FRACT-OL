@@ -27,7 +27,7 @@ int		zoomout(t_env *e)
 		(e->xy.oldrange_y - e->xy.h_t);
 	e->xy.ymax = e->xy.ymin + e->xy.h_t;
 	blackout(e);
-	// e->mo.m = 0;
+	e->mo.m = 0;
 	return (0);
 }
 
@@ -46,7 +46,7 @@ int		zoomin(t_env *e)
 		(e->xy.oldrange_y - e->xy.h_t);
 	e->xy.ymax = e->xy.ymin + e->xy.h_t;
 	blackout(e);
-	// e->mo.m = 0;
+	e->mo.m = 0;
 	return (0);
 }
 

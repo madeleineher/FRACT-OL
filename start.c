@@ -53,7 +53,7 @@ void	*fractols(void *pscreen) // add number to fractal variable like DEFINES
 		koch(th->env, o);
 	else if (ft_strcmp(th->env->fractol, "sierpinski") == 0)
 		sierpinski(th->env);
-	else if (ft_strcmp(th->env->fractol, "double") == 0)
+	else if (ft_strcmp(th->env->fractol, "doubleburning") == 0)
 		doubleburn(th->env, d);
 	pthread_exit(NULL);
 }

@@ -107,6 +107,22 @@ typedef struct			s_burn
 	float				two_ab;
 }						t_burn;
 
+typedef struct			s_dou
+{
+	int					x;
+	int					y;
+	int					n;
+	float				dx;
+	float				dy;
+	float				ty;
+	float				tx;
+	float				a;
+	float				b;
+	float				two_a;
+	float				two_b;
+	float				two_ab;
+}						t_dou;
+
 typedef struct			s_man
 {
 	int					x;
@@ -213,6 +229,7 @@ typedef struct			s_env
 	t_man				m;
 	t_jul				j;
 	t_burn				b;
+	t_dou				d;
 	t_fer				f;
 	t_sie				s;
 	t_tri				t;
@@ -236,12 +253,13 @@ int						key_release(int key, t_env *e);
 int						mouse_move(int x, int y, t_env *e);
 int						mouse_click(int	button, int x, int y, t_env *e);
 int						mouse_no_click(int button, int x, int y, t_env *e);
-void					mandelbrot(t_env *e, t_man m);
+void					mandelbrot(t_env *e, t_man m, int nth);
 void					julia(t_env *e, t_jul j);
 void					fern(t_env *e, t_fer f);
 void					koch(t_env *e, t_koch o);
 void					sierpinski(t_env *e); //, t_sie s);
 void					burn(t_env *e, t_burn b);
+void					doubleburn(t_env *e, t_dou d);
 void					tricorn(t_env *e, t_tri t);
 void					color(t_env *e);
 void					texting(t_env *e);
