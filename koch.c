@@ -24,7 +24,7 @@ void		line_setup(t_kohp t1_t2[2], t_kohp *tmp, t_koch *o, t_env *e)
 	o->n.dy = abs(o->n.dy);
 	if (tmp->x > 0 && tmp->x < WIDTH && tmp->y > 0 && tmp->y < HEIGHT)
 		*(int *)&e->data[(int)tmp->x * (e->w.bpp / 8) + \
-			(int)tmp->y * e->w.sl] = 0xFFFFFF;
+			(int)tmp->y * e->w.sl] = e->pal[e->c][o->n.i % 5];
 	o->n.tdx = o->n.dx / 2;
 	o->n.tdy = o->n.dy / 2;
 }
@@ -42,7 +42,7 @@ void		lines2(t_env *e, int i, t_kohp tmp, t_koch *o)
 		}
 		if (tmp.x > 0 && tmp.x < WIDTH && tmp.y > 0 && tmp.y < HEIGHT)
 			*(int *)&e->data[(int)tmp.x * (e->w.bpp / 8) + \
-				(int)tmp.y * e->w.sl] = 0xFFFFFF;
+				(int)tmp.y * e->w.sl] = e->pal[e->c][i % 5];
 	}
 }
 
@@ -68,7 +68,7 @@ void		lines(t_kohp t1, t_kohp t2, t_env *e, t_koch *o)
 			}
 			if (tmp.x > 0 && tmp.x < WIDTH && tmp.y > 0 && tmp.y < HEIGHT)
 				*(int *)&e->data[(int)tmp.x * (e->w.bpp / 8) + (int)tmp.y
-					* e->w.sl] = 0xFFFFFF;
+					* e->w.sl] = e->pal[e->c][o->n.i % 5];
 		}
 	}
 	else
