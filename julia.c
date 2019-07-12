@@ -37,7 +37,8 @@ void	whilejulia(t_env *e, t_jul *j)
 		j->two_a = j->a * j->a;
 		j->two_b = j->b * j->b;
 		j->two_ab = 2.0 * j->a * j->b;
-		map(e);
+		if (e->k[KEY_SPACEBAR] != 1)
+			map(e);
 		j->a = j->two_a - j->two_b + e->xy.mre;
 		j->b = j->two_ab + e->xy.mri;
 		if (j->a * j->a + j->b * j->b > 16.0)

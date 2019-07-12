@@ -110,6 +110,18 @@ void		koch(t_env *e, t_koch o)
 	t_kohp tab2[2];
 	t_kohp tab3[2];
 
+	e->o.kp[0].x = e->xy.xmin;
+	e->o.kp[0].y = e->xy.ymin;
+	e->o.kp[1].x = e->xy.xmax;
+	e->o.kp[1].y = e->xy.ymin;
+	e->o.kp[2].x = e->xy.xmax;
+	e->o.kp[2].y = e->xy.ymin;
+	e->o.kp[3].x = e->xy.xmin * 2;
+	e->o.kp[3].y = e->xy.ymax;
+	e->o.kp[4].x = e->xy.xmin * 2;
+	e->o.kp[4].y = e->xy.ymax;
+	e->o.kp[5].x = e->xy.xmin;
+	e->o.kp[5].y = e->xy.ymin;
 	tab1[0] = o.kp[0];
 	tab1[1] = o.kp[1];
 	tab2[0] = o.kp[2];

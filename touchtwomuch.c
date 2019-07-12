@@ -60,25 +60,36 @@ int		changefractol(t_env *e)
 	return (0);
 }
 
+int		reset(t_env *e)
+{
+	e->xy.w = 5;
+	e->xy.h = (e->xy.w * HEIGHT) / HEIGHT;
+	e->xy.xmin = (e->fractol[0] == 'f' ? -2.182 : -e->xy.w / 2);
+	e->xy.xmax = (e->fractol[0] == 'f' ? 2.6558 : e->xy.xmin + e->xy.w);
+	e->xy.ymin = (e->fractol[0] == 'f' ? 0 : -e->xy.h / 2);
+	e->xy.ymax = (e->fractol[0] == 'f' ? 9.9983 : e->xy.ymin + e->xy.h);
+	if (e->fractol[0] == 's')
+	{
+		e->xy.xmin = 0;
+		e->xy.xmax = WIDTH;
+		e->xy.ymin = 0;
+		e->xy.ymax = HEIGHT;
+	}
+	if (e->fractol[0] == 'k')
+	{
+		e->xy.xmin = WIDTH / 4;
+		e->xy.xmax = WIDTH / 4 * 3;
+		e->xy.ymin = HEIGHT / 4;
+		e->xy.ymax = HEIGHT / 4 * 3;
+	}
+	blackout(e);
+    return (0);
+}
+
 int		touchtwomuch(t_env *e)
 {
 	if (e->k[R] == 1)
-	{
-		e->xy.w = 5;
-		e->xy.h = (e->xy.w * HEIGHT) / HEIGHT;
-		e->xy.xmin = (e->fractol[0] == 'f' ? -2.182 : -e->xy.w / 2);
-		e->xy.xmax = (e->fractol[0] == 'f' ? 2.6558 : e->xy.xmin + e->xy.w);
-		e->xy.ymin = (e->fractol[0] == 'f' ? 0 : -e->xy.h / 2);
-		e->xy.ymax = (e->fractol[0] == 'f' ? 9.9983 : e->xy.ymin + e->xy.h);
-		if (e->fractol[0] == 's')
-		{
-			e->xy.xmin = 0;
-			e->xy.xmax = WIDTH;
-			e->xy.ymin = 0;
-			e->xy.ymax = HEIGHT;
-		}
-		blackout(e);
-	}
+		reset(e);
 	if (e->k[W] == 1 || e->k[S] == 1 || e->k[A] == 1 || e->k[D] == 1)
 		movefractol(e);
 	if (e->k[N] == 1)

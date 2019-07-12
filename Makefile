@@ -14,7 +14,7 @@ NAME = fractol
 
 INC = includes/fractol.h
 
-CFLAGS = -Wall -Werror -Wextra -g3 # REMOVE G3 FLAG !
+CFLAGS = -Wall -Werror -Wextra # -g3 # REMOVE G3 FLAG !
 
 CC = gcc
 
@@ -52,7 +52,7 @@ all:
 	@make $(NAME)
 
 $(NAME):$(OBJS) | $(L_TARG)
-	$(CC) $(CFLAGS) $(OBJS) libft/libft.a $(LIBMLX) -fsanitize=address -fno-omit-frame-pointer -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) libft/libft.a $(LIBMLX) -o $(NAME)
 	@touch .gitignore
 	@echo "*.o" > .gitignore
 	@echo "*.a" >> .gitignore
