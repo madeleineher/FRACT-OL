@@ -47,7 +47,6 @@ int		mouse_click(int	button, int x, int y, t_env *e)
 	//printf("hello : x - [%d] | y - [%d] | button - [%d]\n", e->mo.mx, e->mo.my, button);
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
-		blackout(e);
 		e->mo.m = button;
 		e->mo.mx = x;
 		e->mo.my = y;
