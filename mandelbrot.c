@@ -12,63 +12,67 @@
 
 #include "includes/fractol.h"
 
-void	mandelcolor(t_env *e, t_man m)
+void	mandelcolor(t_env *e)
 {
-	if (m.n == e->xy.nmax)
+	if (e->m.n == e->xy.nmax)
 	{	
-		e->data[0 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = 0;
-		e->data[1 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][0] >> 8;
-		e->data[2 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][0] >> 16;
-		e->data[3 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][0] >> 24;
+		e->data[0 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = 0;
+		e->data[1 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][0] >> 8;
+		e->data[2 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][0] >> 16;
+		e->data[3 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][0] >> 24;
 	}
 	else
 	{
-		e->data[0 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = 0;
-		e->data[1 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][m.n % 5] >> 8;
-		e->data[2 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][m.n % 5] >> 16;
-		e->data[3 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][m.n % 5] >> 24;
+		e->data[0 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = 0;
+		e->data[1 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][e->m.n % 5] >> 8;
+		e->data[2 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][e->m.n % 5] >> 16;
+		e->data[3 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][e->m.n % 5] >> 24;
 	}
 }
 
-void	whilemandel(t_env *e, t_man *m) //, t_man *thr_man) // thr_man is a table .. read it by 4, cut horzontally.
+void	whilemandel(t_env *e) //, t_man *thr_man) // thr_man is a table .. read it by 4, cut horzontally.
 {
 	// Call start function to create threads, 
 	//cut your tab depending your current thread and then this while loop 
-	while (++m->n < e->xy.nmax) // decoupage avec ce variable nmax ..
+	while (++e->m.n < e->xy.nmax) // decoupage avec ce variable nmax ..
 	{
-		m->two_a = m->a * m->a;
-		m->two_b = m->b * m->b;
-		m->two_ab = 2.0 * m->a * m->b;
-		m->a = m->two_a - m->two_b + m->tx;
-		m->b = m->two_ab + m->ty;
-		if (m->a * m->a + m->b * m->b > 16.0)
+		e->m.two_a = e->m.a * e->m.a;
+		e->m.two_b = e->m.b * e->m.b;
+		e->m.two_ab = 2.0 * e->m.a * e->m.b;
+		e->m.a = e->m.two_a - e->m.two_b + e->m.tx;
+		e->m.b = e->m.two_ab + e->m.ty;
+		if (e->m.a * e->m.a + e->m.b * e->m.b > 16.0)
 			break ;
 	}
 }
 
-void	mandelbrot(t_env *e, t_man m, int nth)
+void	mandelbrot(t_env *e)
 { 
 	// t_man	thr_man[WIDTH * HEIGHT];
 
-	int start = nth * WIDTH / THREADS - 1;
-	int end = start + WIDTH / THREADS;
-	m.y = -1;
-	m.ty = e->xy.ymin;
-	m.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	m.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	while (++m.y < HEIGHT)
+	// int start = nth * WIDTH / THREADS - 1;
+	// int end = start + WIDTH / THREADS;
+	e->m.y = -1;
+	// e->m.ty = e->xy.ymin;
+	// e->m.dx = (e->xy.w_t / WIDTH);
+	// e->m.dy = (e->xy.h_t / HEIGHT);
+	while (++e->m.y < HEIGHT)
 	{
-		m.tx = e->xy.xmin + (e->xy.xmax - e->xy.xmin) * nth / THREADS;
-		m.x = start;
-		while (++m.x < end)
+		// e->m.tx = e->xy.xmin;// + (e->xy.xmax - e->xy.xmin) * nth / THREADS;
+		e->m.x = -1;//start;
+		while (++e->m.x < WIDTH)
 		{
-			m.a = m.tx;
-			m.b = m.ty;
-			m.n = -1;
-			whilemandel(e, &m);
-			mandelcolor(e, m);
-			m.tx += m.dx;
+			// e->m.a = e->m.tx;
+			// e->m.b = e->m.ty;
+			e->m.a = 0;
+			e->m.b = 0;
+			e->m.tx = e->xy.xmin + ((double)e->m.x * e->xy.w_t / WIDTH);
+			e->m.ty = e->xy.ymin + ((double)e->m.y * e->xy.h_t / HEIGHT);
+			e->m.n = -1;
+			whilemandel(e);
+			mandelcolor(e);
+			// e->m.tx += e->m.dx;
 		}
-		m.ty += m.dy;
+		// e->m.ty += e->m.dy;
 	}
 }
