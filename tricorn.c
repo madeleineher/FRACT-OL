@@ -12,69 +12,76 @@
 
 #include "includes/fractol.h"
 
-void	tricorncolor(t_env *e, t_tri t)
+void	tricorncolor(t_env *e)
 {
-	int				amp;
-	double			freq;
-	static int	i = 0;
-	int				center;
-	int 			color;
+	// int				amp;
+	// double			freq;
+	// static int	i = 0;
+	// int				center;
+	// int 			color;
 	
-	color = 0;
-	freq = .3;
-	amp = 127;
-	center = 128;
-	color = sin(freq * i) * amp + center;
-	if (t.n == e->xy.nmax)
+	// color = 0;
+	// freq = .3;
+	// amp = 127;
+	// center = 128;
+	// color = sin(freq * i) * amp + center;
+	if (e->t.n == e->xy.nmax)
 	{
-		e->data[0 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = 0;
-		e->data[1 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][0] >> 8;
-		e->data[2 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][0] >> 16;
-		e->data[3 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][0] >> 24;
+		e->data[0 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = 0;
+		e->data[1 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->pal[e->c][0] >> 8;
+		e->data[2 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->pal[e->c][0] >> 16;
+		e->data[3 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->pal[e->c][0] >> 24;
 	}
 	else
 	{
-		e->data[0 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = 0;
-		e->data[1 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = color;
-		e->data[2 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = color;
-		e->data[3 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = color;
+		e->data[0 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = 0;
+		e->data[1 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->pal[e->c][e->t.n % 5] >> 8;
+		e->data[2 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->pal[e->c][e->t.n % 5] >> 16;
+		e->data[3 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->pal[e->c][e->t.n % 5] >> 24;
 	}
-	i++;
-	if (i >= 32)
-		i = 0;
+	// i++;
+	// if (i >= 32)
+	// 	i = 0;
 }
 
-void	prelimtricorn(t_env *e, t_tri *t)
-{
-	t->y = -1;
-	t->ty = e->xy.ymin;
-	t->dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	t->dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-}
+// void	prelimtricorn(t_env *e)
+// {
+// 	e->t.y = -1;
+// 	e->t.ty = e->xy.ymin;
+// 	e->t.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+// 	e->t.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+// }
 
-void	tricorn(t_env *e, t_tri t)
+void	tricorn(t_env *e)
 {
-	prelimtricorn(e, &t);
-	while (++t.y < HEIGHT)
+	// prelimtricorn(e);
+	e->t.y = -1;
+	while (++e->t.y < HEIGHT)
 	{
-		t.tx = e->xy.xmin;
-		t.x = -1;
-		while (++t.x < WIDTH)
+		// e->t.tx = e->xy.xmin;
+		e->t.x = -1;
+		while (++e->t.x < WIDTH)
 		{
-			t.a = t.tx;
-			t.b = t.ty;
-			t.n = -1;
-			while (++t.n < e->xy.nmax)
+			// e->t.a = e->t.tx;
+			// e->t.b = e->t.ty;
+			// e->t.n = -1;
+
+			e->t.a = 0;
+			e->t.b = 0;
+			e->t.tx = e->xy.xmin + ((double)e->t.x * e->xy.w_t / WIDTH);
+			e->t.ty = e->xy.ymin + ((double)e->t.y * e->xy.h_t / HEIGHT);
+			e->t.n = -1;
+			while (++e->t.n < e->xy.nmax)
 			{
-				t.two_ab = t.a * t.a - t.b * t.b + t.tx;
-				t.b = -2 * t.a * t.b + t.ty;
-				t.a = t.two_ab;
-				if (t.a * t.a + t.b * t.b > 16.0)
+				e->t.two_ab = e->t.a * e->t.a - e->t.b * e->t.b + e->t.tx;
+				e->t.b = -2 * e->t.a * e->t.b + e->t.ty;
+				e->t.a = e->t.two_ab;
+				if (e->t.a * e->t.a + e->t.b * e->t.b > 16.0)
 					break ;
 			}
-			tricorncolor(e, t);
-			t.tx += t.dx;
+			tricorncolor(e);
+			e->t.tx += e->t.dx;
 		}
-		t.ty += t.dy;
+		e->t.ty += e->t.dy;
 	}
 }
