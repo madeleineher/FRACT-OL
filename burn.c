@@ -15,11 +15,19 @@
 void	burncolor(t_env *e, t_burn b)
 {
 	if (b.n == e->xy.nmax)
-		*(int *)&e->data[b.x * (e->w.bpp / 8) + b.y * e->w.sl] = \
-			e->pal[e->c][0];
+	{
+		e->data[0 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = 0;
+		e->data[1 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][0] >> 8;
+		e->data[2 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][0] >> 16;
+		e->data[3 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][0] >> 24;
+	}
 	else
-		*(int *)&e->data[b.x * (e->w.bpp / 8) + b.y * e->w.sl] = \
-			e->pal[e->c][b.n % 5];
+	{	
+		e->data[0 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = 0;
+		e->data[1 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][b.n % 5] >> 8;
+		e->data[2 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][b.n % 5] >> 16;
+		e->data[3 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][b.n % 5] >> 24;
+	}
 }
 
 void	prelimburn(t_env *e, t_burn *b)

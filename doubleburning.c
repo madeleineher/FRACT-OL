@@ -15,11 +15,19 @@
 void	douburncolor(t_env *e, t_dou d)
 {
 	if (d.n == e->xy.nmax)
-		*(int *)&e->data[d.x * (e->w.bpp / 8) + d.y * e->w.sl] = \
-			e->pal[e->c][0];
+	{
+		e->data[0 + d.x * (e->w.bpp / 8) + d.y * e->w.sl] = 0;
+		e->data[1 + d.x * (e->w.bpp / 8) + d.y * e->w.sl] = e->pal[e->c][0] >> 8;
+		e->data[2 + d.x * (e->w.bpp / 8) + d.y * e->w.sl] = e->pal[e->c][0] >> 16;
+		e->data[3 + d.x * (e->w.bpp / 8) + d.y * e->w.sl] = e->pal[e->c][0] >> 24;
+	}
 	else
-		*(int *)&e->data[d.x * (e->w.bpp / 8) + d.y * e->w.sl] = \
-			e->pal[e->c][d.n % 5];
+	{
+		e->data[0 + d.x * (e->w.bpp / 8) + d.y * e->w.sl] = 0;
+		e->data[1 + d.x * (e->w.bpp / 8) + d.y * e->w.sl] = e->pal[e->c][d.n % 5] >> 8;
+		e->data[2 + d.x * (e->w.bpp / 8) + d.y * e->w.sl] = e->pal[e->c][d.n % 5] >> 16;
+		e->data[3 + d.x * (e->w.bpp / 8) + d.y * e->w.sl] = e->pal[e->c][d.n % 5] >> 24;
+	}
 }
 
 void	prelimdouburn(t_env *e, t_dou *d)

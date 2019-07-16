@@ -15,11 +15,19 @@
 void	mandelcolor(t_env *e, t_man m)
 {
 	if (m.n == e->xy.nmax)
-		*(int *)&e->data[m.x * (e->w.bpp / 8) + m.y * e->w.sl] = \
-			e->pal[e->c][0];
+	{	
+		e->data[0 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = 0;
+		e->data[1 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][0] >> 8;
+		e->data[2 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][0] >> 16;
+		e->data[3 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][0] >> 24;
+	}
 	else
-		*(int *)&e->data[m.x * (e->w.bpp / 8) + m.y * e->w.sl] = \
-			e->pal[e->c][m.n % 5];
+	{
+		e->data[0 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = 0;
+		e->data[1 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][m.n % 5] >> 8;
+		e->data[2 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][m.n % 5] >> 16;
+		e->data[3 + m.x * (e->w.bpp / 8) + m.y * e->w.sl] = e->pal[e->c][m.n % 5] >> 24;
+	}
 }
 
 void	whilemandel(t_env *e, t_man *m) //, t_man *thr_man) // thr_man is a table .. read it by 4, cut horzontally.

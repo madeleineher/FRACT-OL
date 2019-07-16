@@ -16,12 +16,13 @@ void	juliacolor(t_env *e, t_jul j)
 {
 	if (j.n == e->xy.nmax)
 	{
-		*(int *)&e->data[j.x * (e->w.bpp / 8) + j.y * e->w.sl] = \
-			e->pal[e->c][0];
+		e->data[0 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = 0;
+		e->data[1 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][0] >> 8;
+		e->data[2 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][0] >> 16;
+		e->data[3 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][0] >> 24;
 	}
 	else
 	{
-		// *(int *)&e->data[j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][j.n % 5];
 		e->data[0 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = 0;
 		e->data[1 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][j.n % 5] >> 8;
 		e->data[2 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][j.n % 5] >> 16;

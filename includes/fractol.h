@@ -262,6 +262,7 @@ void					burn(t_env *e, t_burn b);
 void					doubleburn(t_env *e, t_dou d);
 void					tricorn(t_env *e, t_tri t);
 void					color(t_env *e);
+void					colorkoch(t_env *e, t_kohp tmp);
 void					texting(t_env *e);
 void					setfractol(t_env *e);
 int						main(int argc, char **argv);

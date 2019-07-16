@@ -12,6 +12,14 @@
 
 #include "includes/fractol.h"
 
+void	colorkoch(t_env *e, t_kohp tmp)
+{
+	e->data[0 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = 0;
+	e->data[1 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = e->pal[e->c][0] >> 8;
+	e->data[2 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = e->pal[e->c][0] >> 16;
+	e->data[3 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = e->pal[e->c][0] >> 24;
+}
+
 void	color2(t_env *e)
 {
 	e->pal[4][0] = 0xBBBAF2;

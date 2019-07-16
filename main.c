@@ -45,7 +45,7 @@ void		texting(t_env *e)
 			mlx_pixel_put(e->w.mp, e->w.wp, j, i, e->pal[e->c][4]);
 		j = 799;
 	}
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 50, 20, 0xFFFFFF, "FRACT'Ol");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 50, 20, 0xFFFFFF, "FRACT'OL");
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 50, 100, 0xFFFFFF, e->fractol);
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 180, 0xFFFFFF, "MOVE : W, A, S, D");
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 210, 0xFFFFFF, "NEXT FRACTOL : N");

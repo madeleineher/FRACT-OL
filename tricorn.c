@@ -15,11 +15,19 @@
 void	tricorncolor(t_env *e, t_tri t)
 {
 	if (t.n == e->xy.nmax)
-		*(int *)&e->data[t.x * (e->w.bpp / 8) + t.y * e->w.sl] = \
-				e->pal[e->c][0];
+	{
+		e->data[0 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = 0;
+		e->data[1 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][0] >> 8;
+		e->data[2 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][0] >> 16;
+		e->data[3 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][0] >> 24;
+	}
 	else
-		*(int *)&e->data[t.x * (e->w.bpp / 8) + t.y * e->w.sl] = \
-			e->pal[e->c][t.n % 5];
+	{
+		e->data[0 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = 0;
+		e->data[1 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][t.n % 5] >> 8;
+		e->data[2 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][t.n % 5] >> 16;
+		e->data[3 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][t.n % 5] >> 24;
+	}
 }
 
 void	prelimtricorn(t_env *e, t_tri *t)

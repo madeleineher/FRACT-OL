@@ -12,11 +12,15 @@
 
 #include "includes/fractol.h"
 
-void	drawsierpinski(int x, int y, t_env *e, int c)
+void	drawsierpinski(int x, int y, t_env *e, int i)
 {
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-		*(int *)&e->data[x * (e->w.bpp / 8) + y * e->w.sl]
-			= c;
+	{
+		e->data[0 + x * (e->w.bpp / 8) + y * e->w.sl] = 0;
+		e->data[1 + x * (e->w.bpp / 8) + y * e->w.sl] = e->pal[e->c][i % 5] >> 8;
+		e->data[2 + x * (e->w.bpp / 8) + y * e->w.sl] = e->pal[e->c][i % 5] >> 16;
+		e->data[3 + x * (e->w.bpp / 8) + y * e->w.sl] = e->pal[e->c][i % 5] >> 24;
+	}
 }
 
 int		lerp(int start, int stop, double amt)
@@ -27,7 +31,6 @@ int		lerp(int start, int stop, double amt)
 void	sierpinski(t_env *e, t_sie s)
 {
 	int	i = -1;
-	int	c = 0x000000;
 
 	s.rx = rand() / WIDTH;
 	s.ry = rand() / HEIGHT;
@@ -45,20 +48,17 @@ void	sierpinski(t_env *e, t_sie s)
 		{
 			s.rx = lerp(s.rx, s.ax, 0.5);
 			s.ry = lerp(s.ry, s.ay, 0.5);
-			c = e->pal[e->c][i % 5];
 		}
 		else if (s.r == 1)
 		{
 			s.rx = lerp(s.rx, s.bx, 0.5);
 			s.ry = lerp(s.ry, s.by, 0.5);
-			c = e->pal[e->c][i % 5];
 		}
 		else if (s.r == 2)
 		{
 			s.rx = lerp(s.rx, s.cx, 0.5);
 			s.ry = lerp(s.ry, s.cy, 0.5);
-			c = e->pal[e->c][i % 5];
 		}
-		drawsierpinski(s.rx, s.ry, e, c);
+		drawsierpinski(s.rx, s.ry, e, i);
 	}
 }
