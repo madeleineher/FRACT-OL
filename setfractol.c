@@ -20,46 +20,7 @@ void	frac_set(t_env *e)
 	e->xy.xmax = e->xy.xmin + e->xy.w;
 	e->xy.ymin = -e->xy.h / 2;
 	e->xy.ymax = e->xy.ymin + e->xy.h;
-	if (ft_strcmp(e->fractol, "mandelbrot") == 0)
-	{
-		e->m.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-		e->m.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-		e->m.ty = e->xy.ymin;
-	}
-	else if (ft_strcmp(e->fractol, "julia") == 0)
-	{
-		e->j.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-		e->j.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-		e->j.ty = e->xy.ymin;
-	}
-}
 
-void	frac_setwo(t_env *e)
-{
-	e->xy.w = 5;
-	e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
-	e->xy.xmin = -e->xy.w / 2;
-	e->xy.xmax = e->xy.xmin + e->xy.w;
-	e->xy.ymin = -e->xy.h / 2;
-	e->xy.ymax = e->xy.ymin + e->xy.h;
-	if (ft_strcmp(e->fractol, "burning") == 0)
-	{
-		e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-		e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-		e->b.ty = e->xy.ymin;
-	}
-	else if (ft_strcmp(e->fractol, "tricorn") == 0)
-	{
-		e->t.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-		e->t.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-		e->t.ty = e->xy.ymin;
-	}
-	else if (ft_strcmp(e->fractol, "doubleburning") == 0)
-	{
-		e->d.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-		e->d.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-		e->d.ty = e->xy.ymin;
-	}
 }
 
 void	kochsetup(t_env *e)
@@ -101,12 +62,7 @@ void	frac_sierpinski(t_env *e)
 void	setfractol(t_env *e)
 {
 	e->xy.nmax = (e->fractol[0] == 'f' ? 1000000 : 10);
-	e->xy.zoom = 1.0;
-	if (ft_strcmp(e->fractol, "mandelbrot") == 0)
-		frac_set(e);
-	else if (ft_strcmp(e->fractol, "julia") == 0)
-		frac_set(e);
-	else if (ft_strcmp(e->fractol, "fern") == 0)
+	if (ft_strcmp(e->fractol, "fern") == 0)
 	{
 		e->xy.w = 5;
 		e->xy.h = (e->xy.w * HEIGHT) / WIDTH;
@@ -115,14 +71,12 @@ void	setfractol(t_env *e)
 		e->xy.ymin = 0;
 		e->xy.ymax = 9.9983;
 	}
-	else if (ft_strcmp(e->fractol, "burning") == 0)
-		frac_setwo(e);
-	else if (ft_strcmp(e->fractol, "tricorn") == 0)
-		frac_setwo(e);
 	else if (ft_strcmp(e->fractol, "koch") == 0)
 		kochsetup(e);
-	else if (ft_strcmp(e->fractol, "doubleburning") == 0)
-		frac_setwo(e);
 	else if (ft_strcmp(e->fractol, "sierpinski") == 0)
 		frac_sierpinski(e);
+	else
+		frac_set(e);
+	e->xy.w_t = (e->xy.xmax - e->xy.xmin);
+	e->xy.h_t = (e->xy.ymax - e->xy.ymin);
 }

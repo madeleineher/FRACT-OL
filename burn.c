@@ -33,9 +33,9 @@ void	burncolor(t_env *e)
 void	prelimburn(t_env *e)
 {
 	e->b.y = -1;
-	e->b.ty = e->xy.ymin;
-	e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+	// e->b.ty = e->xy.ymin;
+	// e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+	// e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
 }
 
 void	burn(t_env *e)
@@ -43,12 +43,13 @@ void	burn(t_env *e)
 	prelimburn(e);
 	while (++e->b.y < HEIGHT)
 	{
-		e->b.tx = e->xy.xmin;
 		e->b.x = -1;
 		while (++e->b.x < WIDTH)
 		{
-			e->b.a = e->b.tx;
-			e->b.b = e->b.ty;
+			e->b.a = 0;
+			e->b.b = 0;
+			e->b.tx = e->xy.xmin + ((double)e->b.x * e->xy.w_t / WIDTH);
+			e->b.ty = e->xy.ymin + ((double)e->b.y * e->xy.h_t / HEIGHT);
 			e->b.n = -1;
 			while (++e->b.n < e->xy.nmax)
 			{
@@ -59,8 +60,6 @@ void	burn(t_env *e)
 					break ;
 			}
 			burncolor(e);
-			e->b.tx += e->b.dx;
 		}
-		e->b.ty += e->b.dy;
 	}
 }

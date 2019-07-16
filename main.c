@@ -53,9 +53,10 @@ void		texting(t_env *e)
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 270, 0xFFFFFF, "ITERATE : I, U");
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 300, 0xFFFFFF, "ZOOM : Q, E");
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 330, 0xFFFFFF, "RESET : R");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 360, 0xFFFFFF, "EXIT : ESC");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 470, 0xFFFFFF, "ITERATIONS : ");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 500, 0xFFFFFF, ft_itoa(e->xy.nmax));
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 360, 0xFFFFFF, "COLOR : C");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 390, 0xFFFFFF, "EXIT : ESC");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 490, 0xFFFFFF, "ITERATIONS : ");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 520, 0xFFFFFF, ft_itoa(e->xy.nmax));
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 55, HEIGHT - 30, 0xFFFFFF, "MHERNAND");
 }
 

@@ -28,12 +28,12 @@ int		lerp(int start, int stop, double amt)
 	return (start + amt * (stop - start));
 }
 
-void	sierpinski(t_env *e, t_sie s)
+void	sierpinski(t_env *e)
 {
 	int	i = -1;
 
-	s.rx = rand() / WIDTH;
-	s.ry = rand() / HEIGHT;
+	e->s.rx = rand() / WIDTH;
+	e->s.ry = rand() / HEIGHT;
 	e->xy.nmax = 100000;
 	e->s.ax = e->xy.xmax / 2;
 	e->s.ay = e->xy.ymin;
@@ -43,22 +43,22 @@ void	sierpinski(t_env *e, t_sie s)
 	e->s.cy = e->xy.ymax;
 	while (++i < e->xy.nmax)
 	{
-		s.r = (int)rand() % 4;
-		if (s.r == 0)
+		e->s.r = (int)rand() % 4;
+		if (e->s.r == 0)
 		{
-			s.rx = lerp(s.rx, s.ax, 0.5);
-			s.ry = lerp(s.ry, s.ay, 0.5);
+			e->s.rx = lerp(e->s.rx, e->s.ax, 0.5);
+			e->s.ry = lerp(e->s.ry, e->s.ay, 0.5);
 		}
-		else if (s.r == 1)
+		else if (e->s.r == 1)
 		{
-			s.rx = lerp(s.rx, s.bx, 0.5);
-			s.ry = lerp(s.ry, s.by, 0.5);
+			e->s.rx = lerp(e->s.rx, e->s.bx, 0.5);
+			e->s.ry = lerp(e->s.ry, e->s.by, 0.5);
 		}
-		else if (s.r == 2)
+		else if (e->s.r == 2)
 		{
-			s.rx = lerp(s.rx, s.cx, 0.5);
-			s.ry = lerp(s.ry, s.cy, 0.5);
+			e->s.rx = lerp(e->s.rx, e->s.cx, 0.5);
+			e->s.ry = lerp(e->s.ry, e->s.cy, 0.5);
 		}
-		drawsierpinski(s.rx, s.ry, e, i);
+		drawsierpinski(e->s.rx, e->s.ry, e, i);
 	}
 }

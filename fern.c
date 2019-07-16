@@ -24,45 +24,45 @@ void	drawpoint(int x, int y, t_env *e, int i)
 	}
 }
 
-void	fernpoints(t_fer *f)
+void	fernpoints(t_env *e)
 {
-	f->nx = 0;
-	f->ny = 0;
-	f->random = (double)rand() / RAND_MAX;
-	if (f->random < 0.01)
+	e->f.nx = 0;
+	e->f.ny = 0;
+	e->f.random = (double)rand() / RAND_MAX;
+	if (e->f.random < 0.01)
 	{
-		f->nx = 0.0;
-		f->ny = 0.16 * f->y;
+		e->f.nx = 0.0;
+		e->f.ny = 0.16 * e->f.y;
 	}
-	else if (f->random < 0.85)
+	else if (e->f.random < 0.85)
 	{
-		f->nx = 0.85 * f->x + 0.04 * f->y;
-		f->ny = -0.04 * f->x + 0.85 * f->y + 1.6;
+		e->f.nx = 0.85 * e->f.x + 0.04 * e->f.y;
+		e->f.ny = -0.04 * e->f.x + 0.85 * e->f.y + 1.6;
 	}
-	else if (f->random < 0.93)
+	else if (e->f.random < 0.93)
 	{
-		f->nx = 0.2 * f->x + -0.26 * f->y;
-		f->ny = 0.23 * f->x + 0.22 * f->y + 1.6;
+		e->f.nx = 0.2 * e->f.x + -0.26 * e->f.y;
+		e->f.ny = 0.23 * e->f.x + 0.22 * e->f.y + 1.6;
 	}
 	else
 	{
-		f->nx = -0.15 * f->x + 0.28 * f->y;
-		f->ny = 0.26 * f->x + 0.24 * f->y + .44;
+		e->f.nx = -0.15 * e->f.x + 0.28 * e->f.y;
+		e->f.ny = 0.26 * e->f.x + 0.24 * e->f.y + .44;
 	}
-	f->x = f->nx;
-	f->y = f->ny;
+	e->f.x = e->f.nx;
+	e->f.y = e->f.ny;
 }
 
-void	fern(t_env *e, t_fer f)
+void	fern(t_env *e)
 {
 	int		x;
 
 	x = -1;
 	while (++x < e->xy.nmax)
 	{
-		fernpoints(&f);
-		drawpoint((int)((f.x - e->xy.xmin) * WIDTH / (e->xy.xmax
-						- e->xy.xmin)), HEIGHT - (int)((f.y - e->xy.ymin)
+		fernpoints(e);
+		drawpoint((int)((e->f.x - e->xy.xmin) * WIDTH / (e->xy.xmax
+						- e->xy.xmin)), HEIGHT - (int)((e->f.y - e->xy.ymin)
 						* HEIGHT / (e->xy.ymax - e->xy.ymin)), e, x);
 	}
 }

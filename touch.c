@@ -14,17 +14,15 @@
 
 int		zoomout(t_env *e)
 {
-	// e->xy.txmin = e->xy.xmin;
-	// e->xy.tymin = e->xy.ymin;
 	e->xy.oldrange_x = (e->xy.xmax - e->xy.xmin);
 	e->xy.oldrange_y = (e->xy.ymax - e->xy.ymin);
-	e->xy.w_t = e->xy.oldrange_x / (3. / 4.);
-	e->xy.h_t = e->xy.oldrange_y / (3. / 4.);
+	e->xy.w_t = e->xy.oldrange_x / (1. / 1.25);
+	e->xy.h_t = e->xy.oldrange_y / (1. / 1.25);
 	printf("zoom OUT x : [%f] | zoom y : [%f]\n", e->xy.w_t, e->xy.h_t);
-	e->xy.xmin = e->xy.txmin + ((double)e->mo.mx / (double)WIDTH) * \
+	e->xy.xmin += ((double)e->mo.mx / (double)WIDTH) * \
 		(e->xy.oldrange_x - e->xy.w_t);
 	e->xy.xmax = e->xy.xmin + e->xy.w_t;
-	e->xy.ymin = e->xy.tymin + ((double)e->mo.my / (double)WIDTH) * \
+	e->xy.ymin += ((double)e->mo.my / (double)WIDTH) * \
 		(e->xy.oldrange_y - e->xy.h_t);
 	e->xy.ymax = e->xy.ymin + e->xy.h_t;
 	blackout(e);
@@ -34,18 +32,18 @@ int		zoomout(t_env *e)
 
 int		zoomin(t_env *e)
 {
-	e->xy.txmin = e->xy.xmin;
-	e->xy.tymin = e->xy.ymin;
-	e->xy.oldrange_x = (e->xy.xmax - e->xy.xmin);
-	e->xy.oldrange_y = (e->xy.ymax - e->xy.ymin);
-	e->xy.w_t = e->xy.oldrange_x * 3. / 4.;
-	e->xy.h_t = e->xy.oldrange_y * 3. / 4.;
+	double	or_x;
+	double 	or_y;
+	or_x = e->xy.w_t;
+	or_y = e->xy.h_t;
+	e->xy.w_t = or_x * 1. / 3.;
+	e->xy.h_t = or_y * 1. / 3.;
 	printf("zoom IN x : [%.50lf] | zoom y : [%.50lf]\n", e->xy.w_t, e->xy.h_t);
-	e->xy.xmin = e->xy.txmin + ((double)e->mo.mx / (double)WIDTH) * \
-		(e->xy.oldrange_x - e->xy.w_t);
+	e->xy.xmin += ((double)e->mo.mx / (double)WIDTH) * \
+		(or_x - e->xy.w_t);
 	e->xy.xmax = e->xy.xmin + e->xy.w_t;
-	e->xy.ymin = e->xy.tymin + ((double)e->mo.my / (double)WIDTH) * \
-		(e->xy.oldrange_y - e->xy.h_t);
+	e->xy.ymin += ((double)e->mo.my / (double)WIDTH) * \
+		(or_y - e->xy.h_t);
 	e->xy.ymax = e->xy.ymin + e->xy.h_t;
 	blackout(e);
 	e->mo.m = 0;

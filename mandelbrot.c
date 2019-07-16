@@ -53,13 +53,10 @@ void	mandelbrot(t_env *e)
 	// int start = nth * WIDTH / THREADS - 1;
 	// int end = start + WIDTH / THREADS;
 	e->m.y = -1;
-	// e->m.ty = e->xy.ymin;
-	// e->m.dx = (e->xy.w_t / WIDTH);
-	// e->m.dy = (e->xy.h_t / HEIGHT);
 	while (++e->m.y < HEIGHT)
 	{
 		// e->m.tx = e->xy.xmin;// + (e->xy.xmax - e->xy.xmin) * nth / THREADS;
-		e->m.x = -1;//start;
+		e->m.x = -1; //start;
 		while (++e->m.x < WIDTH)
 		{
 			// e->m.a = e->m.tx;

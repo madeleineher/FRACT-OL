@@ -12,67 +12,65 @@
 
 #include "includes/fractol.h"
 
-void	juliacolor(t_env *e, t_jul j)
+void	juliacolor(t_env *e)
 {
-	if (j.n == e->xy.nmax)
+	if (e->j.n == e->xy.nmax)
 	{
-		e->data[0 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = 0;
-		e->data[1 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][0] >> 8;
-		e->data[2 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][0] >> 16;
-		e->data[3 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][0] >> 24;
+		e->data[0 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = 0;
+		e->data[1 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][0] >> 8;
+		e->data[2 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][0] >> 16;
+		e->data[3 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][0] >> 24;
 	}
 	else
 	{
-		e->data[0 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = 0;
-		e->data[1 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][j.n % 5] >> 8;
-		e->data[2 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][j.n % 5] >> 16;
-		e->data[3 + j.x * (e->w.bpp / 8) + j.y * e->w.sl] = e->pal[e->c][j.n % 5] >> 24;
+		e->data[0 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = 0;
+		e->data[1 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][e->j.n % 5] >> 8;
+		e->data[2 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][e->j.n % 5] >> 16;
+		e->data[3 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][e->j.n % 5] >> 24;
 	}
 }
 
 void	map(t_env *e)
 {
-	e->xy.mre = ((double)e->mo.mx / (WIDTH / (e->xy.xmax - e->xy.xmin))
-			+ e->xy.xmin);
-	e->xy.mri = ((double)e->mo.my / (HEIGHT / (e->xy.ymax - e->xy.ymin))
-			+ e->xy.ymin);
+	e->xy.mre = ((double)e->mo.mx / (WIDTH / (e->xy.xmax - e->xy.xmin))	+ e->xy.xmin);
+	e->xy.mri = ((double)e->mo.my / (HEIGHT / (e->xy.ymax - e->xy.ymin)) + e->xy.ymin);
 }
 
-void	whilejulia(t_env *e, t_jul *j)
+void	whilejulia(t_env *e)
 {
-	while (++j->n < e->xy.nmax)
+	while (++e->j.n < e->xy.nmax)
 	{
-		j->two_a = j->a * j->a;
-		j->two_b = j->b * j->b;
-		j->two_ab = 2.0 * j->a * j->b;
+		e->j.two_a = e->j.a * e->j.a;
+		e->j.two_b = e->j.b * e->j.b;
+		e->j.two_ab = 2.0 * e->j.a * e->j.b;
 		if (e->k[KEY_SPACEBAR] != 1)
 			map(e);
-		j->a = j->two_a - j->two_b + e->xy.mre;
-		j->b = j->two_ab + e->xy.mri;
-		if (j->a * j->a + j->b * j->b > 16.0)
+		e->j.a = e->j.two_a - e->j.two_b + e->xy.mre;
+		e->j.b = e->j.two_ab + e->xy.mri;
+		if (e->j.a * e->j.a + e->j.b * e->j.b > 16.0)
 			break ;
 	}
 }
 
-void	julia(t_env *e, t_jul j)
+void	julia(t_env *e)
 {
-	j.y = -1;
-	j.ty = e->xy.ymin;
-	j.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	j.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-	while (++j.y < HEIGHT)
+	e->j.y = -1;
+	// e->j.ty = e->xy.ymin;
+	// e->j.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+	// e->j.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+	while (++e->j.y < HEIGHT)
 	{
-		j.tx = e->xy.xmin;
-		j.x = -1;
-		while (++j.x < WIDTH)
+		// e->j.tx = e->xy.xmin;
+		e->j.x = -1;
+		while (++e->j.x < WIDTH)
 		{
-			j.a = j.tx;
-			j.b = j.ty;
-			j.n = -1;
-			whilejulia(e, &j);
-			juliacolor(e, j);
-			j.tx += j.dx;
+			e->j.a = e->xy.xmin + ((double)e->j.x * e->xy.w_t / WIDTH);
+			e->j.b = e->xy.ymin + ((double)e->j.y * e->xy.h_t / HEIGHT);
+			e->j.n = -1;
+			whilejulia(e);
+			juliacolor(e);
+			// e->j.tx += e->j.dx;
 		}
-		j.ty += j.dy;
+		// e->j.ty += e->j.dy;
 	}
 }

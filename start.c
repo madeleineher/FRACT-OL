@@ -15,7 +15,7 @@
 int		loop(t_env *e)
 {
 	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
-	texting(e);
+	// texting(e);
 	mlx_hook(e->w.wp, 2, 1L << 2, key_press, e);
 	mlx_hook(e->w.wp, 3, 1L << 3, key_release, e);
 	mlx_hook(e->w.wp, 6, 1L << 6, mouse_move, e);
@@ -40,22 +40,26 @@ void	start(t_env *e) // add number to fractal variable like DEFINES
 	// t_koch	o = th->env->o;
 	// t_dou	d = th->env->d;
 	// t_sie	s = th->env->s;
-	// if (ft_strcmp(th->env->fractol, "mandelbrot") == 0)
-	// 	mandelbrot(th->env, m, th->nth);
-	// else if (ft_strcmp(th->env->fractol, "fern") == 0)
-	// 	fern(th->env, f);
+	if (ft_strcmp(e->fractol, "mandelbrot") == 0)
+		mandelbrot(e);
+	else if (ft_strcmp(e->fractol, "fern") == 0)
+		fern(e);
 	if (ft_strcmp(e->fractol, "burning") == 0)
 		burn(e);
-	// else if (ft_strcmp(th->env->fractol, "julia") == 0)
-	// 	julia(th->env, j);
-	// else if (ft_strcmp(th->env->fractol, "tricorn") == 0)
-	// 	tricorn(th->env, t);
+	else if (ft_strcmp(e->fractol, "tricorn") == 0)
+		tricorn(e);
+	else if (ft_strcmp(e->fractol, "doubleburning") == 0)
+		doubleburn(e);
+	else if (ft_strcmp(e->fractol, "sierpinski") == 0)
+		sierpinski(e);
+	else if (ft_strcmp(e->fractol, "julia") == 0)
+		julia(e);
 	// else if (ft_strcmp(th->env->fractol, "koch") == 0)
 	// 	koch(th->env, o);
-	// else if (ft_strcmp(th->env->fractol, "sierpinski") == 0)
-	// 	sierpinski(th->env, s);
-	// else if (ft_strcmp(th->env->fractol, "doubleburning") == 0)
-	// 	doubleburn(th->env, d);
+
+	// keep thread thing ....
+	// else if (ft_strcmp(th->env->fractol, "koch") == 0)
+	// 	koch(th->env, o);
 	// pthread_exit(NULL);
  	loop(e);
 

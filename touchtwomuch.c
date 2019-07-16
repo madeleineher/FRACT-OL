@@ -16,18 +16,14 @@ int		movefractol(t_env *e)
 {
 	if (e->k[W] == 1 || e->k[S] == 1)
 	{
-		e->xy.h_t = (e->k[W] ? (e->xy.ymax - e->xy.ymin) * 0.005 : \
-			-(e->xy.ymax - e->xy.ymin) * 0.005);
-		e->xy.ymin += e->xy.h_t;
-		e->xy.ymax += e->xy.h_t;
+		e->xy.ymin += (e->k[W] ? 0.005 : -0.005);
+		e->xy.ymax += (e->k[W] ? 0.005 : -0.005);
 		blackout(e);
 	}
 	if (e->k[A] == 1 || e->k[D] == 1)
 	{
-		e->xy.w_t = (e->k[A] ? (e->xy.xmax - e->xy.xmin) * 0.005 : \
-			-(e->xy.xmax - e->xy.xmin) * 0.005);
-		e->xy.xmin += e->xy.w_t;
-		e->xy.xmax += e->xy.w_t;
+		e->xy.xmin += (e->k[A] ? 0.005 : -0.005);
+		e->xy.xmax += (e->k[A] ? 0.005 : -0.005);
 		blackout(e);
 	}
 	return (0);
@@ -68,6 +64,8 @@ int		reset(t_env *e)
 	e->xy.xmax = (e->fractol[0] == 'f' ? 2.6558 : e->xy.xmin + e->xy.w);
 	e->xy.ymin = (e->fractol[0] == 'f' ? 0 : -e->xy.h / 2);
 	e->xy.ymax = (e->fractol[0] == 'f' ? 9.9983 : e->xy.ymin + e->xy.h);
+	e->xy.w_t = (e->xy.xmax - e->xy.xmin);
+	e->xy.h_t = (e->xy.ymax - e->xy.ymin);
 	if (e->fractol[0] == 's')
 	{
 		e->xy.xmin = 0;

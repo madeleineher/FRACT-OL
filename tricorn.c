@@ -54,18 +54,12 @@ void	tricorncolor(t_env *e)
 
 void	tricorn(t_env *e)
 {
-	// prelimtricorn(e);
 	e->t.y = -1;
 	while (++e->t.y < HEIGHT)
 	{
-		// e->t.tx = e->xy.xmin;
 		e->t.x = -1;
 		while (++e->t.x < WIDTH)
 		{
-			// e->t.a = e->t.tx;
-			// e->t.b = e->t.ty;
-			// e->t.n = -1;
-
 			e->t.a = 0;
 			e->t.b = 0;
 			e->t.tx = e->xy.xmin + ((double)e->t.x * e->xy.w_t / WIDTH);
@@ -80,8 +74,7 @@ void	tricorn(t_env *e)
 					break ;
 			}
 			tricorncolor(e);
-			e->t.tx += e->t.dx;
 		}
-		e->t.ty += e->t.dy;
+	
 	}
 }
