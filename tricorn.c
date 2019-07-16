@@ -14,6 +14,17 @@
 
 void	tricorncolor(t_env *e, t_tri t)
 {
+	int				amp;
+	double			freq;
+	static int	i = 0;
+	int				center;
+	int 			color;
+	
+	color = 0;
+	freq = .3;
+	amp = 127;
+	center = 128;
+	color = sin(freq * i) * amp + center;
 	if (t.n == e->xy.nmax)
 	{
 		e->data[0 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = 0;
@@ -24,10 +35,13 @@ void	tricorncolor(t_env *e, t_tri t)
 	else
 	{
 		e->data[0 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = 0;
-		e->data[1 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][t.n % 5] >> 8;
-		e->data[2 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][t.n % 5] >> 16;
-		e->data[3 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = e->pal[e->c][t.n % 5] >> 24;
+		e->data[1 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = color;
+		e->data[2 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = color;
+		e->data[3 + t.x * (e->w.bpp / 8) + t.y * e->w.sl] = color;
 	}
+	i++;
+	if (i >= 32)
+		i = 0;
 }
 
 void	prelimtricorn(t_env *e, t_tri *t)

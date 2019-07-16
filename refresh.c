@@ -31,6 +31,6 @@ void	blackout(t_env *e)
 		while (++i < WIDTH)
 			*(int *)&e->data[i * (e->w.bpp / 8) + j * e->w.sl] = 0x000000;
 	}
-	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
+	// mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
 	start(e);
 }

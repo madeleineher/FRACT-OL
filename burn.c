@@ -12,55 +12,55 @@
 
 #include "includes/fractol.h"
 
-void	burncolor(t_env *e, t_burn b)
+void	burncolor(t_env *e)
 {
-	if (b.n == e->xy.nmax)
+	if (e->b.n == e->xy.nmax)
 	{
-		e->data[0 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = 0;
-		e->data[1 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][0] >> 8;
-		e->data[2 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][0] >> 16;
-		e->data[3 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][0] >> 24;
+		e->data[0 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = 0;
+		e->data[1 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][0] >> 8;
+		e->data[2 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][0] >> 16;
+		e->data[3 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][0] >> 24;
 	}
 	else
 	{	
-		e->data[0 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = 0;
-		e->data[1 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][b.n % 5] >> 8;
-		e->data[2 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][b.n % 5] >> 16;
-		e->data[3 + b.x * (e->w.bpp / 8) + b.y * e->w.sl] = e->pal[e->c][b.n % 5] >> 24;
+		e->data[0 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = 0;
+		e->data[1 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][e->b.n % 5] >> 8;
+		e->data[2 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][e->b.n % 5] >> 16;
+		e->data[3 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][e->b.n % 5] >> 24;
 	}
 }
 
-void	prelimburn(t_env *e, t_burn *b)
+void	prelimburn(t_env *e)
 {
-	b->y = -1;
-	b->ty = e->xy.ymin;
-	b->dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	b->dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
+	e->b.y = -1;
+	e->b.ty = e->xy.ymin;
+	e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
+	e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
 }
 
-void	burn(t_env *e, t_burn b)
+void	burn(t_env *e)
 {
-	prelimburn(e, &b);
-	while (++b.y < HEIGHT)
+	prelimburn(e);
+	while (++e->b.y < HEIGHT)
 	{
-		b.tx = e->xy.xmin;
-		b.x = -1;
-		while (++b.x < WIDTH)
+		e->b.tx = e->xy.xmin;
+		e->b.x = -1;
+		while (++e->b.x < WIDTH)
 		{
-			b.a = b.tx;
-			b.b = b.ty;
-			b.n = -1;
-			while (++b.n < e->xy.nmax)
+			e->b.a = e->b.tx;
+			e->b.b = e->b.ty;
+			e->b.n = -1;
+			while (++e->b.n < e->xy.nmax)
 			{
-				b.two_ab = b.a * b.a - b.b * b.b + b.tx;
-				b.b = fabs(2 * b.a * b.b) + b.ty;
-				b.a = fabs(b.two_ab);
-				if (b.a * b.a + b.b * b.b > 16.0)
+				e->b.two_ab = e->b.a * e->b.a - e->b.b * e->b.b + e->b.tx;
+				e->b.b = fabs(2 * e->b.a * e->b.b) + e->b.ty;
+				e->b.a = fabs(e->b.two_ab);
+				if (e->b.a * e->b.a + e->b.b * e->b.b > 16.0)
 					break ;
 			}
-			burncolor(e, b);
-			b.tx += b.dx;
+			burncolor(e);
+			e->b.tx += e->b.dx;
 		}
-		b.ty += b.dy;
+		e->b.ty += e->b.dy;
 	}
 }

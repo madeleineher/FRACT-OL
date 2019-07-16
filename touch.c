@@ -14,8 +14,8 @@
 
 int		zoomout(t_env *e)
 {
-	e->xy.txmin = e->xy.xmin;
-	e->xy.tymin = e->xy.ymin;
+	// e->xy.txmin = e->xy.xmin;
+	// e->xy.tymin = e->xy.ymin;
 	e->xy.oldrange_x = (e->xy.xmax - e->xy.xmin);
 	e->xy.oldrange_y = (e->xy.ymax - e->xy.ymin);
 	e->xy.w_t = e->xy.oldrange_x / (3. / 4.);

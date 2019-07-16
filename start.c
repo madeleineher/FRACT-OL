@@ -26,53 +26,56 @@ int		loop(t_env *e)
 	return (0);
 }
 
-void	*fractols(void *pscreen) // add number to fractal variable like DEFINES
+// void	*fractols(void *pscreen) // add number to fractal variable like DEFINES
+void	start(t_env *e) // add number to fractal variable like DEFINES
 {
-	t_thr	*th;
+	// t_thr	*th;
 
-	th = (t_thr *)pscreen; 
-	t_man	m = th->env->m;
-	t_jul	j = th->env->j;
-	t_fer	f = th->env->f;
-	t_burn	b = th->env->b;
-	t_tri	t = th->env->t;
-	t_koch	o = th->env->o;
-	t_dou	d = th->env->d;
-	t_sie	s = th->env->s;
-	if (ft_strcmp(th->env->fractol, "mandelbrot") == 0)
-		mandelbrot(th->env, m, th->nth);
-	else if (ft_strcmp(th->env->fractol, "fern") == 0)
-		fern(th->env, f);
-	else if (ft_strcmp(th->env->fractol, "burning") == 0)
-		burn(th->env, b);
-	else if (ft_strcmp(th->env->fractol, "julia") == 0)
-		julia(th->env, j);
-	else if (ft_strcmp(th->env->fractol, "tricorn") == 0)
-		tricorn(th->env, t);
-	else if (ft_strcmp(th->env->fractol, "koch") == 0)
-		koch(th->env, o);
-	else if (ft_strcmp(th->env->fractol, "sierpinski") == 0)
-		sierpinski(th->env, s);
-	else if (ft_strcmp(th->env->fractol, "doubleburning") == 0)
-		doubleburn(th->env, d);
-	pthread_exit(NULL);
+	// th = (t_thr *)pscreen; 
+	// t_man	m = th->env->m;
+	// t_jul	j = th->env->j;
+	// t_fer	f = th->env->f;
+	// t_burn	b = th->env->b;
+	// t_tri	t = th->env->t;
+	// t_koch	o = th->env->o;
+	// t_dou	d = th->env->d;
+	// t_sie	s = th->env->s;
+	// if (ft_strcmp(th->env->fractol, "mandelbrot") == 0)
+	// 	mandelbrot(th->env, m, th->nth);
+	// else if (ft_strcmp(th->env->fractol, "fern") == 0)
+	// 	fern(th->env, f);
+	if (ft_strcmp(e->fractol, "burning") == 0)
+		burn(e);
+	// else if (ft_strcmp(th->env->fractol, "julia") == 0)
+	// 	julia(th->env, j);
+	// else if (ft_strcmp(th->env->fractol, "tricorn") == 0)
+	// 	tricorn(th->env, t);
+	// else if (ft_strcmp(th->env->fractol, "koch") == 0)
+	// 	koch(th->env, o);
+	// else if (ft_strcmp(th->env->fractol, "sierpinski") == 0)
+	// 	sierpinski(th->env, s);
+	// else if (ft_strcmp(th->env->fractol, "doubleburning") == 0)
+	// 	doubleburn(th->env, d);
+	// pthread_exit(NULL);
+ 	loop(e);
+
 }
 
-void	start(t_env *e)
-{
-	int			i;
-	pthread_t	thread[THREADS];
-	t_thr		th[THREADS];
+// void	start(t_env *e)
+// {
+// 	int			i;
+// 	pthread_t	thread[THREADS];
+// 	t_thr		th[THREADS];
 
-	i = -1;
-	while (++i < THREADS)
-	{
-		th[i].env = e;
-		th[i].nth = i;
-		pthread_create(&thread[i], NULL, fractols, &th[i]);
-	}
-	i = -1;
-	while (++i < THREADS)
-		pthread_join(thread[i], NULL);
-	loop(e);
-}
+// 	i = -1;
+// 	while (++i < THREADS)
+// 	{
+// 		th[i].env = e;
+// 		th[i].nth = i;
+// 		pthread_create(&thread[i], NULL, fractols, &th[i]);
+// 	}
+// 	i = -1;
+// 	while (++i < THREADS)
+// 		pthread_join(thread[i], NULL);
+// 	loop(e);
+// }

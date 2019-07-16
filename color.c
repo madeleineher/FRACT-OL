@@ -12,6 +12,36 @@
 
 #include "includes/fractol.h"
 
+void	colortheory(t_env *e)
+{
+	(void)e;
+	double frequency = .3;
+	for (double i = 0; i < 32; ++i)
+	{
+		printf("hello i a frequency [%f]\n", sin(frequency * i));
+	}
+	// #e6194b
+	// #3cb44b
+	// #ffe119
+	// #4363d8
+	// #f58231
+	// #911eb4
+	// #46f0f0
+	// #f032e6
+	// #bcf60c
+	// #fabebe
+	// #008080
+	// #e6beff
+	// #9a6324
+	// #fffac8
+	// #800000
+	// #aaffc3
+	// #808000
+	// #ffd8b1
+	// #000075
+	// #808080
+}
+
 void	colorkoch(t_env *e, t_kohp tmp)
 {
 	e->data[0 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = 0;
@@ -68,4 +98,5 @@ void	color(t_env *e)
 	e->pal[3][4] = 0x7DD2CE;
 	color2(e);
 	e->c = 0;
+	colortheory(e);
 }

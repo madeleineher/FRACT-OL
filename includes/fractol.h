@@ -258,7 +258,7 @@ void					julia(t_env *e, t_jul j);
 void					fern(t_env *e, t_fer f);
 void					koch(t_env *e, t_koch o);
 void					sierpinski(t_env *e, t_sie s);
-void					burn(t_env *e, t_burn b);
+void					burn(t_env *e);
 void					doubleburn(t_env *e, t_dou d);
 void					tricorn(t_env *e, t_tri t);
 void					color(t_env *e);
