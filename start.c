@@ -27,20 +27,8 @@ int		loop(t_env *e)
 	return (0);
 }
 
-// void	*fractols(void *pscreen) // add number to fractal variable like DEFINES
-void	start(t_env *e) // add number to fractal variable like DEFINES
+void	start(t_env *e)
 {
-	// t_thr	*th;
-
-	// th = (t_thr *)pscreen; 
-	// t_man	m = th->env->m;
-	// t_jul	j = th->env->j;
-	// t_fer	f = th->env->f;
-	// t_burn	b = th->env->b;
-	// t_tri	t = th->env->t;
-	// t_koch	o = th->env->o;
-	// t_dou	d = th->env->d;
-	// t_sie	s = th->env->s;
 	if (ft_strcmp(e->fractol, "mandelbrot") == 0)
 		mandelbrot(e);
 	else if (ft_strcmp(e->fractol, "fern") == 0)
@@ -58,31 +46,7 @@ void	start(t_env *e) // add number to fractal variable like DEFINES
 	else if (ft_strcmp(e->fractol, "glynn") == 0)
 		glynn(e);
 	// else if (ft_strcmp(th->env->fractol, "koch") == 0)
-	// 	koch(th->env, o);
-
-	// keep thread thing ....
-	// else if (ft_strcmp(th->env->fractol, "koch") == 0)
-	// 	koch(th->env, o);
-	// pthread_exit(NULL);
+	// 	koch(e);
  	loop(e);
 
 }
-
-// void	start(t_env *e)
-// {
-// 	int			i;
-// 	pthread_t	thread[THREADS];
-// 	t_thr		th[THREADS];
-
-// 	i = -1;
-// 	while (++i < THREADS)
-// 	{
-// 		th[i].env = e;
-// 		th[i].nth = i;
-// 		pthread_create(&thread[i], NULL, fractols, &th[i]);
-// 	}
-// 	i = -1;
-// 	while (++i < THREADS)
-// 		pthread_join(thread[i], NULL);
-// 	loop(e);
-// }

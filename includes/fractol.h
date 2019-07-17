@@ -15,7 +15,7 @@
 # include "../libft/libft.h"
 # include "../minilibx_macos/mlx.h"
 # include <math.h>
-# include <complex.h> // take out ! -- testing --
+# include <complex.h>
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
@@ -25,8 +25,6 @@
 
 # define WIDTH			800
 # define HEIGHT 		800
-# define THREADS		4 // take out ?
-// # define LIMIT			4
 
 # define ESC 			53
 # define H				4
@@ -36,8 +34,7 @@
 # define A				0
 # define S				1
 # define D				2
-# define K         		40 // tmp I
-// # define I				34
+# define INC			34
 # define U				32
 # define Q				12
 # define E				14
@@ -176,12 +173,6 @@ typedef struct			s_koch
 	t_bre				n; // bre
 }						t_koch;
 
-typedef struct			s_cool
-{
-	int					r;
-	int					g;
-	int					b;
-}						t_cool;
 
 typedef struct			s_win
 {
@@ -221,17 +212,28 @@ typedef struct			s_xy
 	double				or_y;
 }						t_xy;
 
+typedef struct			s_cool
+{
+	int					r;
+	int					g;
+	int					b;
+	int					fq1;
+	int					fq2;
+	int					fq3;
+
+}						t_cool;
+
 typedef struct			s_env
 {
 	char				*fractol;
 	char				*oldfrac;
 	char				*data;
 	int					k[300];
-	int					starth;
-	int					endth;
 	int					pal[8][5];
-	int					c;	
+	int					pal2[20];
+	int					colgrad[1000];
 	double				the;
+	int					c;	
 	t_cool				clr;
 	t_mos				mo;
 	t_xy				xy;
@@ -246,12 +248,6 @@ typedef struct			s_env
 	t_koch				o;
 	t_gly				g;
 }						t_env;
-
-typedef struct			s_thr
-{
-	t_env				*env;
-	int					nth;
-}						t_thr;
 
 void					start(t_env *e);
 void					setfractol(t_env *e);

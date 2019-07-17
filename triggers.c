@@ -42,9 +42,8 @@ int		mouse_move(int x, int y, t_env *e)
 	return (0);
 }
 
-int		mouse_click(int	button, int x, int y, t_env *e)
+int		mouse_click(int button, int x, int y, t_env *e)
 {
-	//printf("hello : x - [%d] | y - [%d] | button - [%d]\n", e->mo.mx, e->mo.my, button);
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
 		e->mo.m = button;

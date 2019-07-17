@@ -14,17 +14,6 @@
 
 void	tricorncolor(t_env *e)
 {
-	// int				amp;
-	// double			freq;
-	// static int	i = 0;
-	// int				center;
-	// int 			color;
-	
-	// color = 0;
-	// freq = .3;
-	// amp = 127;
-	// center = 128;
-	// color = sin(freq * i) * amp + center;
 	if (e->t.n == e->xy.nmax)
 	{
 		e->data[0 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = 0;
@@ -35,22 +24,11 @@ void	tricorncolor(t_env *e)
 	else
 	{
 		e->data[0 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = 0;
-		e->data[1 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->pal[e->c][e->t.n % 5] >> 8;
-		e->data[2 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->pal[e->c][e->t.n % 5] >> 16;
-		e->data[3 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->pal[e->c][e->t.n % 5] >> 24;
+		e->data[1 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->colgrad[e->t.n % 1000] >> 8;
+		e->data[2 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->colgrad[e->t.n % 1000] >> 16;
+		e->data[3 + e->t.x * (e->w.bpp / 8) + e->t.y * e->w.sl] = e->colgrad[e->t.n % 1000] >> 24;
 	}
-	// i++;
-	// if (i >= 32)
-	// 	i = 0;
 }
-
-// void	prelimtricorn(t_env *e)
-// {
-// 	e->t.y = -1;
-// 	e->t.ty = e->xy.ymin;
-// 	e->t.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-// 	e->t.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
-// }
 
 void	tricorn(t_env *e)
 {
