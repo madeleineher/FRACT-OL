@@ -20,7 +20,6 @@ void	frac_set(t_env *e)
 	e->xy.xmax = e->xy.xmin + e->xy.w;
 	e->xy.ymin = -e->xy.h / 2;
 	e->xy.ymax = e->xy.ymin + e->xy.h;
-
 }
 
 void	kochsetup(t_env *e)

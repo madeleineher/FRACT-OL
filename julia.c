@@ -32,45 +32,36 @@ void	juliacolor(t_env *e)
 
 void	map(t_env *e)
 {
-	e->xy.mre = ((double)e->mo.mx / (WIDTH / (e->xy.xmax - e->xy.xmin))	+ e->xy.xmin);
-	e->xy.mri = ((double)e->mo.my / (HEIGHT / (e->xy.ymax - e->xy.ymin)) + e->xy.ymin);
-}
-
-void	whilejulia(t_env *e)
-{
-	while (++e->j.n < e->xy.nmax)
-	{
-		e->j.two_a = e->j.a * e->j.a;
-		e->j.two_b = e->j.b * e->j.b;
-		e->j.two_ab = 2.0 * e->j.a * e->j.b;
-		if (e->k[KEY_SPACEBAR] != 1)
-			map(e);
-		e->j.a = e->j.two_a - e->j.two_b + e->xy.mre;
-		e->j.b = e->j.two_ab + e->xy.mri;
-		if (e->j.a * e->j.a + e->j.b * e->j.b > 16.0)
-			break ;
-	}
+	e->xy.mre = ((double)e->mo.mx / (WIDTH / (e->xy.xmax - e->xy.xmin)) + \
+		e->xy.xmin);
+	e->xy.mri = ((double)e->mo.my / (HEIGHT / (e->xy.ymax - e->xy.ymin)) + \
+		e->xy.ymin);
 }
 
 void	julia(t_env *e)
 {
 	e->j.y = -1;
-	// e->j.ty = e->xy.ymin;
-	// e->j.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	// e->j.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
 	while (++e->j.y < HEIGHT)
 	{
-		// e->j.tx = e->xy.xmin;
 		e->j.x = -1;
 		while (++e->j.x < WIDTH)
 		{
 			e->j.a = e->xy.xmin + ((double)e->j.x * e->xy.w_t / WIDTH);
 			e->j.b = e->xy.ymin + ((double)e->j.y * e->xy.h_t / HEIGHT);
 			e->j.n = -1;
-			whilejulia(e);
+			while (++e->j.n < e->xy.nmax)
+			{
+				e->j.two_a = e->j.a * e->j.a;
+				e->j.two_b = e->j.b * e->j.b;
+				e->j.two_ab = 2.0 * e->j.a * e->j.b;
+				if (e->k[KEY_SPACEBAR] != 1)
+					map(e);
+				e->j.a = e->j.two_a - e->j.two_b + e->xy.mre;
+				e->j.b = e->j.two_ab + e->xy.mri;
+				if (e->j.a * e->j.a + e->j.b * e->j.b > 16.0)
+					break ;
+			}
 			juliacolor(e);
-			// e->j.tx += e->j.dx;
 		}
-		// e->j.ty += e->j.dy;
 	}
 }

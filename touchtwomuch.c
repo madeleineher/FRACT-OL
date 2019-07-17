@@ -32,7 +32,7 @@ int		movefractol(t_env *e)
 int		changefractol(t_env *e)
 {
 	int		i;
-	char	*fractols[8];
+	char	*fractols[9];
 
 	i = -1;
 	fractols[0] = "julia";
@@ -43,12 +43,14 @@ int		changefractol(t_env *e)
 	fractols[5] = "koch";
 	fractols[6] = "sierpinski";
 	fractols[7] = "doubleburning";
+	fractols[8] = "glynn";
+	e->oldfrac = e->fractol;
 	while (fractols[++i][0] != e->fractol[0])
-		;	
-	if (i < 7)
+		;
+	if (i < 8)
 		i++;
 	else
-		i = 0;	
+		i = 0;
 	e->fractol = fractols[i];
 	e->k[N] = 0;
 	setfractol(e);
@@ -81,7 +83,7 @@ int		reset(t_env *e)
 		e->xy.ymax = HEIGHT / 4 * 3;
 	}
 	blackout(e);
-    return (0);
+	return (0);
 }
 
 int		touchtwomuch(t_env *e)
@@ -92,5 +94,5 @@ int		touchtwomuch(t_env *e)
 		movefractol(e);
 	if (e->k[N] == 1)
 		changefractol(e);
-    return (0);
+	return (0);
 }

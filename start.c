@@ -15,7 +15,8 @@
 int		loop(t_env *e)
 {
 	mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
-	// texting(e);
+	if (e->oldfrac != e->fractol || e->xy.oldmax != e->xy.nmax)
+		texting(e);
 	mlx_hook(e->w.wp, 2, 1L << 2, key_press, e);
 	mlx_hook(e->w.wp, 3, 1L << 3, key_release, e);
 	mlx_hook(e->w.wp, 6, 1L << 6, mouse_move, e);
@@ -54,6 +55,8 @@ void	start(t_env *e) // add number to fractal variable like DEFINES
 		sierpinski(e);
 	else if (ft_strcmp(e->fractol, "julia") == 0)
 		julia(e);
+	else if (ft_strcmp(e->fractol, "glynn") == 0)
+		glynn(e);
 	// else if (ft_strcmp(th->env->fractol, "koch") == 0)
 	// 	koch(th->env, o);
 

@@ -21,17 +21,6 @@ int		quit(t_env *e)
 
 void	blackout(t_env *e)
 {
-	// int		i;
-	// int		j;
-
-	// j = -1;
-	// while (++j < HEIGHT)
-	// {
-	// 	i = -1;
-	// 	while (++i < WIDTH)
-	// 		*(int *)&e->data[i * (e->w.bpp / 8) + j * e->w.sl] = 0x000000;
-	// }
-	// // mlx_put_image_to_window(e->w.mp, e->w.wp, e->w.ip, 0, 0);
 	ft_bzero(e->data, sizeof(int) * WIDTH * HEIGHT);
 	start(e);
 }

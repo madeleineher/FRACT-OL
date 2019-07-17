@@ -59,8 +59,6 @@ void	mandelbrot(t_env *e)
 		e->m.x = -1; //start;
 		while (++e->m.x < WIDTH)
 		{
-			// e->m.a = e->m.tx;
-			// e->m.b = e->m.ty;
 			e->m.a = 0;
 			e->m.b = 0;
 			e->m.tx = e->xy.xmin + ((double)e->m.x * e->xy.w_t / WIDTH);
@@ -68,8 +66,6 @@ void	mandelbrot(t_env *e)
 			e->m.n = -1;
 			whilemandel(e);
 			mandelcolor(e);
-			// e->m.tx += e->m.dx;
 		}
-		// e->m.ty += e->m.dy;
 	}
 }

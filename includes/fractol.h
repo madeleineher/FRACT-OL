@@ -15,6 +15,7 @@
 # include "../libft/libft.h"
 # include "../minilibx_macos/mlx.h"
 # include <math.h>
+# include <complex.h> // take out ! -- testing --
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
@@ -24,7 +25,8 @@
 
 # define WIDTH			800
 # define HEIGHT 		800
-# define THREADS		4
+# define THREADS		4 // take out ?
+// # define LIMIT			4
 
 # define ESC 			53
 # define H				4
@@ -34,7 +36,8 @@
 # define A				0
 # define S				1
 # define D				2
-# define I				34
+# define K         		40 // tmp I
+// # define I				34
 # define U				32
 # define Q				12
 # define E				14
@@ -80,8 +83,6 @@ typedef struct			s_jul
 	int					x;
 	int					y;
 	int					n;
-	double				dx;
-	double				dy;
 	double				ty;
 	double				tx;
 	double				a;
@@ -96,8 +97,6 @@ typedef struct			s_burn
 	int					x;
 	int					y;
 	int					n;
-	double				dx;
-	double				dy;
 	double				ty;
 	double				tx;
 	double				a;
@@ -112,8 +111,6 @@ typedef struct			s_dou
 	int					x;
 	int					y;
 	int					n;
-	double				dx;
-	double				dy;
 	double				ty;
 	double				tx;
 	double				a;
@@ -128,8 +125,6 @@ typedef struct			s_man
 	int					x;
 	int					y;
 	int					n;
-	double				dx;
-	double				dy;
 	double				ty;
 	double				tx;
 	double				a;
@@ -144,8 +139,6 @@ typedef struct			s_tri
 	int					x;
 	int					y;
 	int					n;
-	double				dx;
-	double				dy;
 	double				ty;
 	double				tx;
 	double				a;
@@ -154,6 +147,21 @@ typedef struct			s_tri
 	double				two_b;
 	double				two_ab;
 }						t_tri;
+
+typedef struct			s_gly
+{
+	int					x;
+	int					y;
+	int					n;
+	double				ty;
+	double				tx;
+	double				a;
+	double				b;
+	double				two_a;
+	double				two_b;
+	double				two_ab;
+	double complex		cmplx;
+}						t_gly;
 
 typedef struct			s_kohp
 {
@@ -195,6 +203,7 @@ typedef struct			s_mos
 typedef struct			s_xy
 {
 	int					nmax;
+	int					oldmax;
 	double				xmin;
 	double				xmax;
 	double				ymin;
@@ -208,14 +217,15 @@ typedef struct			s_xy
 	double				zoom;
 	double				w_t;
 	double				h_t;
-	double				oldrange_x;
-	double				oldrange_y;
+	double				or_x;
+	double				or_y;
 }						t_xy;
 
 typedef struct			s_env
 {
 	char				*fractol;
-	char				*data; // image string
+	char				*oldfrac;
+	char				*data;
 	int					k[300];
 	int					starth;
 	int					endth;
@@ -234,6 +244,7 @@ typedef struct			s_env
 	t_sie				s;
 	t_tri				t;
 	t_koch				o;
+	t_gly				g;
 }						t_env;
 
 typedef struct			s_thr
@@ -261,6 +272,7 @@ void					sierpinski(t_env *e);
 void					burn(t_env *e);
 void					doubleburn(t_env *e);
 void					tricorn(t_env *e);
+void					glynn(t_env *e);
 void					color(t_env *e);
 void					colorkoch(t_env *e, t_kohp tmp);
 void					texting(t_env *e);
