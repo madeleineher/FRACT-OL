@@ -24,23 +24,15 @@ void	burncolor(t_env *e)
 	else
 	{	
 		e->data[0 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = 0;
-		e->data[1 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][e->b.n % 5] >> 8;
-		e->data[2 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][e->b.n % 5] >> 16;
-		e->data[3 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][e->b.n % 5] >> 24;
+		e->data[1 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->colgrad[e->b.n % 1000] >> 8;
+		e->data[2 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->colgrad[e->b.n % 1000] >> 16;
+		e->data[3 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->colgrad[e->b.n % 1000] >> 24;
 	}
-}
-
-void	prelimburn(t_env *e)
-{
-	e->b.y = -1;
-	// e->b.ty = e->xy.ymin;
-	// e->b.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	// e->b.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
 }
 
 void	burn(t_env *e)
 {
-	prelimburn(e);
+	e->b.y = -1;
 	while (++e->b.y < HEIGHT)
 	{
 		e->b.x = -1;

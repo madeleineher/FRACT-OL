@@ -24,9 +24,9 @@ void	mandelcolor(t_env *e)
 	else
 	{
 		e->data[0 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = 0;
-		e->data[1 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][e->m.n % 5] >> 8;
-		e->data[2 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][e->m.n % 5] >> 16;
-		e->data[3 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][e->m.n % 5] >> 24;
+		e->data[1 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->colgrad[e->m.n % 1000] >> 8;
+		e->data[2 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->colgrad[e->m.n % 1000] >> 16;
+		e->data[3 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->colgrad[e->m.n % 1000] >> 24;
 	}
 }
 

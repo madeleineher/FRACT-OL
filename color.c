@@ -12,30 +12,6 @@
 
 #include "includes/fractol.h"
 
-void	colortheory(t_env *e)
-{
-	e->pal2[0] = 0xe6194b;
-	e->pal2[1] = 0x3cb44b;
-	e->pal2[2] = 0xffe119;
-	e->pal2[3] = 0x4363d8;
-	e->pal2[4] = 0xf58231;
-	e->pal2[5] = 0x911eb4;
-	e->pal2[6] = 0x46f0f0;
-	e->pal2[7] = 0xf032e6;
-	e->pal2[8] = 0xbcf60c;
-	e->pal2[9] = 0xfabebe;
-	e->pal2[10] = 0x008080;
-	e->pal2[11] = 0xe6beff;
-	e->pal2[12] = 0x9a6324;
-	e->pal2[13] = 0xfffac8;
-	e->pal2[14] = 0x800000;
-	e->pal2[15] = 0xaaffc3;
-	e->pal2[16] = 0x808000;
-	e->pal2[17] = 0xffd8b1;
-	e->pal2[18] = 0x000075;
-	e->pal2[19] = 0x808080;
-}
-
 void	colorkoch(t_env *e, t_kohp tmp)
 {
 	e->data[0 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = 0;
@@ -63,7 +39,7 @@ void makeColorGradient(t_env *e)
 		e->colgrad[i] = (e->clr.r << 16);
 		e->colgrad[i] |= (e->clr.g << 8);
 		e->colgrad[i] |= (e->clr.b);
-		printf("r : [%d] , g : [%d] , b [%d]\n", e->clr.r, e->clr.g, e->clr.b);
+		// printf("r : [%d] , g : [%d] , b [%d]\n", e->clr.r, e->clr.g, e->clr.b);
 		i++;
 	}
 }
@@ -116,6 +92,5 @@ void	color(t_env *e)
 	e->pal[3][4] = 0x7DD2CE;
 	color2(e);
 	e->c = 0;
-	colortheory(e);
 	makeColorGradient(e);
 }

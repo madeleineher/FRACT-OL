@@ -24,9 +24,9 @@ void	juliacolor(t_env *e)
 	else
 	{
 		e->data[0 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = 0;
-		e->data[1 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][e->j.n % 5] >> 8;
-		e->data[2 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][e->j.n % 5] >> 16;
-		e->data[3 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][e->j.n % 5] >> 24;
+		e->data[1 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->colgrad[e->j.n % 1000] >> 8;
+		e->data[2 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->colgrad[e->j.n % 1000] >> 16;
+		e->data[3 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->colgrad[e->j.n % 1000] >> 24;
 	}
 }
 

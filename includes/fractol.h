@@ -230,7 +230,6 @@ typedef struct			s_env
 	char				*data;
 	int					k[300];
 	int					pal[8][5];
-	int					pal2[20];
 	int					colgrad[1000];
 	double				the;
 	int					c;	
