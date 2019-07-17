@@ -20,77 +20,32 @@ void	colorkoch(t_env *e, t_kohp tmp)
 	e->data[3 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = e->pal[e->c][0] >> 24;
 }
 
-void makeColorGradient(t_env *e)
+void	color(t_env *e)
 {
-	int	center = 128;
-	int	width = 127;
-	// int	len = 50;
 	int	i = 0;
-
-	double	fq1 = .05;
-	double	fq2 = .05;
-	double	fq3 = .05;
-
-	while (i < 1000)
+	
+	i = 0;
+	e->c = 0;
+	e->pal[0][0] = 0xDAE5CE;
+	e->pal[1][0] = 0x80FFC5;
+	e->pal[2][0] = 0xEAE7FF;
+	e->pal[3][0] = 0xD6EF80;
+	e->pal[4][0] = 0xBBBAF2;
+	e->pal[5][0] = 0xEDED76;
+	e->pal[6][0] = 0xBAA7B0;
+	e->pal[7][0] = 0xFFD289;
+	e->clr.fq1 = .1;
+	e->clr.fq2 = .1;
+	e->clr.fq3 = .1;
+	while (i < 10000)
 	{
-		e->clr.r = sin(fq1 * i + 0) * width + center;
-		e->clr.g = sin(fq2 * i + 2) * width + center;
-		e->clr.b = sin(fq3 * i + 4) * width + center;
+		e->clr.r = sin(e->clr.fq1 * i + 0) * e->clr.amp + e->clr.lum;
+		e->clr.g = sin(e->clr.fq2 * i + 4) * e->clr.amp + e->clr.lum;
+		e->clr.b = sin(e->clr.fq3 * i + 2) * e->clr.amp + e->clr.lum;
 		e->colgrad[i] = (e->clr.r << 16);
 		e->colgrad[i] |= (e->clr.g << 8);
 		e->colgrad[i] |= (e->clr.b);
-		// printf("r : [%d] , g : [%d] , b [%d]\n", e->clr.r, e->clr.g, e->clr.b);
+		// printf("b : [%d]\n", e->clr.b);
 		i++;
 	}
-}
-
-void	color2(t_env *e)
-{
-	e->pal[4][0] = 0xBBBAF2;
-	e->pal[4][1] = 0xD8BAF2;
-	e->pal[4][2] = 0xF09ED8;
-	e->pal[4][3] = 0xF0508F;
-	e->pal[4][4] = 0xF04648;
-	e->pal[5][0] = 0xEDED76;
-	e->pal[5][1] = 0xFF9060;
-	e->pal[5][2] = 0xFF6542;
-	e->pal[5][3] = 0xFD5200;
-	e->pal[5][4] = 0xD34300;
-	e->pal[6][0] = 0xBAA7B0;
-	e->pal[6][1] = 0xB2ABBF;
-	e->pal[6][2] = 0xB1B5C8;
-	e->pal[6][3] = 0xBFD5E2;
-	e->pal[6][4] = 0xC7EBF0;
-	e->pal[7][0] = 0xFFD289;
-	e->pal[7][1] = 0xFACC6B;
-	e->pal[7][2] = 0xFFD131;
-	e->pal[7][3] = 0xF5B82E;
-	e->pal[7][4] = 0xF4AC32;
-}
-
-void	color(t_env *e)
-{
-	e->pal[0][0] = 0xDAE5CE;
-	e->pal[0][1] = 0xE8CDC5;
-	e->pal[0][2] = 0xFFBACE;
-	e->pal[0][3] = 0xEF90AC;
-	e->pal[0][4] = 0xBD5E6E;
-	e->pal[1][0] = 0x80FFC5;
-	e->pal[1][1] = 0x23FFAF;
-	e->pal[1][2] = 0x35CC7B;
-	e->pal[1][3] = 0x3A903A;
-	e->pal[1][4] = 0x27630D;
-	e->pal[2][0] = 0xEAE7FF;
-	e->pal[2][1] = 0xF6D6E8;
-	e->pal[2][2] = 0xC6D3E5;
-	e->pal[2][3] = 0x9AD3F9;
-	e->pal[2][4] = 0x75D4FF;
-	e->pal[3][0] = 0xD6EF80;
-	e->pal[3][1] = 0xECFFC3;
-	e->pal[3][2] = 0xBEEFD6;
-	e->pal[3][3] = 0xB4E6D9;
-	e->pal[3][4] = 0x7DD2CE;
-	color2(e);
-	e->c = 0;
-	makeColorGradient(e);
 }

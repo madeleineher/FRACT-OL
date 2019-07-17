@@ -27,7 +27,6 @@
 # define HEIGHT 		800
 
 # define ESC 			53
-# define H				4
 # define R				15
 # define C				8
 # define W				13
@@ -41,6 +40,11 @@
 # define N				45
 # define KEY_SPACEBAR	49
 # define MOUSEM			6
+# define H				4
+# define J				38
+# define K				40
+# define L				37
+
 
 typedef struct			s_fer
 {
@@ -217,10 +221,11 @@ typedef struct			s_cool
 	int					r;
 	int					g;
 	int					b;
-	int					fq1;
-	int					fq2;
-	int					fq3;
-
+	double				fq1;
+	double				fq2;
+	double				fq3;
+	int					lum;
+	int					amp;
 }						t_cool;
 
 typedef struct			s_env
@@ -230,7 +235,7 @@ typedef struct			s_env
 	char				*data;
 	int					k[300];
 	int					pal[8][5];
-	int					colgrad[1000];
+	int					colgrad[10000];
 	double				the;
 	int					c;	
 	t_cool				clr;
