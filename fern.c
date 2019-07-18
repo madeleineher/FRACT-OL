@@ -16,11 +16,12 @@ void	drawpoint(int x, int y, t_env *e, int i)
 {
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
-		// *(int *)&e->data[(int)x * (e->w.bpp / 8) + (int)y * e->w.sl] = e->pal[e->c][i % 5];
-		e->data[0 + x * (e->w.bpp / 8) + y * e->w.sl] = 0;
-		e->data[1 + x * (e->w.bpp / 8) + y * e->w.sl] = e->pal[e->c][i % 5] >> 8;
-		e->data[2 + x * (e->w.bpp / 8) + y * e->w.sl] = e->pal[e->c][i % 5] >> 16;
-		e->data[3 + x * (e->w.bpp / 8) + y * e->w.sl] = e->pal[e->c][i % 5] >> 24;
+		e->data[0 + x * (e->w.bpp / 8) + y * e->w.sl] = e->colgrad[i % 10000];
+		e->data[1 + x * (e->w.bpp / 8) + y * e->w.sl] = \
+			e->colgrad[i % 10000] >> 8;
+		e->data[2 + x * (e->w.bpp / 8) + y * e->w.sl] = \
+			e->colgrad[i % 10000] >> 8;
+		e->data[3 + x * (e->w.bpp / 8) + y * e->w.sl] = 0;
 	}
 }
 
@@ -61,8 +62,8 @@ void	fern(t_env *e)
 	while (++x < e->xy.nmax)
 	{
 		fernpoints(e);
-		drawpoint((int)((e->f.x - e->xy.xmin) * WIDTH / (e->xy.xmax
-						- e->xy.xmin)), HEIGHT - (int)((e->f.y - e->xy.ymin)
-						* HEIGHT / (e->xy.ymax - e->xy.ymin)), e, x);
+		drawpoint((int)((e->f.x - e->xy.xmin) * WIDTH / (e->xy.xmax - \
+			e->xy.xmin)), HEIGHT - (int)((e->f.y - e->xy.ymin) * \
+			HEIGHT / (e->xy.ymax - e->xy.ymin)), e, x);
 	}
 }

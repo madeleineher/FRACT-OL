@@ -20,6 +20,29 @@ void	colorkoch(t_env *e, t_kohp tmp)
 	e->data[3 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = e->pal[e->c][0] >> 24;
 }
 
+void	colormenu(t_env *e, int i)
+{
+	int		amp;
+	int		lum;
+
+	i = 0;
+	e->clr.fq1 = .01;
+	e->clr.fq2 = .01;
+	e->clr.fq3 = .01;
+	amp = 70;
+	lum = 170;
+	while (i < 10000)
+	{
+		e->clr.r = sin(e->clr.fq1 * i + 0) * amp + lum;
+		e->clr.g = sin(e->clr.fq2 * i + 4) * amp + lum;
+		e->clr.b = sin(e->clr.fq3 * i + 2) * amp + lum;
+		e->colmenu[i] = (e->clr.r << 16);
+		e->colmenu[i] |= (e->clr.g << 8);
+		e->colmenu[i] |= (e->clr.b);
+		i++;
+	}
+}
+
 void	color(t_env *e)
 {
 	int	i = 0;
@@ -34,18 +57,17 @@ void	color(t_env *e)
 	e->pal[5][0] = 0xEDED76;
 	e->pal[6][0] = 0xBAA7B0;
 	e->pal[7][0] = 0xFFD289;
-	e->clr.fq1 = .1;
-	e->clr.fq2 = .1;
-	e->clr.fq3 = .1;
+	e->clr.fq1 = .04;
+	e->clr.fq2 = .04;
+	e->clr.fq3 = .04;
 	while (i < 10000)
 	{
-		e->clr.r = sin(e->clr.fq1 * i + 0) * e->clr.amp + e->clr.lum;
-		e->clr.g = sin(e->clr.fq2 * i + 4) * e->clr.amp + e->clr.lum;
-		e->clr.b = sin(e->clr.fq3 * i + 2) * e->clr.amp + e->clr.lum;
+		e->clr.r = sin(e->clr.fq1 * i + e->clr.ph1_r) * e->clr.amp + e->clr.lum;
+		e->clr.g = sin(e->clr.fq2 * i + e->clr.ph2_g) * e->clr.amp + e->clr.lum;
+		e->clr.b = sin(e->clr.fq3 * i + e->clr.ph3_b) * e->clr.amp + e->clr.lum;
 		e->colgrad[i] = (e->clr.r << 16);
 		e->colgrad[i] |= (e->clr.g << 8);
 		e->colgrad[i] |= (e->clr.b);
-		// printf("b : [%d]\n", e->clr.b);
 		i++;
 	}
 }

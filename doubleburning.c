@@ -16,34 +16,31 @@ void	douburncolor(t_env *e)
 {
 	if (e->d.n == e->xy.nmax)
 	{
-		e->data[0 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = 0;
-		e->data[1 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = e->pal[e->c][0] >> 8;
-		e->data[2 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = e->pal[e->c][0] >> 16;
-		e->data[3 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = e->pal[e->c][0] >> 24;
+		e->data[0 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = \
+			e->colgrad[e->d.n % 10];
+		e->data[1 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = \
+			e->colgrad[e->d.n % 10] >> 8;
+		e->data[2 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = \
+			e->colgrad[e->d.n % 10] >> 16;
+		e->data[3 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = 0;
 	}
 	else
 	{
-		e->data[0 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = 0;
-		e->data[1 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = e->pal[e->c][e->d.n % 5] >> 8;
-		e->data[2 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = e->pal[e->c][e->d.n % 5] >> 16;
-		e->data[3 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = e->pal[e->c][e->d.n % 5] >> 24;
+		e->data[0 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = \
+			e->colgrad[e->d.n % 10000];
+		e->data[1 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = \
+			e->colgrad[e->d.n % 10000] >> 8;
+		e->data[2 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = \
+			e->colgrad[e->d.n % 10000] >> 16;
+		e->data[3 + e->d.x * (e->w.bpp / 8) + e->d.y * e->w.sl] = 0;
 	}
-}
-
-void	prelimdouburn(t_env *e)
-{
-	e->d.y = -1;
-	// e->d.ty = e->xy.ymin;
-	// e->d.dx = (e->xy.xmax - e->xy.xmin) / (WIDTH);
-	// e->d.dy = (e->xy.ymax - e->xy.ymin) / (HEIGHT);
 }
 
 void	doubleburn(t_env *e)
 {
-	prelimdouburn(e);
+	e->d.y = -1;
 	while (++e->d.y < HEIGHT)
 	{
-		// e->d.tx = e->xy.xmin;
 		e->d.x = -1;
 		while (++e->d.x < WIDTH)
 		{
@@ -61,8 +58,6 @@ void	doubleburn(t_env *e)
 					break ;
 			}
 			douburncolor(e);
-			// e->d.tx += e->d.dx;
 		}
-		// e->d.ty += e->d.dy;
 	}
 }

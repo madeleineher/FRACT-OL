@@ -28,7 +28,6 @@
 
 # define ESC 			53
 # define R				15
-# define C				8
 # define W				13
 # define A				0
 # define S				1
@@ -40,8 +39,9 @@
 # define N				45
 # define KEY_SPACEBAR	49
 # define MOUSEM			6
-# define H				4
-# define J				38
+# define Z				6
+# define X				7
+# define C				8
 # define K				40
 # define L				37
 
@@ -173,8 +173,8 @@ typedef struct			s_kohp
 typedef struct			s_koch
 {
 	int					iter;
-	t_kohp				kp[6]; //koch points
-	t_bre				n; // bre
+	t_kohp				kp[6];
+	t_bre				n;
 }						t_koch;
 
 
@@ -226,6 +226,9 @@ typedef struct			s_cool
 	double				fq3;
 	int					lum;
 	int					amp;
+	int					ph1_r;
+	int					ph2_g;
+	int					ph3_b;
 }						t_cool;
 
 typedef struct			s_env
@@ -236,6 +239,7 @@ typedef struct			s_env
 	int					k[300];
 	int					pal[8][5];
 	int					colgrad[10000];
+	int					colmenu[10000];
 	double				the;
 	int					c;	
 	t_cool				clr;
@@ -274,6 +278,7 @@ void					doubleburn(t_env *e);
 void					tricorn(t_env *e);
 void					glynn(t_env *e);
 void					color(t_env *e);
+void					colormenu(t_env *e, int i);
 void					colorkoch(t_env *e, t_kohp tmp);
 void					texting(t_env *e);
 void					setfractol(t_env *e);

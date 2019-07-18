@@ -50,7 +50,10 @@ int		iterate(t_env *e)
 	if (e->fractol[0] == 'f')
 		e->xy.nmax += (e->k[INC] == 1 ? 100 : -100);
 	if ((e->xy.nmax < 0 || e->xy.nmax > 2147480000) && e->fractol[0] != 'k')
-		e->xy.nmax = 1000;
+		e->xy.nmax = 10;
+	if ((e->xy.nmax < 0 || e->xy.nmax > 2147480000) && e->fractol[0] != 'k'\
+		&& (e->fractol[0] == 'f' || e->fractol[0] == 's'))
+		e->xy.nmax = 10000;
 	if (e->fractol[0] == 'k')
 	{
 		if (e->k[INC] == 1 && (e->xy.nmax >= 0 && e->xy.nmax < 12))
@@ -64,16 +67,33 @@ int		iterate(t_env *e)
 	return (0);
 }
 
+int		amplitudeshift(t_env *e)
+{
+	if (e->k[K] == 1)
+	{
+		if (e->clr.amp > 50 && e->clr.amp < 129)
+			e->clr.amp += 5;
+		e->k[K] = 0;
+	}
+	if (e->k[L] == 1)
+	{
+		if (e->clr.amp > 50 && e->clr.amp < 129)
+			e->clr.amp -= 5;
+		e->k[L] = 0;
+	}
+	if (e->clr.amp < 50 || e->clr.amp >= 127)
+		e->clr.amp = 128;
+	color(e);
+	blackout(e);
+	return (0);
+}
+
 int		touch(t_env *e)
 {
 	if (e->k[ESC] == 1)
 		exit(0);
-	if (e->k[C] == 1)
-	{
-		e->c = (e->c < 8 ? e->c + 1 : 0);
-		blackout(e);
-		e->k[C] = 0;
-	}
+	if (e->k[K] == 1 || e->k[L] == 1)
+		amplitudeshift(e);
 	if (e->k[INC] == 1 || e->k[U] == 1)
 		iterate(e);
 	if (e->k[Q] == 1 || e->mo.m == 4)
@@ -83,7 +103,8 @@ int		touch(t_env *e)
 	if (e->k[KEY_SPACEBAR] == 1)
 		e->k[KEY_SPACEBAR] = 1;
 	if (e->k[R] == 1 || e->k[W] == 1 || e->k[S] == 1 || e->k[A] == 1
-		|| e->k[D] == 1 || e->k[N])
+		|| e->k[D] == 1 || e->k[N] || e->k[Z] == 1 || e->k[X] == 1
+		|| e->k[C] == 1)
 		touchtwomuch(e);
 	return (0);
 }

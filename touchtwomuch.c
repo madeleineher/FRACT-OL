@@ -12,24 +12,23 @@
 
 #include "includes/fractol.h"
 
-int		movefractol(t_env *e)
+int			movefractol(t_env *e)
 {
 	if (e->k[W] == 1 || e->k[S] == 1)
 	{
-		e->xy.ymin += (e->k[W] ? 0.005 : -0.005);
-		e->xy.ymax += (e->k[W] ? 0.005 : -0.005);
-		blackout(e);
+		e->xy.ymin += (e->k[W] ? 0.009 : -0.009);
+		e->xy.ymax += (e->k[W] ? 0.009 : -0.009);
 	}
 	if (e->k[A] == 1 || e->k[D] == 1)
 	{
-		e->xy.xmin += (e->k[A] ? 0.005 : -0.005);
-		e->xy.xmax += (e->k[A] ? 0.005 : -0.005);
-		blackout(e);
+		e->xy.xmin += (e->k[A] ? 0.009 : -0.009);
+		e->xy.xmax += (e->k[A] ? 0.009 : -0.009);
 	}
+	blackout(e);
 	return (0);
 }
 
-int		changefractol(t_env *e)
+int			changefractol(t_env *e)
 {
 	int		i;
 	char	*fractols[9];
@@ -58,35 +57,37 @@ int		changefractol(t_env *e)
 	return (0);
 }
 
-int		reset(t_env *e)
+void		reset(t_env *e)
 {
-	e->xy.w = 5;
-	e->xy.h = (e->xy.w * HEIGHT) / HEIGHT;
-	e->xy.xmin = (e->fractol[0] == 'f' ? -2.182 : -e->xy.w / 2);
-	e->xy.xmax = (e->fractol[0] == 'f' ? 2.6558 : e->xy.xmin + e->xy.w);
-	e->xy.ymin = (e->fractol[0] == 'f' ? 0 : -e->xy.h / 2);
-	e->xy.ymax = (e->fractol[0] == 'f' ? 9.9983 : e->xy.ymin + e->xy.h);
-	e->xy.w_t = (e->xy.xmax - e->xy.xmin);
-	e->xy.h_t = (e->xy.ymax - e->xy.ymin);
-	if (e->fractol[0] == 's')
-	{
-		e->xy.xmin = 0;
-		e->xy.xmax = WIDTH;
-		e->xy.ymin = 0;
-		e->xy.ymax = HEIGHT;
-	}
-	if (e->fractol[0] == 'k')
-	{
-		e->xy.xmin = WIDTH / 4;
-		e->xy.xmax = WIDTH / 4 * 3;
-		e->xy.ymin = HEIGHT / 4;
-		e->xy.ymax = HEIGHT / 4 * 3;
-	}
+	setfractol(e);
+	e->clr.amp = 127;
+	e->clr.ph1_r = 0;
+	e->clr.ph2_g = 4;
+	e->clr.ph3_b = 4;
+	color(e);
+	blackout(e);
+}
+
+int		changecolor(t_env *e)
+{
+	if (e->k[Z] == 1)
+		e->clr.ph1_r += (e->clr.ph1_r >= 0 && e->clr.ph1_r < 5 ? 2 : 0);
+	if (e->k[X] == 1)
+		e->clr.ph2_g += (e->clr.ph2_g >= 0 && e->clr.ph2_g < 5 ? 2 : 0);
+	if (e->k[C] == 1)
+		e->clr.ph3_b += (e->clr.ph3_b >= 0 && e->clr.ph3_b < 5 ? 2 : 0);
+	e->clr.ph1_r = (e->clr.ph1_r == 6 ? 0 : e->clr.ph1_r);
+	e->clr.ph2_g = (e->clr.ph2_g == 6 ? 0 : e->clr.ph2_g);
+	e->clr.ph3_b = (e->clr.ph3_b == 6 ? 0 : e->clr.ph3_b);
+	e->k[Z] = 0;
+	e->k[X] = 0;
+	e->k[C] = 0;
+	color(e);
 	blackout(e);
 	return (0);
 }
 
-int		touchtwomuch(t_env *e)
+int			touchtwomuch(t_env *e)
 {
 	if (e->k[R] == 1)
 		reset(e);
@@ -94,5 +95,7 @@ int		touchtwomuch(t_env *e)
 		movefractol(e);
 	if (e->k[N] == 1)
 		changefractol(e);
+	if (e->k[Z] == 1 || e->k[X] == 1 || e->k[C] == 1)
+		changecolor(e);
 	return (0);
 }

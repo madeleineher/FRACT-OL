@@ -16,17 +16,23 @@ void	juliacolor(t_env *e)
 {
 	if (e->j.n == e->xy.nmax)
 	{
-		e->data[0 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = 0;
-		e->data[1 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][0] >> 8;
-		e->data[2 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][0] >> 16;
-		e->data[3 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->pal[e->c][0] >> 24;
+		e->data[0 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = \
+			e->colgrad[e->j.n % 10];
+		e->data[1 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = \
+			e->colgrad[e->j.n % 10] >> 8;
+		e->data[2 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = \
+			e->colgrad[e->j.n % 10] >> 16;
+		e->data[3 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = 0;
 	}
 	else
 	{
-		e->data[0 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = 0;
-		e->data[1 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->colgrad[e->j.n % 1000] >> 8;
-		e->data[2 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->colgrad[e->j.n % 1000] >> 16;
-		e->data[3 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = e->colgrad[e->j.n % 1000] >> 24;
+		e->data[0 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = \
+			e->colgrad[e->j.n % 10000];
+		e->data[1 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = \
+			e->colgrad[e->j.n % 10000] >> 8;
+		e->data[2 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = \
+			e->colgrad[e->j.n % 10000] >> 16;
+		e->data[3 + e->j.x * (e->w.bpp / 8) + e->j.y * e->w.sl] = 0;
 	}
 }
 

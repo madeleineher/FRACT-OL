@@ -34,13 +34,19 @@ int			error(int i)
 
 void		textingtwo(t_env *e)
 {
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 300, 0xFFFFFF, "ZOOM : Q, E");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 330, 0xFFFFFF, "RESET : R");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 360, 0xFFFFFF, "COLOR : C");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 390, 0xFFFFFF, "EXIT : ESC");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 490, 0xFFFFFF,
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 260, 0xFFFFFF, "ZOOM : Q, E");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 290, 0xFFFFFF, "RESET : R");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 320, 0xFFFFFF, "COLOR AMPLITUDE :");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 25, 350, 0xFFFFFF, "INCREASE : K");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 25, 380, 0xFFFFFF, "DECREASE : L");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 410, 0xFFFFFF, "RGB PHASES :");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 25, 440, 0xFFFFFF, "RED : Z");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 25, 470, 0xFFFFFF, "GREEN : X");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 25, 500, 0xFFFFFF, "BLUE : C");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 530, 0xFFFFFF, "EXIT : ESC");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 600, 0xFFFFFF,
 		"ITERATIONS : ");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 520, 0xFFFFFF,
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 630, 0xFFFFFF,
 		ft_itoa(e->xy.nmax));
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 55, HEIGHT - 30, 0xFFFFFF,
 		"MHERNAND");
@@ -53,21 +59,22 @@ void		texting(t_env *e)
 
 	i = -1;
 	j = 799;
+	colormenu(e, i);
 	while (++i < HEIGHT)
 	{
 		while (++j < 1000)
-			mlx_pixel_put(e->w.mp, e->w.wp, j, i, e->pal[e->c][4]);
+			mlx_pixel_put(e->w.mp, e->w.wp, j, i, e->colmenu[i % 10000]);
 		j = 799;
 	}
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 50, 20, 0xFFFFFF, "FRACT'OL");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 50, 100, 0xFFFFFF, e->fractol);
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 180, 0xFFFFFF,
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 50, 80, 0xFFFFFF, e->fractol);
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 140, 0xFFFFFF,
 		"MOVE : W, A, S, D");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 210, 0xFFFFFF,
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 170, 0xFFFFFF,
 		"NEXT FRACTOL : N");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 240, 0xFFFFFF,
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 200, 0xFFFFFF,
 		"PAUSE : SPACEBAR");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 270, 0xFFFFFF,
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 230, 0xFFFFFF,
 		"ITERATE : I, U");
 	textingtwo(e);
 }
@@ -110,7 +117,7 @@ int			main(int argc, char **argv)
 		error(2);
 	e->fractol = argv[1];
 	if (!(e->w.mp = mlx_init())
-		|| !(e->w.wp = mlx_new_window(e->w.mp, WIDTH + 200, HEIGHT, argv[1])))
+		|| !(e->w.wp = mlx_new_window(e->w.mp, WIDTH + 200, HEIGHT, "FRACT'OL")))
 		error(3);
 	if (!(e->w.ip = mlx_new_image(e->w.mp, WIDTH, HEIGHT)))
 		error(3);

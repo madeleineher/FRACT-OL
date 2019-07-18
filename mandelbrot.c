@@ -15,19 +15,24 @@
 void	mandelcolor(t_env *e)
 {
 	if (e->m.n == e->xy.nmax)
-	{	
-		e->data[0 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = 0;
-		e->data[1 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][0] >> 8;
-		e->data[2 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][0] >> 16;
-		e->data[3 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->pal[e->c][0] >> 24;
+	{
+		e->data[0 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = \
+			e->colgrad[e->m.n % 10];
+		e->data[1 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = \
+			e->colgrad[e->m.n % 10] >> 8;
+		e->data[2 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = \
+			e->colgrad[e->m.n % 10] >> 16;
+		e->data[3 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = 0;
 	}
 	else
-	{ // changed here !! needs to be like this everywhere !!!!!!!!!
-		e->data[0 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->colgrad[e->m.n % 10000];
-		e->data[1 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->colgrad[e->m.n % 10000] >> 8;
-		e->data[2 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = e->colgrad[e->m.n % 10000] >> 16;
+	{
+		e->data[0 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = \
+			e->colgrad[e->m.n % 10000];
+		e->data[1 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = \
+			e->colgrad[e->m.n % 10000] >> 8;
+		e->data[2 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = \
+			e->colgrad[e->m.n % 10000] >> 16;
 		e->data[3 + e->m.x * (e->w.bpp / 8) + e->m.y * e->w.sl] = 0;
-
 	}
 }
 

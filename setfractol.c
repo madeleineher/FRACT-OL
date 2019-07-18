@@ -78,4 +78,9 @@ void	setfractol(t_env *e)
 		frac_set(e);
 	e->xy.w_t = (e->xy.xmax - e->xy.xmin);
 	e->xy.h_t = (e->xy.ymax - e->xy.ymin);
+	e->clr.lum = 128;
+	e->clr.amp = 127;
+	e->clr.ph1_r = 0;
+	e->clr.ph2_g = 4;
+	e->clr.ph3_b = 2;
 }

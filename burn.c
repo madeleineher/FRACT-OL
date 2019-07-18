@@ -16,17 +16,23 @@ void	burncolor(t_env *e)
 {
 	if (e->b.n == e->xy.nmax)
 	{
-		e->data[0 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = 0;
-		e->data[1 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][0] >> 8;
-		e->data[2 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][0] >> 16;
-		e->data[3 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->pal[e->c][0] >> 24;
+		e->data[0 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = \
+			e->colgrad[e->b.n % 10];
+		e->data[1 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = \
+			e->colgrad[e->b.n % 10] >> 8;
+		e->data[2 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = \
+			e->colgrad[e->b.n % 10] >> 16;
+		e->data[3 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = 0;
 	}
 	else
-	{	
-		e->data[0 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = 0;
-		e->data[1 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->colgrad[e->b.n % 1000] >> 8;
-		e->data[2 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->colgrad[e->b.n % 1000] >> 16;
-		e->data[3 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = e->colgrad[e->b.n % 1000] >> 24;
+	{
+		e->data[0 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = \
+			e->colgrad[e->b.n % 10000];
+		e->data[1 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = \
+			e->colgrad[e->b.n % 10000] >> 8;
+		e->data[2 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = \
+			e->colgrad[e->b.n % 10000] >> 16;
+		e->data[3 + e->b.x * (e->w.bpp / 8) + e->b.y * e->w.sl] = 0;
 	}
 }
 

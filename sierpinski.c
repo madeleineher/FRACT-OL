@@ -16,10 +16,12 @@ void	drawsierpinski(int x, int y, t_env *e, int i)
 {
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
-		e->data[0 + x * (e->w.bpp / 8) + y * e->w.sl] = 0;
-		e->data[1 + x * (e->w.bpp / 8) + y * e->w.sl] = e->colgrad[i % 1000] >> 8;
-		e->data[2 + x * (e->w.bpp / 8) + y * e->w.sl] = e->colgrad[i % 1000] >> 8;
-		e->data[3 + x * (e->w.bpp / 8) + y * e->w.sl] = e->colgrad[i % 1000] >> 8;
+		e->data[0 + x * (e->w.bpp / 8) + y * e->w.sl] = e->colgrad[i % 10000];
+		e->data[1 + x * (e->w.bpp / 8) + y * e->w.sl] = \
+			e->colgrad[i % 10000] >> 8;
+		e->data[2 + x * (e->w.bpp / 8) + y * e->w.sl] = \
+			e->colgrad[i % 10000] >> 16;
+		e->data[3 + x * (e->w.bpp / 8) + y * e->w.sl] = 0;
 	}
 }
 
@@ -28,10 +30,8 @@ int		lerp(int start, int stop, double amt)
 	return (start + amt * (stop - start));
 }
 
-void	sierpinski(t_env *e)
+void	sierpinskisetup(t_env *e)
 {
-	int	i = -1;
-
 	e->s.rx = rand() / WIDTH;
 	e->s.ry = rand() / HEIGHT;
 	e->xy.nmax = 100000;
@@ -41,6 +41,14 @@ void	sierpinski(t_env *e)
 	e->s.by = e->xy.ymax;
 	e->s.cx = e->xy.xmax;
 	e->s.cy = e->xy.ymax;
+}
+
+void	sierpinski(t_env *e)
+{
+	int	i;
+
+	i = -1;
+	sierpinskisetup(e);
 	while (++i < e->xy.nmax)
 	{
 		e->s.r = (int)rand() % 4;
