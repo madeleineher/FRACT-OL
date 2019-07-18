@@ -21,7 +21,6 @@
 # include <fcntl.h>
 # include <assert.h>
 # include <pthread.h>
-# include <stdio.h> //remove me !!!!!!!!!!!
 
 # define WIDTH			800
 # define HEIGHT 		800
@@ -241,7 +240,6 @@ typedef struct			s_env
 	int					colgrad[10000];
 	int					colmenu[10000];
 	double				the;
-	int					c;	
 	t_cool				clr;
 	t_mos				mo;
 	t_xy				xy;
@@ -271,7 +269,7 @@ int						mouse_no_click(int button, int x, int y, t_env *e);
 void					mandelbrot(t_env *e);
 void					julia(t_env *e);
 void					fern(t_env *e);
-void					koch(t_env *e, t_koch o);
+void					koch(t_env *e);
 void					sierpinski(t_env *e);
 void					burn(t_env *e);
 void					doubleburn(t_env *e);
@@ -279,7 +277,7 @@ void					tricorn(t_env *e);
 void					glynn(t_env *e);
 void					color(t_env *e);
 void					colormenu(t_env *e, int i);
-void					colorkoch(t_env *e, t_kohp tmp);
+void					colorkoch(t_env *e, t_kohp tmp, int i);
 void					texting(t_env *e);
 void					setfractol(t_env *e);
 int						main(int argc, char **argv);

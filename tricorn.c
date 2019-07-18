@@ -59,6 +59,5 @@ void	tricorn(t_env *e)
 			}
 			tricorncolor(e);
 		}
-	
 	}
 }

@@ -12,12 +12,15 @@
 
 #include "includes/fractol.h"
 
-void	colorkoch(t_env *e, t_kohp tmp)
+void	colorkoch(t_env *e, t_kohp tmp, int i)
 {
-	e->data[0 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = 0;
-	e->data[1 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = e->pal[e->c][0] >> 8;
-	e->data[2 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = e->pal[e->c][0] >> 16;
-	e->data[3 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = e->pal[e->c][0] >> 24;
+	e->data[0 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = \
+		e->colgrad[i % 10];
+	e->data[1 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = \
+		e->colgrad[i % 10] >> 8;
+	e->data[2 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = \
+		e->colgrad[i % 10] >> 16;
+	e->data[3 + (int)tmp.x * (e->w.bpp / 8) + (int)tmp.y * e->w.sl] = 0;
 }
 
 void	colormenu(t_env *e, int i)
@@ -45,10 +48,9 @@ void	colormenu(t_env *e, int i)
 
 void	color(t_env *e)
 {
-	int	i = 0;
-	
+	int	i;
+
 	i = 0;
-	e->c = 0;
 	e->pal[0][0] = 0xDAE5CE;
 	e->pal[1][0] = 0x80FFC5;
 	e->pal[2][0] = 0xEAE7FF;

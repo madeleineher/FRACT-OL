@@ -36,7 +36,8 @@ void		textingtwo(t_env *e)
 {
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 260, 0xFFFFFF, "ZOOM : Q, E");
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 290, 0xFFFFFF, "RESET : R");
-	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 320, 0xFFFFFF, "COLOR AMPLITUDE :");
+	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 320, 0xFFFFFF, \
+		"COLOR AMPLITUDE :");
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 25, 350, 0xFFFFFF, "INCREASE : K");
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 25, 380, 0xFFFFFF, "DECREASE : L");
 	mlx_string_put(e->w.mp, e->w.wp, WIDTH + 15, 410, 0xFFFFFF, "RGB PHASES :");
@@ -116,8 +117,9 @@ int			main(int argc, char **argv)
 	else if (check_fractols(argv) == -1)
 		error(2);
 	e->fractol = argv[1];
-	if (!(e->w.mp = mlx_init())
-		|| !(e->w.wp = mlx_new_window(e->w.mp, WIDTH + 200, HEIGHT, "FRACT'OL")))
+	if (!(e->w.mp = mlx_init()) \
+		|| !(e->w.wp = mlx_new_window(e->w.mp, WIDTH + 200, HEIGHT, \
+		"FRACT'OL")))
 		error(3);
 	if (!(e->w.ip = mlx_new_image(e->w.mp, WIDTH, HEIGHT)))
 		error(3);

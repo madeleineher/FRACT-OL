@@ -12,67 +12,67 @@
 
 #include "includes/fractol.h"
 
-void		line_setup(t_kohp t1_t2[2], t_kohp *tmp, t_koch *o, t_env *e)
+void		line_setup(t_kohp t1_t2[2], t_kohp *tmp, t_env *e)
 {
 	tmp->x = t1_t2[0].x;
 	tmp->y = t1_t2[0].y;
-	o->n.dx = t1_t2[1].x - t1_t2[0].x;
-	o->n.dy = t1_t2[1].y - t1_t2[0].y;
-	o->n.ix = (o->n.dx > 0) ? 1 : -1;
-	o->n.iy = (o->n.dy > 0) ? 1 : -1;
-	o->n.dx = abs(o->n.dx);
-	o->n.dy = abs(o->n.dy);
+	e->o.n.dx = t1_t2[1].x - t1_t2[0].x;
+	e->o.n.dy = t1_t2[1].y - t1_t2[0].y;
+	e->o.n.ix = (e->o.n.dx > 0) ? 1 : -1;
+	e->o.n.iy = (e->o.n.dy > 0) ? 1 : -1;
+	e->o.n.dx = abs(e->o.n.dx);
+	e->o.n.dy = abs(e->o.n.dy);
 	if (tmp->x > 0 && tmp->x < WIDTH && tmp->y > 0 && tmp->y < HEIGHT)
-		colorkoch(e, *tmp);
-	o->n.tdx = o->n.dx / 2;
-	o->n.tdy = o->n.dy / 2;
+		colorkoch(e, *tmp, 0);
+	e->o.n.tdx = e->o.n.dx / 2;
+	e->o.n.tdy = e->o.n.dy / 2;
 }
 
-void		lines2(t_env *e, int i, t_kohp tmp, t_koch *o)
+void		lines2(t_env *e, int i, t_kohp tmp)
 {
-	while (++i < o->n.dy)
+	while (++i < e->o.n.dy)
 	{
-		tmp.y += o->n.iy;
-		o->n.tdy += o->n.dx;
-		if (o->n.tdy >= o->n.dy)
+		tmp.y += e->o.n.iy;
+		e->o.n.tdy += e->o.n.dx;
+		if (e->o.n.tdy >= e->o.n.dy)
 		{
-			o->n.tdy -= o->n.dy;
-			tmp.x += o->n.ix;
+			e->o.n.tdy -= e->o.n.dy;
+			tmp.x += e->o.n.ix;
 		}
 		if (tmp.x > 0 && tmp.x < WIDTH && tmp.y > 0 && tmp.y < HEIGHT)
-			colorkoch(e, tmp);
+			colorkoch(e, tmp, i);
 	}
 }
 
-void		lines(t_kohp t1, t_kohp t2, t_env *e, t_koch *o)
+void		lines(t_kohp t1, t_kohp t2, t_env *e)
 {
 	t_kohp	tmp;
 	t_kohp	t1_t2[2];
 
 	t1_t2[0] = t1;
 	t1_t2[1] = t2;
-	o->n.i = -1;
-	line_setup(t1_t2, &tmp, o, e);
-	if (o->n.dx > o->n.dy)
+	e->o.n.i = -1;
+	line_setup(t1_t2, &tmp, e);
+	if (e->o.n.dx > e->o.n.dy)
 	{
-		while (++o->n.i < o->n.dx)
+		while (++e->o.n.i < e->o.n.dx)
 		{
-			tmp.x += o->n.ix;
-			o->n.tdx += o->n.dy;
-			if (o->n.tdx >= o->n.dx)
+			tmp.x += e->o.n.ix;
+			e->o.n.tdx += e->o.n.dy;
+			if (e->o.n.tdx >= e->o.n.dx)
 			{
-				o->n.tdx -= o->n.dx;
-				tmp.y += o->n.iy;
+				e->o.n.tdx -= e->o.n.dx;
+				tmp.y += e->o.n.iy;
 			}
 			if (tmp.x > 0 && tmp.x < WIDTH && tmp.y > 0 && tmp.y < HEIGHT)
-				colorkoch(e, tmp);
+				colorkoch(e, tmp, e->o.n.i);
 		}
 	}
 	else
-		lines2(e, o->n.i, tmp, o);
+		lines2(e, e->o.n.i, tmp);
 }
 
-void		kochangle(t_env *e, t_kohp t[2], int rec, t_koch o)
+void		kochangle(t_env *e, t_kohp t[2], int rec)
 {
 	t_kohp	p3[3];
 	t_kohp	tmp[2];
@@ -86,22 +86,22 @@ void		kochangle(t_env *e, t_kohp t[2], int rec, t_koch o)
 			p3[0].x) * sin(e->the) + (p3[2].y - p3[0].y) * cos(e->the)};
 		tmp[0] = t[0];
 		tmp[1] = p3[0];
-		kochangle(e, tmp, rec - 1, o);
+		kochangle(e, tmp, rec - 1);
 		tmp[0] = p3[0];
 		tmp[1] = p3[1];
-		kochangle(e, tmp, rec - 1, o);
+		kochangle(e, tmp, rec - 1);
 		tmp[0] = p3[1];
 		tmp[1] = p3[2];
-		kochangle(e, tmp, rec - 1, o);
+		kochangle(e, tmp, rec - 1);
 		tmp[0] = p3[2];
 		tmp[1] = t[1];
-		kochangle(e, tmp, rec - 1, o);
+		kochangle(e, tmp, rec - 1);
 	}
 	else
-		lines(t[0], t[1], e, &o);
+		lines(t[0], t[1], e);
 }
 
-void		koch(t_env *e, t_koch o)
+void		koch(t_env *e)
 {
 	t_kohp tab1[2];
 	t_kohp tab2[2];
@@ -119,13 +119,13 @@ void		koch(t_env *e, t_koch o)
 	e->o.kp[4].y = e->xy.ymax;
 	e->o.kp[5].x = e->xy.xmin;
 	e->o.kp[5].y = e->xy.ymin;
-	tab1[0] = o.kp[0];
-	tab1[1] = o.kp[1];
-	tab2[0] = o.kp[2];
-	tab2[1] = o.kp[3];
-	tab3[0] = o.kp[4];
-	tab3[1] = o.kp[5];
-	kochangle(e, tab1, e->xy.nmax, o);
-	kochangle(e, tab2, e->xy.nmax, o);
-	kochangle(e, tab3, e->xy.nmax, o);
+	tab1[0] = e->o.kp[0];
+	tab1[1] = e->o.kp[1];
+	tab2[0] = e->o.kp[2];
+	tab2[1] = e->o.kp[3];
+	tab3[0] = e->o.kp[4];
+	tab3[1] = e->o.kp[5];
+	kochangle(e, tab1, e->xy.nmax);
+	kochangle(e, tab2, e->xy.nmax);
+	kochangle(e, tab3, e->xy.nmax);
 }

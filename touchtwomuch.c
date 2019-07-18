@@ -63,12 +63,12 @@ void		reset(t_env *e)
 	e->clr.amp = 127;
 	e->clr.ph1_r = 0;
 	e->clr.ph2_g = 4;
-	e->clr.ph3_b = 4;
+	e->clr.ph3_b = 2;
 	color(e);
 	blackout(e);
 }
 
-int		changecolor(t_env *e)
+int			changecolor(t_env *e)
 {
 	if (e->k[Z] == 1)
 		e->clr.ph1_r += (e->clr.ph1_r >= 0 && e->clr.ph1_r < 5 ? 2 : 0);

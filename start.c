@@ -45,8 +45,7 @@ void	start(t_env *e)
 		julia(e);
 	else if (ft_strcmp(e->fractol, "glynn") == 0)
 		glynn(e);
-	// else if (ft_strcmp(th->env->fractol, "koch") == 0)
-	// 	koch(e);
- 	loop(e);
-
+	else if (ft_strcmp(e->fractol, "koch") == 0)
+		koch(e);
+	loop(e);
 }
