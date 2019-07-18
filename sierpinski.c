@@ -35,7 +35,7 @@ void	sierpinskisetup(t_env *e)
 	e->s.rx = rand() / WIDTH;
 	e->s.ry = rand() / HEIGHT;
 	e->xy.nmax = 100000;
-	e->s.ax = e->xy.xmax / 2;
+	e->s.ax = e->xy.xmax;
 	e->s.ay = e->xy.ymin;
 	e->s.bx = e->xy.xmin;
 	e->s.by = e->xy.ymax;
@@ -54,7 +54,7 @@ void	sierpinski(t_env *e)
 		e->s.r = (int)rand() % 4;
 		if (e->s.r == 0)
 		{
-			e->s.rx = lerp(e->s.rx, e->s.ax, 0.5);
+			e->s.rx = lerp(e->s.rx, e->s.ax / 2, 0.5);
 			e->s.ry = lerp(e->s.ry, e->s.ay, 0.5);
 		}
 		else if (e->s.r == 1)

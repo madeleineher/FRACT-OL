@@ -58,6 +58,18 @@ void	frac_sierpinski(t_env *e)
 	e->s.cy = e->xy.ymax;
 }
 
+void	setcolor(t_env *e)
+{
+	e->clr.lum = 128;
+	e->clr.amp = 127;
+	e->clr.ph1_r = 0;
+	e->clr.ph2_g = 4;
+	e->clr.ph3_b = 2;
+	e->clr.fq1 = .04;
+	e->clr.fq2 = .04;
+	e->clr.fq3 = .04;
+}
+
 void	setfractol(t_env *e)
 {
 	e->xy.nmax = (e->fractol[0] == 'f' ? 1000000 : 10);
@@ -78,9 +90,5 @@ void	setfractol(t_env *e)
 		frac_set(e);
 	e->xy.w_t = (e->xy.xmax - e->xy.xmin);
 	e->xy.h_t = (e->xy.ymax - e->xy.ymin);
-	e->clr.lum = 128;
-	e->clr.amp = 127;
-	e->clr.ph1_r = 0;
-	e->clr.ph2_g = 4;
-	e->clr.ph3_b = 2;
+	setcolor(e);
 }

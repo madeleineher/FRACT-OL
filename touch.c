@@ -22,6 +22,7 @@ int		zoomout(t_env *e)
 	e->xy.xmax = e->xy.xmin + e->xy.w_t;
 	e->xy.ymin += ((double)e->mo.my / (double)WIDTH) * (e->xy.or_y - e->xy.h_t);
 	e->xy.ymax = e->xy.ymin + e->xy.h_t;
+	e->k[Q] = 0;
 	blackout(e);
 	e->mo.m = 0;
 	return (0);
@@ -37,6 +38,7 @@ int		zoomin(t_env *e)
 	e->xy.xmax = e->xy.xmin + e->xy.w_t;
 	e->xy.ymin += ((double)e->mo.my / (double)WIDTH) * (e->xy.or_y - e->xy.h_t);
 	e->xy.ymax = e->xy.ymin + e->xy.h_t;
+	e->k[E] = 0;
 	blackout(e);
 	e->mo.m = 0;
 	return (0);
@@ -102,9 +104,14 @@ int		touch(t_env *e)
 		zoomin(e);
 	if (e->k[KEY_SPACEBAR] == 1)
 		e->k[KEY_SPACEBAR] = 1;
+	if (e->k[H] == 1)
+	{
+		e->k[H] = 1;
+		texting(e);
+	}
 	if (e->k[R] == 1 || e->k[W] == 1 || e->k[S] == 1 || e->k[A] == 1
 		|| e->k[D] == 1 || e->k[N] || e->k[Z] == 1 || e->k[X] == 1
-		|| e->k[C] == 1)
+		|| e->k[C] == 1 || e->k[V] == 1 || e->k[B] == 1 || e->k[G] == 1)
 		touchtwomuch(e);
 	return (0);
 }

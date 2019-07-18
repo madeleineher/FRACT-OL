@@ -69,7 +69,7 @@ clean:
 	@make -C $(L_TARG) clean
 	@make -C $(M_FOLD) clean
 	@rm -rf $(OBJS)
-	@echo "Fract'0l is clean !"
+	@echo "Fract'ol is clean !"
 
 fclean: clean
 	@make -C $(L_TARG) fclean

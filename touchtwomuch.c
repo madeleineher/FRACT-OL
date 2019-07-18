@@ -12,20 +12,35 @@
 
 #include "includes/fractol.h"
 
-int			movefractol(t_env *e)
+#include <stdio.h> // remove ~~
+
+void		movefractol(t_env *e)
 {
 	if (e->k[W] == 1 || e->k[S] == 1)
 	{
 		e->xy.ymin += (e->k[W] ? 0.009 : -0.009);
 		e->xy.ymax += (e->k[W] ? 0.009 : -0.009);
+		if (e->fractol[0] == 'k' || e->fractol[0] == 's')
+		{
+			e->xy.ymin += (e->k[W] ? 2.5 : -2.5);
+			e->xy.ymax += (e->k[W] ? 2.5 : -2.5);
+		}
+		e->k[W] = 0;
+		e->k[S] = 0;
 	}
 	if (e->k[A] == 1 || e->k[D] == 1)
 	{
 		e->xy.xmin += (e->k[A] ? 0.009 : -0.009);
 		e->xy.xmax += (e->k[A] ? 0.009 : -0.009);
+		if (e->fractol[0] == 'k' || e->fractol[0] == 's')
+		{
+			e->xy.xmin += (e->k[A] ? 2.5 : -2.5);
+			e->xy.xmax += (e->k[A] ? 2.5 : -2.5);
+		}
+		e->k[A] = 0;
+		e->k[D] = 0;
 	}
 	blackout(e);
-	return (0);
 }
 
 int			changefractol(t_env *e)
@@ -57,17 +72,6 @@ int			changefractol(t_env *e)
 	return (0);
 }
 
-void		reset(t_env *e)
-{
-	setfractol(e);
-	e->clr.amp = 127;
-	e->clr.ph1_r = 0;
-	e->clr.ph2_g = 4;
-	e->clr.ph3_b = 2;
-	color(e);
-	blackout(e);
-}
-
 int			changecolor(t_env *e)
 {
 	if (e->k[Z] == 1)
@@ -87,15 +91,44 @@ int			changecolor(t_env *e)
 	return (0);
 }
 
+int			changecolorfreq(t_env *e)
+{
+	int		neg;
+
+	neg = (e->k[H] == 1 ? -1 : 1);
+	if (e->k[V] == 1)
+		e->clr.fq1 += (.01 * neg);
+	if (e->k[G] == 1)
+		e->clr.fq2 += (.01 * neg);
+	if (e->k[B] == 1)
+		e->clr.fq3 += (.01 * neg);
+	e->k[V] = 0;
+	e->k[B] = 0;
+	color(e);
+	blackout(e);
+	return (0);
+}
+
 int			touchtwomuch(t_env *e)
 {
 	if (e->k[R] == 1)
-		reset(e);
+	{
+		setfractol(e);
+		e->clr.amp = 127;
+		e->clr.ph1_r = 0;
+		e->clr.ph2_g = 4;
+		e->clr.ph3_b = 2;
+		e->k[R] = 0;
+		color(e);
+		blackout(e);
+	}
 	if (e->k[W] == 1 || e->k[S] == 1 || e->k[A] == 1 || e->k[D] == 1)
 		movefractol(e);
 	if (e->k[N] == 1)
 		changefractol(e);
 	if (e->k[Z] == 1 || e->k[X] == 1 || e->k[C] == 1)
 		changecolor(e);
+	if (e->k[V] == 1 || e->k[B] == 1 || e->k[G] == 1)
+		changecolorfreq(e);
 	return (0);
 }

@@ -27,18 +27,17 @@ void	colormenu(t_env *e, int i)
 {
 	int		amp;
 	int		lum;
+	double	fq;
 
 	i = 0;
-	e->clr.fq1 = .01;
-	e->clr.fq2 = .01;
-	e->clr.fq3 = .01;
+	fq = .01;
 	amp = 70;
 	lum = 170;
 	while (i < 10000)
 	{
-		e->clr.r = sin(e->clr.fq1 * i + 0) * amp + lum;
-		e->clr.g = sin(e->clr.fq2 * i + 4) * amp + lum;
-		e->clr.b = sin(e->clr.fq3 * i + 2) * amp + lum;
+		e->clr.r = sin(fq * i + 0) * amp + lum;
+		e->clr.g = sin(fq * i + 4) * amp + lum;
+		e->clr.b = sin(fq * i + 2) * amp + lum;
 		e->colmenu[i] = (e->clr.r << 16);
 		e->colmenu[i] |= (e->clr.g << 8);
 		e->colmenu[i] |= (e->clr.b);
@@ -51,17 +50,6 @@ void	color(t_env *e)
 	int	i;
 
 	i = 0;
-	e->pal[0][0] = 0xDAE5CE;
-	e->pal[1][0] = 0x80FFC5;
-	e->pal[2][0] = 0xEAE7FF;
-	e->pal[3][0] = 0xD6EF80;
-	e->pal[4][0] = 0xBBBAF2;
-	e->pal[5][0] = 0xEDED76;
-	e->pal[6][0] = 0xBAA7B0;
-	e->pal[7][0] = 0xFFD289;
-	e->clr.fq1 = .04;
-	e->clr.fq2 = .04;
-	e->clr.fq3 = .04;
 	while (i < 10000)
 	{
 		e->clr.r = sin(e->clr.fq1 * i + e->clr.ph1_r) * e->clr.amp + e->clr.lum;

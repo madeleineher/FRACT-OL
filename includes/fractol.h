@@ -24,6 +24,7 @@
 
 # define WIDTH			800
 # define HEIGHT 		800
+# define WH				0xFFFFFF
 
 # define ESC 			53
 # define R				15
@@ -43,7 +44,10 @@
 # define C				8
 # define K				40
 # define L				37
-
+# define V				9
+# define B				11
+# define G				5
+# define H				4
 
 typedef struct			s_fer
 {
@@ -202,8 +206,6 @@ typedef struct			s_xy
 	double				xmax;
 	double				ymin;
 	double				ymax;
-	double				txmin;
-	double				tymin;
 	double				w;
 	double				h;
 	double				mre;
@@ -236,7 +238,6 @@ typedef struct			s_env
 	char				*oldfrac;
 	char				*data;
 	int					k[300];
-	int					pal[8][5];
 	int					colgrad[10000];
 	int					colmenu[10000];
 	double				the;
