@@ -227,6 +227,7 @@ typedef struct			s_cool
 	double				fq3;
 	int					lum;
 	int					amp;
+	int					neg;
 	int					ph1_r;
 	int					ph2_g;
 	int					ph3_b;

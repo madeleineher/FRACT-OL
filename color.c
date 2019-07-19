@@ -30,7 +30,7 @@ void	colormenu(t_env *e, int i)
 	double	fq;
 
 	i = 0;
-	fq = .01;
+	fq = .007;
 	amp = 70;
 	lum = 170;
 	while (i < 10000)
@@ -60,4 +60,5 @@ void	color(t_env *e)
 		e->colgrad[i] |= (e->clr.b);
 		i++;
 	}
+	e->clr.neg = 1;
 }

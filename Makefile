@@ -14,7 +14,7 @@ NAME = fractol
 
 INC = includes/fractol.h
 
-CFLAGS = -Wall -Werror -Wextra # -g3 # REMOVE G3 FLAG !
+CFLAGS = -Wall -Werror -Wextra
 
 CC = gcc
 

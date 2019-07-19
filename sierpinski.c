@@ -34,7 +34,6 @@ void	sierpinskisetup(t_env *e)
 {
 	e->s.rx = rand() / WIDTH;
 	e->s.ry = rand() / HEIGHT;
-	e->xy.nmax = 100000;
 	e->s.ax = e->xy.xmax;
 	e->s.ay = e->xy.ymin;
 	e->s.bx = e->xy.xmin;

@@ -50,6 +50,7 @@ void	frac_sierpinski(t_env *e)
 	e->xy.xmax = WIDTH;
 	e->xy.ymin = 0;
 	e->xy.ymax = HEIGHT;
+	e->xy.nmax = 100000;
 	e->s.ax = e->xy.xmax / 2;
 	e->s.ay = e->xy.ymin;
 	e->s.bx = e->xy.xmin;

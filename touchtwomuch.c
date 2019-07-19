@@ -12,8 +12,6 @@
 
 #include "includes/fractol.h"
 
-#include <stdio.h> // remove ~~
-
 void		movefractol(t_env *e)
 {
 	if (e->k[W] == 1 || e->k[S] == 1)
@@ -87,22 +85,21 @@ int			changecolor(t_env *e)
 	e->k[X] = 0;
 	e->k[C] = 0;
 	color(e);
+	// texting(e);
 	blackout(e);
 	return (0);
 }
 
 int			changecolorfreq(t_env *e)
 {
-	int		neg;
-
-	neg = (e->k[H] == 1 ? -1 : 1);
 	if (e->k[V] == 1)
-		e->clr.fq1 += (.01 * neg);
+		e->clr.fq1 += (.001 * e->clr.neg);
 	if (e->k[G] == 1)
-		e->clr.fq2 += (.01 * neg);
+		e->clr.fq2 += (.001 * e->clr.neg);
 	if (e->k[B] == 1)
-		e->clr.fq3 += (.01 * neg);
+		e->clr.fq3 += (.001 * e->clr.neg);
 	e->k[V] = 0;
+	e->k[G] = 0;
 	e->k[B] = 0;
 	color(e);
 	blackout(e);
