@@ -64,7 +64,7 @@ int			main(int argc, char **argv)
 	// if (!(e = (t_env*)malloc(sizeof(t_env))))
 	// 	error(3);
 	ft_bzero(&e, sizeof(e));
-	if (argc < 2)
+	if (argc != 2)
 		error(1);
 	else if (check_fractols(argv) == -1)
 		error(2);
