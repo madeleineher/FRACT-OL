@@ -12,14 +12,14 @@
 
 #include "includes/fractol.h"
 
-int		quit(t_env *e)
+int			quit(t_env *e)
 {
 	(void)e;
 	exit(0);
 	return (0);
 }
 
-void	blackout(t_env *e)
+void		blackout(t_env *e)
 {
 	ft_bzero(e->data, sizeof(int) * WIDTH * HEIGHT);
 	start(e);

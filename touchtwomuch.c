@@ -85,7 +85,7 @@ int			changecolor(t_env *e)
 	e->k[X] = 0;
 	e->k[C] = 0;
 	color(e);
-	// texting(e);
+	texting(e);
 	blackout(e);
 	return (0);
 }

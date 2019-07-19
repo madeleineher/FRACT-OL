@@ -108,7 +108,7 @@ int		touch(t_env *e)
 	{
 		e->k[H] = 1;
 		e->clr.neg = (e->k[H] == 1 ? -1 : 1);
-		// texting(e);
+		texting(e);
 	}
 	if (e->k[R] == 1 || e->k[W] == 1 || e->k[S] == 1 || e->k[A] == 1
 		|| e->k[D] == 1 || e->k[N] || e->k[Z] == 1 || e->k[X] == 1
