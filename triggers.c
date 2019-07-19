@@ -12,10 +12,15 @@
 
 #include "includes/fractol.h"
 
+#include <stdio.h> //
+
 int		key_press(int key, t_env *e)
 {
 	if (key == KEY_SPACEBAR)
+	{
 		e->k[KEY_SPACEBAR] = (e->k[KEY_SPACEBAR] == 1 ? 0 : 1);
+		printf("key value : [%d] \n", e->k[KEY_SPACEBAR]);
+	}
 	if (key == H)
 		e->k[H] = (e->k[H] == 1 ? 0 : 1);
 	else

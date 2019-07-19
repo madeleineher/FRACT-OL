@@ -12,6 +12,8 @@
 
 #include "includes/fractol.h"
 
+#include <stdio.h> //
+
 int		zoomout(t_env *e)
 {
 	e->xy.or_x = (e->xy.xmax - e->xy.xmin);
@@ -103,7 +105,10 @@ int		touch(t_env *e)
 	if (e->k[E] == 1 || e->mo.m == 5)
 		zoomin(e);
 	if (e->k[KEY_SPACEBAR] == 1)
+	{
 		e->k[KEY_SPACEBAR] = 1;
+		// printf("hello key value : [%d]\n", e->k[KEY_SPACEBAR]);
+	}
 	if (e->k[H] == 1)
 	{
 		e->k[H] = 1;
