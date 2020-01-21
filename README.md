@@ -9,7 +9,7 @@ $ make path/to/repo
 ```
 
 ## LUNCHING PROGRAM
-The program takes a fractal name as the input. The options are `julia`, ``mandelbrot`, `glynn`, `fern`, `koch`, `burning`, `tricorn`, `sierpinski`, `doubleburning`.
+The program takes a fractal name as the input. The options are `julia`, `mandelbrot`, `glynn`, `fern`, `koch`, `burning`, `tricorn`, `sierpinski`, `doubleburning`.
 ```
 $ ./fractol name_of_fractal
 ```
@@ -17,8 +17,8 @@ $ ./fractol name_of_fractal
 ## FEATURES
 - Nine possible fractals to choose from
 - Live switching between fractals
-- Infinite zooming with mouse scrolling
-- Modify color amplitude and frequiencies
+- Zoom in/out with mouse scrolling
+- Modify color amplitude and frequencies
 - Move fractal
 - Increase/decrease iterations
 - Color gradient
