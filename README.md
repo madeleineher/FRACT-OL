@@ -8,7 +8,7 @@ Run make inside the repo.
 $ make path/to/repo
 ```
 
-## LUNCHING PROGRAM
+## LAUNCHING PROGRAM
 The program takes a fractal name as the input. The options are `julia`, `mandelbrot`, `glynn`, `fern`, `koch`, `burning`, `tricorn`, `sierpinski`, `doubleburning`.
 ```
 $ ./fractol name_of_fractal
